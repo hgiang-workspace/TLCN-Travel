@@ -1,0 +1,11 @@
+tripadvisor:
+  enabled: true
+  output_format: json
+  storage_layer: bronze
+  query:
+    base_url: "https://www.tripadvisor.com"
+    reviews_endpoint: "/Reviews"
+    search_endpoint: "/Search"
+  rate_limit:
+    requests_per_second: 2
+    concurrent_requests: 5

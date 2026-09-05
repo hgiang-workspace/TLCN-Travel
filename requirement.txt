@@ -1,0 +1,6 @@
+selenium 
+webdriver-manager
+beautifulsoup4
+asyncio
+playwright-stealth==1.0.6
+playwright

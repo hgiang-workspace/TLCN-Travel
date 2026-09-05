@@ -1,0 +1,5 @@
+requests
+httpx
+pandas
+pydantic
+beautifulsoup4

@@ -1,0 +1,8 @@
+.env
+*.key
+*.pem
+*.env.local
+*.sql
+*.json
+data/
+TLTK/

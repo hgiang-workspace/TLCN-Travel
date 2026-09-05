@@ -1,0 +1,22 @@
+model:
+  name: visobert
+  type: multimodal
+  version: v1
+  embedding_dim: 768
+  max_seq_length: 512
+
+training:
+  epochs: 3
+  batch_size: 16
+  learning_rate: 2e-5
+
+inference:
+  device: auto  # auto, cpu, cuda
+  batch_size: 32
+
+datasets:
+  sentiment:
+    type: classification
+    labels: ["negative", "neutral", "positive"]
+  ner:
+    types: ["PROVINCE", "DISTRICT", "DESTINATION", "HOTEL", "RESTAURANT", "BEACH", "MUSEUM", "EVENT", "PERSON", "ORGANIZATION"]

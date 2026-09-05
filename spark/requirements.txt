@@ -1,0 +1,7 @@
+apache-spark
+pyspark
+pyarrow
+fsspec
+s3fs
+iceberg[pyspark]
+trino[sqlalchemy]
