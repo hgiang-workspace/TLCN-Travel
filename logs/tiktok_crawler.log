@@ -1,0 +1,665 @@
+2026-09-14 17:29:59,901 | INFO | ============================================================
+2026-09-14 17:29:59,901 | INFO | START TIKTOK CRAWLER
+2026-09-14 17:29:59,901 | INFO | ============================================================
+2026-09-14 17:50:49,270 | INFO | 
+2026-09-14 17:50:49,270 | INFO | ======================================================================
+2026-09-14 17:50:49,271 | INFO | START TIKTOK METADATA CRAWLER
+2026-09-14 17:50:49,271 | INFO | ======================================================================
+2026-09-14 17:50:49,271 | INFO | ======================================================================
+2026-09-14 17:50:49,271 | INFO | TIKTOK METADATA CRAWLER
+2026-09-14 17:50:49,271 | INFO | ======================================================================
+2026-09-14 17:50:49,271 | INFO | Project directory : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel
+2026-09-14 17:50:49,272 | INFO | TikTok directory  : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok
+2026-09-14 17:50:49,272 | INFO | Keyword file      : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\keyword.csv
+2026-09-14 17:50:49,272 | INFO | JavaScript file   : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\get_link_videos.js
+2026-09-14 17:50:49,272 | INFO | Raw directory     : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok
+2026-09-14 17:50:49,272 | INFO | Master file       : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata.csv
+2026-09-14 17:50:49,272 | INFO | ======================================================================
+2026-09-14 17:50:49,272 | INFO | Checking required files...
+2026-09-14 17:50:49,272 | ERROR | Missing keyword.csv
+2026-09-14 17:50:49,273 | ERROR | Expected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\keyword.csv
+2026-09-14 17:50:49,273 | ERROR | Create the file with columns:
+2026-09-14 17:50:49,273 | ERROR | STT,Keyword TikTok,province,category
+2026-09-14 17:51:39,871 | INFO | 
+2026-09-14 17:51:39,872 | INFO | ======================================================================
+2026-09-14 17:51:39,872 | INFO | START TIKTOK METADATA CRAWLER
+2026-09-14 17:51:39,872 | INFO | ======================================================================
+2026-09-14 17:51:39,872 | INFO | ======================================================================
+2026-09-14 17:51:39,872 | INFO | TIKTOK METADATA CRAWLER
+2026-09-14 17:51:39,872 | INFO | ======================================================================
+2026-09-14 17:51:39,872 | INFO | Project directory : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel
+2026-09-14 17:51:39,872 | INFO | TikTok directory  : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok
+2026-09-14 17:51:39,873 | INFO | Keyword file      : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\keyword.csv
+2026-09-14 17:51:39,873 | INFO | JavaScript file   : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\get_link_videos.js
+2026-09-14 17:51:39,873 | INFO | Raw directory     : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok
+2026-09-14 17:51:39,873 | INFO | Master file       : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata.csv
+2026-09-14 17:51:39,873 | INFO | ======================================================================
+2026-09-14 17:51:39,874 | INFO | Checking required files...
+2026-09-14 17:51:39,874 | INFO | [OK] keyword.csv found
+2026-09-14 17:51:39,875 | INFO | [OK] get_link_videos.js found
+2026-09-14 17:51:39,875 | INFO | Loading keyword.csv...
+2026-09-14 17:51:39,898 | INFO | Loaded 9 keywords
+2026-09-14 17:51:39,899 | INFO | Total keywords: 9
+2026-09-14 17:51:39,899 | INFO | Creating Chrome WebDriver...
+2026-09-14 17:51:51,085 | INFO | [OK] Chrome WebDriver created
+2026-09-14 17:51:51,085 | INFO | 
+2026-09-14 17:51:51,085 | INFO | PROCESS 1/9
+2026-09-14 17:51:51,086 | INFO | 
+2026-09-14 17:51:51,086 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:51:51,086 | INFO | Keyword  : du lịch Đà Nẵng
+2026-09-14 17:51:51,086 | INFO | Province : Đà Nẵng
+2026-09-14 17:51:51,086 | INFO | Category : travel
+2026-09-14 17:51:51,086 | INFO | Ques ID  : 1
+2026-09-14 17:51:51,086 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:51:51,087 | INFO | Searching TikTok: du lịch Đà Nẵng
+2026-09-14 17:51:51,087 | INFO | URL: https://www.tiktok.com/search?q=du%20lịch%20Đà%20Nẵng
+2026-09-14 17:52:00,704 | INFO | Current URL: https://www.tiktok.com/search?q=du%20l%E1%BB%8Bch%20%C4%90%C3%A0%20N%E1%BA%B5ng
+2026-09-14 17:52:00,705 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:52:00,749 | INFO | Injecting JavaScript...
+2026-09-14 17:52:00,780 | INFO | Waiting for metadata CSV...
+2026-09-14 17:54:00,822 | WARNING | Timeout waiting for CSV
+2026-09-14 17:54:00,823 | WARNING | No metadata CSV for: du lịch Đà Nẵng
+2026-09-14 17:54:00,824 | INFO | Waiting 5.8 seconds...
+2026-09-14 17:54:06,633 | INFO | 
+2026-09-14 17:54:06,633 | INFO | PROCESS 2/9
+2026-09-14 17:54:06,634 | INFO | 
+2026-09-14 17:54:06,634 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:54:06,634 | INFO | Keyword  : địa điểm du lịch Đà Nẵng
+2026-09-14 17:54:06,635 | INFO | Province : Đà Nẵng
+2026-09-14 17:54:06,635 | INFO | Category : attraction
+2026-09-14 17:54:06,635 | INFO | Ques ID  : 2
+2026-09-14 17:54:06,635 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:54:06,636 | INFO | Searching TikTok: địa điểm du lịch Đà Nẵng
+2026-09-14 17:54:06,637 | INFO | URL: https://www.tiktok.com/search?q=địa%20điểm%20du%20lịch%20Đà%20Nẵng
+2026-09-14 17:54:23,221 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%91%E1%BB%8Ba%20%C4%91i%E1%BB%83m%20du%20l%E1%BB%8Bch%20%C4%90%C3%A0%20N%E1%BA%B5ng
+2026-09-14 17:54:23,222 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:54:23,239 | INFO | Injecting JavaScript...
+2026-09-14 17:54:23,271 | INFO | Waiting for metadata CSV...
+2026-09-14 17:54:41,278 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (1).csv
+2026-09-14 17:54:41,278 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (1).csv
+2026-09-14 17:54:41,285 | INFO | Loaded 13 metadata records
+2026-09-14 17:54:41,298 | INFO | Valid metadata records: 13
+2026-09-14 17:54:41,303 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:54:41,311 | INFO | Waiting 5.7 seconds...
+2026-09-14 17:54:46,982 | INFO | 
+2026-09-14 17:54:46,982 | INFO | PROCESS 3/9
+2026-09-14 17:54:46,983 | INFO | 
+2026-09-14 17:54:46,984 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:54:46,984 | INFO | Keyword  : ăn gì Đà Nẵng
+2026-09-14 17:54:46,984 | INFO | Province : Đà Nẵng
+2026-09-14 17:54:46,984 | INFO | Category : food
+2026-09-14 17:54:46,984 | INFO | Ques ID  : 3
+2026-09-14 17:54:46,984 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:54:46,984 | INFO | Searching TikTok: ăn gì Đà Nẵng
+2026-09-14 17:54:46,984 | INFO | URL: https://www.tiktok.com/search?q=ăn%20gì%20Đà%20Nẵng
+2026-09-14 17:54:53,292 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%83n%20g%C3%AC%20%C4%90%C3%A0%20N%E1%BA%B5ng
+2026-09-14 17:54:53,293 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:54:53,304 | INFO | Injecting JavaScript...
+2026-09-14 17:54:53,317 | INFO | Waiting for metadata CSV...
+2026-09-14 17:55:11,323 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (2).csv
+2026-09-14 17:55:11,324 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (2).csv
+2026-09-14 17:55:11,328 | INFO | Loaded 15 metadata records
+2026-09-14 17:55:11,336 | INFO | Valid metadata records: 15
+2026-09-14 17:55:11,341 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:55:11,343 | INFO | Waiting 8.3 seconds...
+2026-09-14 17:55:19,690 | INFO | 
+2026-09-14 17:55:19,690 | INFO | PROCESS 4/9
+2026-09-14 17:55:19,691 | INFO | 
+2026-09-14 17:55:19,691 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:55:19,691 | INFO | Keyword  : du lịch Đà Lạt
+2026-09-14 17:55:19,691 | INFO | Province : Lâm Đồng
+2026-09-14 17:55:19,691 | INFO | Category : travel
+2026-09-14 17:55:19,691 | INFO | Ques ID  : 4
+2026-09-14 17:55:19,691 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:55:19,691 | INFO | Searching TikTok: du lịch Đà Lạt
+2026-09-14 17:55:19,691 | INFO | URL: https://www.tiktok.com/search?q=du%20lịch%20Đà%20Lạt
+2026-09-14 17:55:25,878 | INFO | Current URL: https://www.tiktok.com/search?q=du%20l%E1%BB%8Bch%20%C4%90%C3%A0%20L%E1%BA%A1t
+2026-09-14 17:55:25,879 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:55:25,888 | INFO | Injecting JavaScript...
+2026-09-14 17:55:25,902 | INFO | Waiting for metadata CSV...
+2026-09-14 17:55:43,909 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (3).csv
+2026-09-14 17:55:43,910 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (3).csv
+2026-09-14 17:55:43,914 | INFO | Loaded 14 metadata records
+2026-09-14 17:55:43,920 | INFO | Valid metadata records: 14
+2026-09-14 17:55:43,927 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:55:43,931 | INFO | Waiting 6.6 seconds...
+2026-09-14 17:55:50,485 | INFO | 
+2026-09-14 17:55:50,485 | INFO | PROCESS 5/9
+2026-09-14 17:55:50,485 | INFO | 
+2026-09-14 17:55:50,486 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:55:50,486 | INFO | Keyword  : địa điểm du lịch Đà Lạt
+2026-09-14 17:55:50,486 | INFO | Province : Lâm Đồng
+2026-09-14 17:55:50,486 | INFO | Category : attraction
+2026-09-14 17:55:50,486 | INFO | Ques ID  : 5
+2026-09-14 17:55:50,486 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:55:50,487 | INFO | Searching TikTok: địa điểm du lịch Đà Lạt
+2026-09-14 17:55:50,487 | INFO | URL: https://www.tiktok.com/search?q=địa%20điểm%20du%20lịch%20Đà%20Lạt
+2026-09-14 17:55:58,491 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%91%E1%BB%8Ba%20%C4%91i%E1%BB%83m%20du%20l%E1%BB%8Bch%20%C4%90%C3%A0%20L%E1%BA%A1t
+2026-09-14 17:55:58,491 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:55:58,521 | INFO | Injecting JavaScript...
+2026-09-14 17:55:58,621 | INFO | Waiting for metadata CSV...
+2026-09-14 17:56:16,628 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (4).csv
+2026-09-14 17:56:16,628 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (4).csv
+2026-09-14 17:56:16,630 | INFO | Loaded 17 metadata records
+2026-09-14 17:56:16,635 | INFO | Valid metadata records: 17
+2026-09-14 17:56:16,637 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:56:16,639 | INFO | Waiting 8.1 seconds...
+2026-09-14 17:56:24,740 | INFO | 
+2026-09-14 17:56:24,740 | INFO | PROCESS 6/9
+2026-09-14 17:56:24,741 | INFO | 
+2026-09-14 17:56:24,741 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:56:24,742 | INFO | Keyword  : ăn gì Đà Lạt
+2026-09-14 17:56:24,743 | INFO | Province : Lâm Đồng
+2026-09-14 17:56:24,743 | INFO | Category : food
+2026-09-14 17:56:24,743 | INFO | Ques ID  : 6
+2026-09-14 17:56:24,744 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:56:24,745 | INFO | Searching TikTok: ăn gì Đà Lạt
+2026-09-14 17:56:24,745 | INFO | URL: https://www.tiktok.com/search?q=ăn%20gì%20Đà%20Lạt
+2026-09-14 17:56:32,475 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%83n%20g%C3%AC%20%C4%90%C3%A0%20L%E1%BA%A1t
+2026-09-14 17:56:32,475 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:56:32,499 | INFO | Injecting JavaScript...
+2026-09-14 17:56:32,536 | INFO | Waiting for metadata CSV...
+2026-09-14 17:56:50,543 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (5).csv
+2026-09-14 17:56:50,543 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (5).csv
+2026-09-14 17:56:50,546 | INFO | Loaded 13 metadata records
+2026-09-14 17:56:50,553 | INFO | Valid metadata records: 13
+2026-09-14 17:56:50,558 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:56:50,559 | INFO | Waiting 7.8 seconds...
+2026-09-14 17:56:58,381 | INFO | 
+2026-09-14 17:56:58,381 | INFO | PROCESS 7/9
+2026-09-14 17:56:58,381 | INFO | 
+2026-09-14 17:56:58,381 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:56:58,382 | INFO | Keyword  : du lịch Nha Trang
+2026-09-14 17:56:58,382 | INFO | Province : Khánh Hòa
+2026-09-14 17:56:58,382 | INFO | Category : travel
+2026-09-14 17:56:58,382 | INFO | Ques ID  : 7
+2026-09-14 17:56:58,382 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:56:58,382 | INFO | Searching TikTok: du lịch Nha Trang
+2026-09-14 17:56:58,383 | INFO | URL: https://www.tiktok.com/search?q=du%20lịch%20Nha%20Trang
+2026-09-14 17:57:07,046 | INFO | Current URL: https://www.tiktok.com/search?q=du%20l%E1%BB%8Bch%20Nha%20Trang
+2026-09-14 17:57:07,046 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:57:07,250 | INFO | Injecting JavaScript...
+2026-09-14 17:57:07,442 | INFO | Waiting for metadata CSV...
+2026-09-14 17:57:25,449 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (6).csv
+2026-09-14 17:57:25,450 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (6).csv
+2026-09-14 17:57:25,453 | INFO | Loaded 15 metadata records
+2026-09-14 17:57:25,457 | INFO | Valid metadata records: 15
+2026-09-14 17:57:25,459 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:57:25,461 | INFO | Waiting 5.2 seconds...
+2026-09-14 17:57:30,685 | INFO | 
+2026-09-14 17:57:30,686 | INFO | PROCESS 8/9
+2026-09-14 17:57:30,687 | INFO | 
+2026-09-14 17:57:30,687 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:57:30,688 | INFO | Keyword  : địa điểm du lịch Nha Trang
+2026-09-14 17:57:30,689 | INFO | Province : Khánh Hòa
+2026-09-14 17:57:30,689 | INFO | Category : attraction
+2026-09-14 17:57:30,690 | INFO | Ques ID  : 8
+2026-09-14 17:57:30,690 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:57:30,691 | INFO | Searching TikTok: địa điểm du lịch Nha Trang
+2026-09-14 17:57:30,691 | INFO | URL: https://www.tiktok.com/search?q=địa%20điểm%20du%20lịch%20Nha%20Trang
+2026-09-14 17:57:37,493 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%91%E1%BB%8Ba%20%C4%91i%E1%BB%83m%20du%20l%E1%BB%8Bch%20Nha%20Trang
+2026-09-14 17:57:37,493 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:57:37,505 | INFO | Injecting JavaScript...
+2026-09-14 17:57:37,520 | INFO | Waiting for metadata CSV...
+2026-09-14 17:57:55,527 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (7).csv
+2026-09-14 17:57:55,528 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (7).csv
+2026-09-14 17:57:55,538 | INFO | Loaded 14 metadata records
+2026-09-14 17:57:55,570 | INFO | Valid metadata records: 14
+2026-09-14 17:57:55,599 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:57:55,610 | INFO | Waiting 5.4 seconds...
+2026-09-14 17:58:01,026 | INFO | 
+2026-09-14 17:58:01,027 | INFO | PROCESS 9/9
+2026-09-14 17:58:01,027 | INFO | 
+2026-09-14 17:58:01,027 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:58:01,028 | INFO | Keyword  : ăn gì Nha Trang
+2026-09-14 17:58:01,028 | INFO | Province : Khánh Hòa
+2026-09-14 17:58:01,028 | INFO | Category : food
+2026-09-14 17:58:01,028 | INFO | Ques ID  : 9
+2026-09-14 17:58:01,029 | INFO | ----------------------------------------------------------------------
+2026-09-14 17:58:01,029 | INFO | Searching TikTok: ăn gì Nha Trang
+2026-09-14 17:58:01,029 | INFO | URL: https://www.tiktok.com/search?q=ăn%20gì%20Nha%20Trang
+2026-09-14 17:58:07,090 | INFO | Current URL: https://www.tiktok.com/search?q=%C4%83n%20g%C3%AC%20Nha%20Trang
+2026-09-14 17:58:07,090 | INFO | Starting JavaScript metadata crawler...
+2026-09-14 17:58:07,096 | INFO | Injecting JavaScript...
+2026-09-14 17:58:07,108 | INFO | Waiting for metadata CSV...
+2026-09-14 17:58:33,119 | INFO | [OK] New CSV detected: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (8).csv
+2026-09-14 17:58:33,119 | INFO | Reading metadata CSV: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata (8).csv
+2026-09-14 17:58:33,121 | INFO | Loaded 62 metadata records
+2026-09-14 17:58:33,125 | INFO | Valid metadata records: 62
+2026-09-14 17:58:33,129 | ERROR | Error processing keyword: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+Traceback (most recent call last):
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1318, in main
+    count = process_keyword(
+        driver,
+        row
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 1214, in process_keyword
+    count = append_to_master(
+        df
+    )
+  File "D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\tiktok\crawler.py", line 992, in append_to_master
+    combined.to_csv(
+    ~~~~~~~~~~~~~~~^
+        MASTER_FILE,
+        ^^^^^^^^^^^^
+        index=False,
+        ^^^^^^^^^^^^
+        encoding="utf-8-sig"
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+PermissionError: [Errno 13] Permission denied: 'D:\\TIỂU LUẬN CHUYÊN NGÀNH\\TLCN-Travel\\data\\raw\\tiktok\\tiktok_metadata.csv'
+2026-09-14 17:58:50,169 | INFO | Chrome closed.
+2026-09-14 17:58:50,169 | INFO | 
+2026-09-14 17:58:50,169 | INFO | ======================================================================
+2026-09-14 17:58:50,169 | INFO | CRAWLER FINISHED
+2026-09-14 17:58:50,170 | INFO | ======================================================================
+2026-09-14 17:58:50,170 | INFO | Successful keywords : 0
+2026-09-14 17:58:50,170 | INFO | Failed keywords     : 9
+2026-09-14 17:58:50,170 | INFO | Records collected   : 0
+2026-09-14 17:58:50,170 | INFO | Runtime              : 430.30 seconds
+2026-09-14 17:58:50,171 | INFO | Master file          : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata.csv
+2026-09-14 17:58:50,171 | INFO | Log file             : D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\logs\tiktok_crawler.log
+2026-09-14 17:58:50,171 | INFO | ======================================================================
