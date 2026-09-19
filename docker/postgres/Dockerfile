@@ -1,10 +1,4 @@
-FROM postgres:15
-
-USER root
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    postgresql-contrib \
-    && rm -rf /var/lib/apt/lists/*
+FROM postgres:16
 
 ENV POSTGRES_USER=tourism
 ENV POSTGRES_PASSWORD=tourism

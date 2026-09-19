@@ -1,0 +1,6 @@
+connector.name=iceberg
+iceberg.file-format=PARQUET
+iceberg.s3.endpoint=http://minio:9000
+iceberg.s3.access-key=minioadmin
+iceberg.s3.secret-key=minioadmin
+iceberg.s3.path-style-access=true

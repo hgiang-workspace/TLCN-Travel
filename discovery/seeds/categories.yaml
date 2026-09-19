@@ -1,0 +1,36 @@
+categories:
+
+  - id: attraction
+    name: Địa điểm tham quan
+    subcategories:
+      - Di tích lịch sử
+      - Bãi biển
+      - Vườn quốc gia
+      - Công viên giải trí
+      - Đền chùa
+      - Danh lam thắng cảnh
+
+  - id: food_beverage
+    name: Ẩm thực
+    subcategories:
+      - Nhà hàng
+      - Quán ăn địa phương
+      - Quán cà phê
+      - Đặc sản vùng miền
+      - Chợ đêm / Chợ ẩm thực
+
+  - id: activity
+    name: Hoạt động & Trải nghiệm
+    subcategories:
+      - Trekking & Leo núi
+      - Cắm trại
+      - Lễ hội & Văn hóa
+      - Tour du lịch sinh thái
+
+  - id: shopping
+    name: Mua sắm
+    subcategories:
+      - Trung tâm thương mại
+      - Chợ truyền thống
+      - Cửa hàng lưu niệm
+      - Cửa hàng đặc sản

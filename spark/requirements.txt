@@ -1,7 +1,11 @@
-apache-spark
-pyspark
 pyarrow
 fsspec
 s3fs
-iceberg[pyspark]
+pyiceberg
 trino[sqlalchemy]
+pyyaml
+requests
+httpx
+pydantic
+beautifulsoup4
+boto3
