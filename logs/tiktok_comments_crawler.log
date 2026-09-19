@@ -8896,3 +8896,543 @@ TypeError: get_comments() takes 1 positional argument but 2 were given
 2026-09-15 19:11:03,636 | INFO | Done: 0 comments
 2026-09-15 19:11:16,858 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
 2026-09-15 19:11:16,858 | INFO | Finished. Videos: 12
+2026-09-19 19:41:40,952 | INFO | ======================================
+2026-09-19 19:41:40,955 | INFO | TikTok metadata + comments crawler
+2026-09-19 19:41:40,955 | INFO | ======================================
+2026-09-19 19:41:43,132 | INFO | Searching: du lịch Đà Nẵng
+2026-09-19 19:41:51,161 | INFO | Search round 1 | videos: 12
+2026-09-19 19:41:54,474 | INFO | Search round 2 | videos: 12
+2026-09-19 19:41:57,665 | INFO | Keyword 'du lịch Đà Nẵng': 12 videos
+2026-09-19 19:41:57,666 | INFO | [1/12] https://www.tiktok.com/@thuexemaydanang43hovy/video/7628220945903144213
+2026-09-19 19:41:57,666 | INFO | Open video: https://www.tiktok.com/@thuexemaydanang43hovy/video/7628220945903144213
+2026-09-19 19:42:09,634 | INFO | ======================================
+2026-09-19 19:42:09,634 | INFO | START COMMENT CRAWLING
+2026-09-19 19:42:09,634 | INFO | ======================================
+2026-09-19 19:42:09,635 | INFO | Opening TikTok comment panel...
+2026-09-19 19:42:09,666 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:42:10,675 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:42:13,717 | INFO | Comment DOM loaded: [data-e2e="comment-level-1"] | 20 elements
+2026-09-19 19:42:14,547 | INFO | Clicked 'View more' button
+2026-09-19 19:42:16,482 | INFO | Round 1 | DOM comments: 40
+2026-09-19 19:42:16,667 | INFO | Comment 1/50: Mình di 3 năm liên tiếp nha vẫn luỵ nè, mà mình đến chờ nhận xe r mình đi Hội An trước nhé, xog về c
+2026-09-19 19:42:16,699 | INFO | Comment 2/50: Đà Nẵng - Hội An - Huế - Bà Nà - [x] 🚕Đ𝐚̀ 𝐍𝐚̆̃𝐧𝐠 - 𝐇𝐨̣̂𝐢 𝐀𝐧 𝐱𝐞 𝟒 𝐜𝐡𝐨̂̃ : 𝟐 1 9 🌿 🚕Đ𝐚̀ 𝐍𝐚̆̃𝐧𝐠 - 𝐇𝐨̣̂𝐢
+2026-09-19 19:42:16,727 | INFO | Comment 3/50: năm 2024 đang ngồi chán thì book máy bay đi ĐN luôn:) lên đó xong hỏi có gì chơi xong đi kk, nhờ v m
+2026-09-19 19:42:16,756 | INFO | Comment 4/50: Phải thuê 2 khách sạn ở Đà Nẵng Riêng và Hội An riêng sao ạ?
+2026-09-19 19:42:16,786 | INFO | Comment 5/50: 25/8 đn đã vào mùa mưa ch mn ơi
+2026-09-19 19:42:16,816 | INFO | Comment 6/50: Xin phép chủ tuss : 🌿 Đi Hội An – Đà Nẵng mà chưa có ai chụp ảnh thì book em nha 📸✨ Em là nữ photogr
+2026-09-19 19:42:16,849 | INFO | Comment 7/50: Đầu t7 mình đi lúc đó ĐN có nắng quá và còn pháo hoa ko mn 😁
+2026-09-19 19:42:16,879 | INFO | Comment 8/50: Bên mình chuyên tour rừng dừa bảy mẫu hội an 🌴🌴 giá chỉ 150k/2 người lớn+ 1 trẻ em<6t(đã bao gồm tất
+2026-09-19 19:42:16,904 | INFO | Comment 9/50: Đà nẵng cuối tháng 6 đầu tháng 7 có thích hợp đi du lịch ko ạ, có đông và nắng nóng lắm ko ạ. Mong m
+2026-09-19 19:42:16,935 | INFO | Comment 10/50: Có tour Đà Nẵng ik Bà Nà Hills k ạ
+2026-09-19 19:42:16,963 | INFO | Comment 11/50: Tui ở 2 tuần giờ về vẫn thèm nè
+2026-09-19 19:42:16,989 | INFO | Comment 12/50: Đi núi thần tài mất bn lâu
+2026-09-19 19:42:17,018 | INFO | Comment 13/50: Xe máy thuê bnh/ngày vậy ạ
+2026-09-19 19:42:17,047 | INFO | Comment 14/50: Bạn nói đúng nè. Năm ngoái tui đi Đà Nẵng lần đầu tiên trong 4 ngày 3 đêm, và giờ tui vẫn mong được 
+2026-09-19 19:42:17,077 | INFO | Comment 15/50: thuê xe máy bao nhiêu 1 ngày ạ
+2026-09-19 19:42:17,112 | INFO | Comment 16/50: . 🚖 Chào mừng đến Đà Nẵng.
+2026-09-19 19:42:17,150 | INFO | Comment 17/50: Mjh muốn đi vào t9 hợp lý k b
+2026-09-19 19:42:17,185 | INFO | Comment 18/50: Đà Nẵng có nạn lừa cọc tiền khách sạn
+2026-09-19 19:42:17,214 | INFO | Comment 19/50: Cầu rồng phun lửa có vào những hnao hả các b
+2026-09-19 19:42:17,232 | INFO | Comment 20/50: ĐN ít cũng 3 đêm thì may ra mới đủ thời gian đi chrckin các điểm 🫶🏻
+2026-09-19 19:42:17,232 | INFO | DOM growth: 0 → 40
+2026-09-19 19:42:17,242 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:21,682 | INFO | Clicked 'View more' button
+2026-09-19 19:42:23,463 | INFO | Round 2 | DOM comments: 40
+2026-09-19 19:42:24,305 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:24,311 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:27,735 | INFO | Clicked 'View more' button
+2026-09-19 19:42:29,728 | INFO | Round 3 | DOM comments: 40
+2026-09-19 19:42:30,697 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:30,704 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:34,272 | INFO | Clicked 'View more' button
+2026-09-19 19:42:36,180 | INFO | Round 4 | DOM comments: 40
+2026-09-19 19:42:36,936 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:36,946 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:40,421 | INFO | Clicked 'View more' button
+2026-09-19 19:42:42,253 | INFO | Round 5 | DOM comments: 40
+2026-09-19 19:42:43,046 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:43,052 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:47,405 | INFO | Clicked 'View more' button
+2026-09-19 19:42:49,281 | INFO | Round 6 | DOM comments: 40
+2026-09-19 19:42:50,222 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:50,229 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:42:54,148 | INFO | Clicked 'View more' button
+2026-09-19 19:42:55,976 | INFO | Round 7 | DOM comments: 40
+2026-09-19 19:42:56,555 | INFO | DOM growth: 40 → 40
+2026-09-19 19:42:56,560 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:00,060 | INFO | Clicked 'View more' button
+2026-09-19 19:43:02,057 | INFO | Round 8 | DOM comments: 40
+2026-09-19 19:43:03,189 | INFO | DOM growth: 40 → 40
+2026-09-19 19:43:03,196 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:06,840 | INFO | Clicked 'View more' button
+2026-09-19 19:43:08,583 | INFO | Round 9 | DOM comments: 40
+2026-09-19 19:43:09,157 | INFO | DOM growth: 40 → 40
+2026-09-19 19:43:09,164 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:13,691 | INFO | Clicked 'View more' button
+2026-09-19 19:43:15,758 | INFO | Round 10 | DOM comments: 40
+2026-09-19 19:43:16,527 | INFO | DOM growth: 40 → 40
+2026-09-19 19:43:16,530 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:20,022 | INFO | Clicked 'View more' button
+2026-09-19 19:43:21,954 | INFO | Round 11 | DOM comments: 40
+2026-09-19 19:43:22,581 | INFO | DOM growth: 40 → 40
+2026-09-19 19:43:22,585 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:27,454 | INFO | Clicked 'View more' button
+2026-09-19 19:43:29,370 | INFO | Round 12 | DOM comments: 40
+2026-09-19 19:43:30,202 | INFO | DOM growth: 40 → 40
+2026-09-19 19:43:30,209 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:43:34,028 | INFO | Clicked 'View more' button
+2026-09-19 19:43:35,802 | INFO | Round 13 | DOM comments: 40
+2026-09-19 19:43:36,816 | INFO | No new comments after 12 rounds → stop.
+2026-09-19 19:43:36,817 | INFO | ======================================
+2026-09-19 19:43:36,817 | INFO | COMMENT RESULT: 20/50
+2026-09-19 19:43:36,817 | INFO | ======================================
+2026-09-19 19:43:36,823 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:43:36,823 | INFO | Done: 20 comments
+2026-09-19 19:43:39,014 | INFO | [2/12] https://www.tiktok.com/@hoangyen.shinetravel/video/7630455816352501012
+2026-09-19 19:43:39,015 | INFO | Open video: https://www.tiktok.com/@hoangyen.shinetravel/video/7630455816352501012
+2026-09-19 19:43:50,372 | INFO | ======================================
+2026-09-19 19:43:50,373 | INFO | START COMMENT CRAWLING
+2026-09-19 19:43:50,373 | INFO | ======================================
+2026-09-19 19:43:50,373 | INFO | Opening TikTok comment panel...
+2026-09-19 19:43:50,402 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:43:51,433 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:43:54,460 | INFO | Comment DOM loaded: [data-e2e="comment-level-1"] | 18 elements
+2026-09-19 19:43:55,092 | INFO | Clicked 'View more' button
+2026-09-19 19:43:57,081 | INFO | Round 1 | DOM comments: 36
+2026-09-19 19:43:57,354 | INFO | Comment 1/50: Tớ có combo Đà Nẵng tháng 4 3n2đ từ 3tr8, 4n3đ từ 3tr950. Combo bao gồm máy bay khứ hồi + khách sạn 
+2026-09-19 19:43:57,390 | INFO | Comment 2/50: b thuê khách sạn ở đâu vậy, chơi phố cổ hội An đêm xog lại về khách sạn ở Đà Nẵng ạ
+2026-09-19 19:43:57,437 | INFO | Comment 3/50: muốn đi chơi mac hk biết đặt khách sạn khu nào cho tiện ạ. cứu bed
+2026-09-19 19:43:57,488 | INFO | Comment 4/50: @Chụp Ảnh Hội An - Đà Nẵng: Xin phép chủ tus ạ , em là nữ chuyên nhận chụp ảnh bằng điện thoại giá r
+2026-09-19 19:43:57,531 | INFO | Comment 5/50: Đặt vé rừng dừa với vé lên bà nà hil ở đâu vậy ạ
+2026-09-19 19:43:57,572 | INFO | Comment 6/50: Tối thả hoa đăng ở Hội An rồi mấy giờ bà quay về Đà Nẵng vậy ạ.
+2026-09-19 19:43:57,620 | INFO | Comment 7/50: đặt vé rừng dừa ở đâu vậy cậu
+2026-09-19 19:43:57,670 | INFO | Comment 8/50: Hội An ↔ ĐN ↔ Huế 🌴 4c 2.2.0 🌴 7c 2.7.0 🌴 16c 4.0.0k zé lô O79 555 4686 🔥 đi rồi sẽ thấy đáng tiền
+2026-09-19 19:43:57,717 | INFO | Comment 9/50: Có vé t8 k b
+2026-09-19 19:43:57,776 | INFO | Comment 10/50: b ơi có combo t9 k ạ?
+2026-09-19 19:43:57,909 | INFO | Comment 11/50: Đi xe máy lên Hội an à e
+2026-09-19 19:43:57,973 | INFO | Comment 12/50: Bên mình còn phòng ở hội an k ạ
+2026-09-19 19:43:58,014 | INFO | Comment 13/50: Cho mik tham khảo tên ksan gần Hội An và gần trung tâm với ạ
+2026-09-19 19:43:58,059 | INFO | Comment 14/50: Vé dừng rừa trẻ con đi được ko ạ
+2026-09-19 19:43:58,104 | INFO | Comment 15/50: Tầm gần cuối th8 thì thời tiết hội an ntn ạ
+2026-09-19 19:43:58,151 | INFO | Comment 16/50: Có combo tháng 5 kh ạ
+2026-09-19 19:43:58,192 | INFO | Comment 17/50: Combo thế nào v ạ
+2026-09-19 19:43:58,236 | INFO | Comment 18/50: Chị có tour Huế - Đà Nắng không ạ, em xin tư vấn với ạ
+2026-09-19 19:43:58,237 | INFO | DOM growth: 0 → 36
+2026-09-19 19:43:58,245 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:02,494 | INFO | Clicked 'View more' button
+2026-09-19 19:44:04,517 | INFO | Round 2 | DOM comments: 36
+2026-09-19 19:44:05,675 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:05,683 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:10,513 | INFO | Clicked 'View more' button
+2026-09-19 19:44:12,410 | INFO | Round 3 | DOM comments: 36
+2026-09-19 19:44:13,455 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:13,462 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:17,364 | INFO | Clicked 'View more' button
+2026-09-19 19:44:19,391 | INFO | Round 4 | DOM comments: 36
+2026-09-19 19:44:20,339 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:20,352 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:25,325 | INFO | Clicked 'View more' button
+2026-09-19 19:44:27,268 | INFO | Round 5 | DOM comments: 36
+2026-09-19 19:44:28,093 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:28,101 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:31,909 | INFO | Clicked 'View more' button
+2026-09-19 19:44:33,916 | INFO | Round 6 | DOM comments: 36
+2026-09-19 19:44:34,954 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:34,962 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:38,803 | INFO | Clicked 'View more' button
+2026-09-19 19:44:40,770 | INFO | Round 7 | DOM comments: 36
+2026-09-19 19:44:41,745 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:41,754 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:46,143 | INFO | Clicked 'View more' button
+2026-09-19 19:44:48,083 | INFO | Round 8 | DOM comments: 36
+2026-09-19 19:44:48,984 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:48,991 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:44:53,699 | INFO | Clicked 'View more' button
+2026-09-19 19:44:55,613 | INFO | Round 9 | DOM comments: 36
+2026-09-19 19:44:56,593 | INFO | DOM growth: 36 → 36
+2026-09-19 19:44:56,600 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:01,617 | INFO | Clicked 'View more' button
+2026-09-19 19:45:03,591 | INFO | Round 10 | DOM comments: 36
+2026-09-19 19:45:04,559 | INFO | DOM growth: 36 → 36
+2026-09-19 19:45:04,567 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:09,404 | INFO | Clicked 'View more' button
+2026-09-19 19:45:11,310 | INFO | Round 11 | DOM comments: 36
+2026-09-19 19:45:12,346 | INFO | DOM growth: 36 → 36
+2026-09-19 19:45:12,354 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:16,323 | INFO | Clicked 'View more' button
+2026-09-19 19:45:18,286 | INFO | Round 12 | DOM comments: 36
+2026-09-19 19:45:19,307 | INFO | DOM growth: 36 → 36
+2026-09-19 19:45:19,317 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:24,198 | INFO | Clicked 'View more' button
+2026-09-19 19:45:26,141 | INFO | Round 13 | DOM comments: 36
+2026-09-19 19:45:27,013 | INFO | No new comments after 12 rounds → stop.
+2026-09-19 19:45:27,014 | INFO | ======================================
+2026-09-19 19:45:27,014 | INFO | COMMENT RESULT: 18/50
+2026-09-19 19:45:27,014 | INFO | ======================================
+2026-09-19 19:45:27,016 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:45:27,016 | INFO | Done: 18 comments
+2026-09-19 19:45:29,078 | INFO | [3/12] https://www.tiktok.com/@bychimai/video/7681307608233348370
+2026-09-19 19:45:29,078 | INFO | Open video: https://www.tiktok.com/@bychimai/video/7681307608233348370
+2026-09-19 19:45:40,931 | INFO | ======================================
+2026-09-19 19:45:40,932 | INFO | START COMMENT CRAWLING
+2026-09-19 19:45:40,932 | INFO | ======================================
+2026-09-19 19:45:40,932 | INFO | Opening TikTok comment panel...
+2026-09-19 19:45:40,945 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:45:41,960 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:45:44,984 | INFO | Comment DOM loaded: [data-e2e="comment-level-1"] | 20 elements
+2026-09-19 19:45:45,799 | INFO | Clicked 'View more' button
+2026-09-19 19:45:47,775 | INFO | Round 1 | DOM comments: 40
+2026-09-19 19:45:48,070 | INFO | Comment 1/50: Bất kỳ ai tới Đà Nẵng vui lòng né gấp Mọi nướng Núi Thành
+2026-09-19 19:45:48,110 | INFO | Comment 2/50: Ẩm thực Trần, ăn xong muốn .... luôn
+2026-09-19 19:45:48,150 | INFO | Comment 3/50: Ủa chè liên ngon mà ta , mình đi mãi mà 🥹🥹
+2026-09-19 19:45:48,187 | INFO | Comment 4/50: Chè Liên nói xuất sắc thì không. Nhưng mình thấy nó lại không dở :)), ăn cũng okie, phục vụ nhanh.
+2026-09-19 19:45:48,228 | INFO | Comment 5/50: Nướng Ngưu Phồn ăn 1 lần sợ luôn
+2026-09-19 19:45:48,279 | INFO | Comment 6/50: Chính xác
+2026-09-19 19:45:48,325 | INFO | Comment 7/50: Còn thiếu : Mì quảng ếch Bếp T… :))))
+2026-09-19 19:45:48,377 | INFO | Comment 8/50: Người ĐN xác nhận Chợ đêm Sơn Trà, Ẩm thực Trần, show cá heo đúng nha 😅 còn chè Liên với nướng Ngưu 
+2026-09-19 19:45:48,426 | INFO | Comment 9/50: Chè Liên vẫn okie mà, mình ĐN vẫn ăn bth
+2026-09-19 19:45:48,475 | INFO | Comment 10/50: Mình gốc ng đà nẵng mà ko ăn chè Liên. Mình ăn chè ông Cúc. Ngon hơn á. Còn mấy cái còn lại cũng ko 
+2026-09-19 19:45:48,526 | INFO | Comment 11/50: fomo là gì nhỉ
+2026-09-19 19:45:48,578 | INFO | Comment 12/50: Ren bạn biết
+2026-09-19 19:45:48,624 | INFO | Comment 13/50: Chè liên ngon mà có gì đâu.mà bỏ 20k -25k ra để trải nghiệm 1 món ăn cho dù ko quá ngon xuất sắc thì
+2026-09-19 19:45:48,670 | INFO | Comment 14/50: fomo là gì
+2026-09-19 19:45:48,713 | INFO | Comment 15/50: Người DN và mình chưa đi chỗ nào trong đây luôn. 🫪
+2026-09-19 19:45:48,750 | INFO | Comment 16/50: sự thật dân Đà Nẵng ko ai ăn Thịt heo Trần.😅😅😅 thời đi học từng làm thêm ở Trần. oẹ thôi rồi 😂😂😂
+2026-09-19 19:45:48,795 | INFO | Comment 17/50: Chè Liên best choice trong lòng em luôn ớ, siêu ngon. Vẫn highly recommend mn đến Đà Nẵng thì thử ạ.
+2026-09-19 19:45:48,830 | INFO | Comment 18/50: chè liên ngonn màa ạ
+2026-09-19 19:45:48,866 | INFO | Comment 19/50: Chợ đêm và show cá heo đúng thiệt trải nghiệm uổng tiền nhất luôn😂😂
+2026-09-19 19:45:48,915 | INFO | Comment 20/50: Ở Đà Nẵng mấy năm mà chưa đi chợ đêm sơn trà, ẩm thực trần khi nào, toàn ăn bánh tráng thịt heo chợ 
+2026-09-19 19:45:48,916 | INFO | DOM growth: 0 → 40
+2026-09-19 19:45:48,925 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:52,608 | INFO | Clicked 'View more' button
+2026-09-19 19:45:54,634 | INFO | Round 2 | DOM comments: 40
+2026-09-19 19:45:55,754 | INFO | DOM growth: 40 → 40
+2026-09-19 19:45:55,767 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:45:59,256 | INFO | Clicked 'View more' button
+2026-09-19 19:46:01,295 | INFO | Round 3 | DOM comments: 40
+2026-09-19 19:46:02,640 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:02,652 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:06,267 | INFO | Clicked 'View more' button
+2026-09-19 19:46:08,303 | INFO | Round 4 | DOM comments: 40
+2026-09-19 19:46:09,457 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:09,469 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:14,402 | INFO | Clicked 'View more' button
+2026-09-19 19:46:16,537 | INFO | Round 5 | DOM comments: 40
+2026-09-19 19:46:17,594 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:17,610 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:21,086 | INFO | Clicked 'View more' button
+2026-09-19 19:46:23,026 | INFO | Round 6 | DOM comments: 40
+2026-09-19 19:46:24,039 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:24,047 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:28,767 | INFO | Clicked 'View more' button
+2026-09-19 19:46:30,806 | INFO | Round 7 | DOM comments: 40
+2026-09-19 19:46:31,796 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:31,807 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:35,378 | INFO | Clicked 'View more' button
+2026-09-19 19:46:37,380 | INFO | Round 8 | DOM comments: 40
+2026-09-19 19:46:38,448 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:38,459 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:42,171 | INFO | Clicked 'View more' button
+2026-09-19 19:46:44,224 | INFO | Round 9 | DOM comments: 40
+2026-09-19 19:46:45,327 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:45,339 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:49,904 | INFO | Clicked 'View more' button
+2026-09-19 19:46:51,999 | INFO | Round 10 | DOM comments: 40
+2026-09-19 19:46:53,040 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:53,049 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:46:56,655 | INFO | Clicked 'View more' button
+2026-09-19 19:46:58,743 | INFO | Round 11 | DOM comments: 40
+2026-09-19 19:46:59,925 | INFO | DOM growth: 40 → 40
+2026-09-19 19:46:59,932 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:47:04,303 | INFO | Clicked 'View more' button
+2026-09-19 19:47:07,236 | INFO | Round 12 | DOM comments: 80
+2026-09-19 19:47:09,256 | INFO | Comment 21/50: Nướng Ngưu Phồn ở Aeon mới mở mà, còn show cá heo ở đâu tui hong bik lun
+2026-09-19 19:47:09,315 | INFO | Comment 22/50: Công nhận ẩm thực trần ăn hơn 10 năm trước giờ vẫn nhớ vừa chán vừa đắt
+2026-09-19 19:47:09,368 | INFO | Comment 23/50: Sợ nhất chợ đêm Sơn Trà 😅
+2026-09-19 19:47:09,432 | INFO | Comment 24/50: Cái nào cũng ok nhưng thay ẩm thực trần bằng bếp trang 😁
+2026-09-19 19:47:09,486 | INFO | Comment 25/50: Ừ chuẩn top 5 rồi đó bạn 🤣 t dân ĐN cũng ko đi mấy chỗ đó
+2026-09-19 19:47:09,532 | INFO | Comment 26/50: Chợ đêm Sơn Trà được cái mở ban đêm gần trung tâm để đi lại chứ riêng chất lượng đồ ăn chưa ổn. Ẩm t
+2026-09-19 19:47:09,582 | INFO | Comment 27/50: Chè em thấy xuân trang cx khá ngon
+2026-09-19 19:47:09,650 | INFO | Comment 28/50: thay vì ăn ẩm thực trần, các b có thể thử Dona trung
+2026-09-19 19:47:09,688 | INFO | Comment 29/50: em người ĐN xác nhận là ngoài chè liên ra thì mấy cái trong video là ko nên đi thiệt :))
+2026-09-19 19:47:09,718 | INFO | Comment 30/50: Ẩm thực Trần ngon mà, t dân địa phương nhưng mỗi khi cty có khách nước ngoài, hoặc nơi khác tới cần 
+2026-09-19 19:47:09,776 | INFO | Comment 31/50: mình thấy Chè Liên ăn Oki mà
+2026-09-19 19:47:09,832 | INFO | Comment 32/50: Trời ơi né cái ẩm thực Trần dùm tuiii nha mn ơi, nó dở chịu không nổi luôn
+2026-09-19 19:47:09,878 | INFO | Comment 33/50: Bạn nói đúng !!! Chợ đêm ST ngày xưa thì quá đáng đi !!! Giờ đưa vào hộ KD rồi nên toàn bán giá trên
+2026-09-19 19:47:09,945 | INFO | Comment 34/50: quán ở Đà Nẵng nhìn càng lỏ lỏ càng oke cho người VN. còn mấy cái như ẩm thực Trần, Donald Trung đắt
+2026-09-19 19:47:10,026 | INFO | Comment 35/50: Người ĐN mách cho nè :)) nếu muốn mua quần áo giá rẻ thì hãy đi chợ đêm Lê Duẩn nhma phải lựa thiệt 
+2026-09-19 19:47:10,095 | INFO | Comment 36/50: Đúng zậy, tui đi Đà Nẵng chả lần nào đi chợ đêm Sơn Trà và ăn Ẩm Thực Trần. Ăn bánh tráng cuốn thịt 
+2026-09-19 19:47:10,158 | INFO | Comment 37/50: Bạn này nói đúng nè. Tất cả những cái tên nêu trên dân địa phương đều k đến
+2026-09-19 19:47:10,225 | INFO | Comment 38/50: Ẩm thực Trần ngày xưa ok ó e, nay ko hiểu sao xuống ghia. Đợt bạn a ra ĐN du lịch a dẫn qua đây ăn c
+2026-09-19 19:47:10,292 | INFO | Comment 39/50: đúng hết nhe ,tui ng Đà Nẵng làm chứng nhe
+2026-09-19 19:47:10,360 | INFO | Comment 40/50: chợ đêm sơn trà , ẩm thực trần ng đà nẵng ko tới có lỡ thì chỉ môt lần
+2026-09-19 19:47:10,361 | INFO | DOM growth: 40 → 80
+2026-09-19 19:47:10,376 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:47:14,434 | INFO | Clicked 'View more' button
+2026-09-19 19:47:18,251 | INFO | Round 13 | DOM comments: 118
+2026-09-19 19:47:21,383 | INFO | Comment 41/50: bếp T ( Mỳ Quảng🐸) 🤣
+2026-09-19 19:47:21,444 | INFO | Comment 42/50: Mọi người ơi nếu ăn mỳ quảng hay bánh tráng thịt heo thì mình nên ăn quán nào ở ĐN?
+2026-09-19 19:47:21,550 | INFO | Comment 43/50: Mình ng Đà Nẵng, và 5 cái bn kể trên mình chưa đi bao giờ
+2026-09-19 19:47:21,644 | INFO | Comment 44/50: ẩm thực trần ngon mà b:))
+2026-09-19 19:47:21,726 | INFO | Comment 45/50: Hay đi ăn quán Nhắng Nướng nhé mn
+2026-09-19 19:47:21,792 | INFO | Comment 46/50: dẹp cái top 1 là dc:))
+2026-09-19 19:47:21,868 | INFO | Comment 47/50: Chè liên ăn đúng quán là ghiền ấy . Beo beo ngon
+2026-09-19 19:47:21,935 | INFO | Comment 48/50: Bỏ Trần 10 năm roi
+2026-09-19 19:47:22,009 | INFO | Comment 49/50: Chợ đêm Sơn Trà bán gấp 3 lần giá bên ngoài 😝
+2026-09-19 19:47:22,085 | INFO | Comment 50/50: Cơ mà đà nẵng có beer Fomo đang hot
+2026-09-19 19:47:22,086 | INFO | Reached maximum 50 comments.
+2026-09-19 19:47:22,086 | INFO | ======================================
+2026-09-19 19:47:22,086 | INFO | COMMENT RESULT: 50/50
+2026-09-19 19:47:22,087 | INFO | ======================================
+2026-09-19 19:47:22,090 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:47:22,090 | INFO | Done: 50 comments
+2026-09-19 19:47:25,613 | INFO | [4/12] https://www.tiktok.com/@yeudanang24/video/7646767981044780295
+2026-09-19 19:47:25,613 | INFO | Open video: https://www.tiktok.com/@yeudanang24/video/7646767981044780295
+2026-09-19 19:47:35,624 | INFO | ======================================
+2026-09-19 19:47:35,625 | INFO | START COMMENT CRAWLING
+2026-09-19 19:47:35,626 | INFO | ======================================
+2026-09-19 19:47:35,626 | INFO | Opening TikTok comment panel...
+2026-09-19 19:47:35,638 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:47:36,640 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:47:39,665 | INFO | Comment DOM loaded: [data-e2e="comment-level-1"] | 20 elements
+2026-09-19 19:47:40,281 | INFO | Clicked 'View more' button
+2026-09-19 19:47:42,324 | INFO | Round 1 | DOM comments: 40
+2026-09-19 19:47:42,628 | INFO | Comment 1/50: Tui dân địa phương đi hoài chán luôn😂
+2026-09-19 19:47:42,806 | INFO | Comment 2/50: Đà Nẵng vàng nắng đẹp ghê Danh lam di tích nhiều về nơi đây Thành phố đáng sống thật hay Cầu Rồng ph
+2026-09-19 19:47:42,856 | INFO | Comment 3/50: tôi vừa két thúc chuyến đi bà nà giá combo 1tr3 mà công viên có chỗ miễn nhìu chỗ vẫn thu tiền vé, b
+2026-09-19 19:47:42,923 | INFO | Comment 4/50: Xe Hội An ↔ ĐN ↔ Huế 🌴 4c 2.2.0 🌴 7c 2.7.0 🌴 16c 4.0.0k zé lô O79 555 4686 ( đi rồi sẽ thích )
+2026-09-19 19:47:42,974 | INFO | Comment 5/50: Kinh nghiệm của t là có mặt 7h30 tại cap treo thì lên bàn tay nha. Còn quă xíu là đông r, chuyển qua
+2026-09-19 19:47:43,022 | INFO | Comment 6/50: Đi Hội An từ Đà Nẵng cần xe cứ ib em nhé ❤️Xe riêng, đưa đón tận nơi.💯💯
+2026-09-19 19:47:43,064 | INFO | Comment 7/50: Đi nhiều ngày mới khoẻ đi trong 1 ngày t sẽ mợt chớt mất😂😂😂
+2026-09-19 19:47:43,103 | INFO | Comment 8/50: Đà Nẵng ⇄ Hội An ⇄ Bà Nà ⇄ Huế Xe sạch, đúng giờ, giá tốt. 📲 0899 325 352 letgoooo
+2026-09-19 19:47:43,138 | INFO | Comment 9/50: Ngày nèo cũng đi chán 🥺, đi làm
+2026-09-19 19:47:43,172 | INFO | Comment 10/50: Xe ĐN - Hội An - Huế 🚗 4c 2.2.0 🚗 7c 2.7.0 🚗 16c 4.0.0k Z a l o O79.555.4686 ( đi ok mới tính lúa )
+2026-09-19 19:47:43,210 | INFO | Comment 11/50: Đ𝐀̀ 𝐍𝐀̆̃𝐍𝐆 – 𝐇𝐎̣̂𝐈 𝐀𝐍 – Bà Nà - Huế • Xe 4 chỗ —— 2.19k • xe 7 chỗ ——- 2.69k • xe 16 chỗ —— 399k Zá 
+2026-09-19 19:47:43,252 | INFO | Comment 12/50: Chào anh chị bên em xe du lịch Đà Nẵng - Hội An - Huế 🚘Đ𝐚̀ 𝐍𝐚̆̃𝐧𝐠 - 𝐇𝐨̣̂𝐢 𝐀𝐧 𝐱𝐞 𝟒 𝐜𝐡𝐨̂̃ : 𝟐 𝟐 𝟎🐠 🚘Đ𝐚
+2026-09-19 19:47:43,289 | INFO | Comment 13/50: 𝗫𝗲 Đà 𝐍ẵ𝐧𝐠 - 𝐇ộ𝐢 𝐀𝐧 - 𝐁à 𝐍à - 𝐇𝐮ế 🌿Xe 4 chỗ giá 219k 1 chiều ( bao xe ) 🌿Xe 7 chỗ giá 269k 1 chiều (
+2026-09-19 19:47:43,325 | INFO | Comment 14/50: Trong Bài Hát :Đà Nẵng Mến Thương sáng tác Huỳnh Mẫn có rất nhiều địa danh du lịch ở Đà Nẵng được nh
+2026-09-19 19:47:43,367 | INFO | Comment 15/50: 𝗫𝗲 Đà 𝐍ẵ𝐧𝐠 - 𝐇ộ𝐢 𝐀𝐧 - 𝐁à 𝐍à - 𝐇𝐮ế 🌿Xe 4 chỗ giá 219k 1 chiều ( bao xe ) 🌿Xe 7 chỗ giá 269k 1 chiều (
+2026-09-19 19:47:43,401 | INFO | Comment 16/50: XE ĐÀ NẴNG - HỘI AN 4 chỗ : 219 kaka 7 chỗ : 269 kaka 16 chỗ : 410 kaka O899–325..352..
+2026-09-19 19:47:43,437 | INFO | Comment 17/50: ❤️Liên hệ đặt bàn For You Club: 0342 505 427 để được hỗ trợ chọn vị trí ưng ý nhất ạ.
+2026-09-19 19:47:43,485 | INFO | Comment 18/50: 🚗 Bên mình nhận xe du lịch Đà Nẵng – Hội An, rất vui được hỗ trợ 😊
+2026-09-19 19:47:43,526 | INFO | Comment 19/50: vé bao nhiêu ạ
+2026-09-19 19:47:43,570 | INFO | Comment 20/50: 🎟️**PASS VÉ SUN WORLD BÀ NÀ HILLS – GIÁ SIÊU TỐT** ⛰️Do thay đổi lịch trình nên mình cần pass lại vé
+2026-09-19 19:47:43,571 | INFO | DOM growth: 0 → 40
+2026-09-19 19:47:43,579 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:47:48,075 | INFO | Clicked 'View more' button
+2026-09-19 19:47:50,102 | INFO | Round 2 | DOM comments: 40
+2026-09-19 19:47:51,218 | INFO | DOM growth: 40 → 40
+2026-09-19 19:47:51,225 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:47:55,494 | INFO | Clicked 'View more' button
+2026-09-19 19:47:57,549 | INFO | Round 3 | DOM comments: 40
+2026-09-19 19:47:58,757 | INFO | DOM growth: 40 → 40
+2026-09-19 19:47:58,779 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:02,939 | INFO | Clicked 'View more' button
+2026-09-19 19:48:05,034 | INFO | Round 4 | DOM comments: 40
+2026-09-19 19:48:06,223 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:06,234 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:09,831 | INFO | Clicked 'View more' button
+2026-09-19 19:48:11,863 | INFO | Round 5 | DOM comments: 40
+2026-09-19 19:48:12,891 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:12,897 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:16,790 | INFO | Clicked 'View more' button
+2026-09-19 19:48:18,853 | INFO | Round 6 | DOM comments: 40
+2026-09-19 19:48:19,914 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:19,932 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:24,872 | INFO | Clicked 'View more' button
+2026-09-19 19:48:26,818 | INFO | Round 7 | DOM comments: 40
+2026-09-19 19:48:27,831 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:27,841 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:31,578 | INFO | Clicked 'View more' button
+2026-09-19 19:48:33,666 | INFO | Round 8 | DOM comments: 40
+2026-09-19 19:48:35,191 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:35,204 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:39,498 | INFO | Clicked 'View more' button
+2026-09-19 19:48:41,521 | INFO | Round 9 | DOM comments: 40
+2026-09-19 19:48:42,549 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:42,561 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:47,338 | INFO | Clicked 'View more' button
+2026-09-19 19:48:49,375 | INFO | Round 10 | DOM comments: 40
+2026-09-19 19:48:50,552 | INFO | DOM growth: 40 → 40
+2026-09-19 19:48:50,561 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:48:54,258 | INFO | Clicked 'View more' button
+2026-09-19 19:48:56,717 | INFO | Round 11 | DOM comments: 80
+2026-09-19 19:48:58,098 | INFO | Comment 21/50: trên đấy lạnh k ạ
+2026-09-19 19:48:58,154 | INFO | Comment 22/50: Vé chỉ dùng đc trong 1 ngày à mn
+2026-09-19 19:48:58,207 | INFO | Comment 23/50: Bạn ơi, bạn mang mấy bộ theo để thay ạ?
+2026-09-19 19:48:58,262 | INFO | Comment 24/50: E cần pass gấp vé bà nà ngày 8/6 đã bao gồm buffet ( khách ngoại tỉnh ạ ) giá 1tr ạ
+2026-09-19 19:48:58,307 | INFO | Comment 25/50: Buffe có cần mua sẵn vé từ lúc mua vé cap treo k bạn hay là lên mua ruêng đc
+2026-09-19 19:48:58,346 | INFO | Comment 26/50: Đi quài cũng chán🥰
+2026-09-19 19:48:58,387 | INFO | Comment 27/50: Trên bà là hi có chỗ thuê đồ không shop
+2026-09-19 19:48:58,429 | INFO | Comment 28/50: minh chuan bi di ban cho minh xin chut kinh nghiem nhe
+2026-09-19 19:48:58,541 | INFO | Comment 29/50: Vé ngày mai ntn
+2026-09-19 19:48:58,590 | INFO | Comment 30/50: đi ntn thì giá như nào v ạ
+2026-09-19 19:48:58,656 | INFO | Comment 31/50: khu fantasy park có tính phí trò chơi riêng k ạ
+2026-09-19 19:48:58,704 | INFO | Comment 32/50: đông nghẹt luôn
+2026-09-19 19:48:58,744 | INFO | Comment 33/50: ve bn.
+2026-09-19 19:48:58,786 | INFO | Comment 34/50: bé ơi cho chị link mua bộ váy màu nâu với xinh yêu quá
+2026-09-19 19:48:58,857 | INFO | Comment 35/50: đi bà nà 3 lần toàn gặp mưa sương mù
+2026-09-19 19:48:58,963 | INFO | Comment 36/50: ik mấy lần ròi á cg có nhìu ảnh đẹp lắm á bạn
+2026-09-19 19:48:59,105 | INFO | Comment 37/50: Vé bn vậy ạ
+2026-09-19 19:48:59,243 | INFO | Comment 38/50: Đi như này là hết cảnh đẹp luôn r à b
+2026-09-19 19:48:59,285 | INFO | Comment 39/50: Vé đã bao gồm tất cả à c. Vào trong đó mình chơi trò chơi có mất tiền nữa k ạ
+2026-09-19 19:48:59,286 | INFO | DOM growth: 40 → 80
+2026-09-19 19:48:59,296 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:02,754 | INFO | Clicked 'View more' button
+2026-09-19 19:49:05,464 | INFO | Round 12 | DOM comments: 80
+2026-09-19 19:49:08,327 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:08,358 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:13,052 | INFO | Clicked 'View more' button
+2026-09-19 19:49:15,527 | INFO | Round 13 | DOM comments: 80
+2026-09-19 19:49:18,009 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:18,019 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:23,034 | INFO | Clicked 'View more' button
+2026-09-19 19:49:25,753 | INFO | Round 14 | DOM comments: 80
+2026-09-19 19:49:27,980 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:27,990 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:32,458 | INFO | Clicked 'View more' button
+2026-09-19 19:49:34,818 | INFO | Round 15 | DOM comments: 80
+2026-09-19 19:49:36,975 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:36,996 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:41,729 | INFO | Clicked 'View more' button
+2026-09-19 19:49:44,136 | INFO | Round 16 | DOM comments: 80
+2026-09-19 19:49:46,421 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:46,429 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:49:50,681 | INFO | Clicked 'View more' button
+2026-09-19 19:49:53,435 | INFO | Round 17 | DOM comments: 80
+2026-09-19 19:49:55,596 | INFO | DOM growth: 80 → 80
+2026-09-19 19:49:55,605 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:00,332 | INFO | Clicked 'View more' button
+2026-09-19 19:50:02,946 | INFO | Round 18 | DOM comments: 80
+2026-09-19 19:50:05,347 | INFO | DOM growth: 80 → 80
+2026-09-19 19:50:05,354 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:10,343 | INFO | Clicked 'View more' button
+2026-09-19 19:50:12,670 | INFO | Round 19 | DOM comments: 80
+2026-09-19 19:50:14,925 | INFO | DOM growth: 80 → 80
+2026-09-19 19:50:14,932 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:19,791 | INFO | Clicked 'View more' button
+2026-09-19 19:50:21,916 | INFO | Round 20 | DOM comments: 80
+2026-09-19 19:50:24,721 | INFO | DOM growth: 80 → 80
+2026-09-19 19:50:24,734 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:28,981 | INFO | Clicked 'View more' button
+2026-09-19 19:50:31,700 | INFO | Round 21 | DOM comments: 80
+2026-09-19 19:50:34,493 | INFO | DOM growth: 80 → 80
+2026-09-19 19:50:34,500 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:38,454 | INFO | Clicked 'View more' button
+2026-09-19 19:50:41,157 | INFO | Round 22 | DOM comments: 80
+2026-09-19 19:50:43,353 | INFO | DOM growth: 80 → 80
+2026-09-19 19:50:43,362 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:50:48,168 | INFO | Clicked 'View more' button
+2026-09-19 19:50:50,441 | INFO | Round 23 | DOM comments: 80
+2026-09-19 19:50:52,449 | INFO | No new comments after 12 rounds → stop.
+2026-09-19 19:50:52,449 | INFO | ======================================
+2026-09-19 19:50:52,449 | INFO | COMMENT RESULT: 39/50
+2026-09-19 19:50:52,450 | INFO | ======================================
+2026-09-19 19:50:52,452 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:50:52,452 | INFO | Done: 39 comments
+2026-09-19 19:50:56,553 | INFO | [5/12] https://www.tiktok.com/@lacadanang.tiktok/video/7637061656186703111
+2026-09-19 19:50:56,554 | INFO | Open video: https://www.tiktok.com/@lacadanang.tiktok/video/7637061656186703111
+2026-09-19 19:51:13,565 | INFO | ======================================
+2026-09-19 19:51:13,566 | INFO | START COMMENT CRAWLING
+2026-09-19 19:51:13,566 | INFO | ======================================
+2026-09-19 19:51:13,567 | INFO | Opening TikTok comment panel...
+2026-09-19 19:51:13,579 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:51:14,826 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:51:17,855 | INFO | Comment DOM loaded: [data-e2e="comment-level-1"] | 19 elements
+2026-09-19 19:51:18,490 | INFO | Clicked 'View more' button
+2026-09-19 19:51:20,303 | INFO | Round 1 | DOM comments: 38
+2026-09-19 19:51:20,495 | INFO | Comment 1/50: 𝗫𝗲 Đà 𝐍ẵ𝐧𝐠 - 𝐇ộ𝐢 𝐀𝐧 - 𝐁à 𝐍à - 𝐇𝐮ế 🌿Xe 4 chỗ giá 219k 1 chiều ( bao xe ) 🌿Xe 7 chỗ giá 269k 1 chiều (
+2026-09-19 19:51:20,522 | INFO | Comment 2/50: Xin giá chơi bán đảo sơn trà ạ
+2026-09-19 19:51:20,566 | INFO | Comment 3/50: Tv mình
+2026-09-19 19:51:20,612 | INFO | Comment 4/50: Đà Nẵng ⇄ Hội An có xe 4–7–16 chỗ mỗi ngày 🥰🌺🌺
+2026-09-19 19:51:20,651 | INFO | Comment 5/50: Cho em xin giá tour 10/7
+2026-09-19 19:51:20,692 | INFO | Comment 6/50: Thiếu sót lớn khi k đi lướt sóng 😁😁😁
+2026-09-19 19:51:20,738 | INFO | Comment 7/50: @Chụp Ảnh Hội An - Đà Nẵng: Xin phép chủ tus ạ , em là nữ chuyên nhận chụp ảnh bằng điện thoại giá r
+2026-09-19 19:51:20,780 | INFO | Comment 8/50: Xin giá tour 3N2Đ Đà Nẵng-Hội An-Huế với ạ
+2026-09-19 19:51:20,822 | INFO | Comment 9/50: E xin giá tour ạ
+2026-09-19 19:51:20,858 | INFO | Comment 10/50: Em xin giá tour ạ
+2026-09-19 19:51:20,899 | INFO | Comment 11/50: 3 ngay 2 đem giá nhieu vay ạ
+2026-09-19 19:51:20,932 | INFO | Comment 12/50: 3 ngày 2 đêm giá bn b
+2026-09-19 19:51:20,966 | INFO | Comment 13/50: Xin giá tour
+2026-09-19 19:51:21,014 | INFO | Comment 14/50: E xin giá 4n3đ
+2026-09-19 19:51:21,073 | INFO | Comment 15/50: Mình xin giá tour
+2026-09-19 19:51:21,155 | INFO | Comment 16/50: m xin giá tour này ạ
+2026-09-19 19:51:21,186 | INFO | Comment 17/50: Mình xin giá tour này
+2026-09-19 19:51:21,224 | INFO | Comment 18/50: Mình xin giá nhé
+2026-09-19 19:51:21,224 | INFO | DOM growth: 0 → 38
+2026-09-19 19:51:21,232 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:51:25,825 | INFO | Clicked 'View more' button
+2026-09-19 19:51:27,857 | INFO | Round 2 | DOM comments: 38
+2026-09-19 19:51:28,758 | INFO | DOM growth: 38 → 38
+2026-09-19 19:51:28,764 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:51:32,482 | INFO | Clicked 'View more' button
+2026-09-19 19:51:34,328 | INFO | Round 3 | DOM comments: 38
+2026-09-19 19:51:35,031 | INFO | DOM growth: 38 → 38
+2026-09-19 19:51:35,055 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:51:39,398 | INFO | Clicked 'View more' button
+2026-09-19 19:51:41,255 | INFO | Round 4 | DOM comments: 38
+2026-09-19 19:51:42,127 | INFO | DOM growth: 38 → 38
+2026-09-19 19:51:42,137 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:51:46,203 | INFO | Clicked 'View more' button
+2026-09-19 19:51:48,190 | INFO | Round 5 | DOM comments: 38
+2026-09-19 19:51:49,348 | INFO | DOM growth: 38 → 38
+2026-09-19 19:51:49,360 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:51:53,024 | INFO | Clicked 'View more' button
+2026-09-19 19:51:55,095 | INFO | Round 6 | DOM comments: 38
+2026-09-19 19:51:56,137 | INFO | DOM growth: 38 → 38
+2026-09-19 19:51:56,142 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:00,048 | INFO | Clicked 'View more' button
+2026-09-19 19:52:02,244 | INFO | Round 7 | DOM comments: 38
+2026-09-19 19:52:03,501 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:03,508 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:07,859 | INFO | Clicked 'View more' button
+2026-09-19 19:52:09,931 | INFO | Round 8 | DOM comments: 38
+2026-09-19 19:52:10,921 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:10,928 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:15,262 | INFO | Clicked 'View more' button
+2026-09-19 19:52:17,183 | INFO | Round 9 | DOM comments: 38
+2026-09-19 19:52:18,498 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:18,513 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:22,092 | INFO | Clicked 'View more' button
+2026-09-19 19:52:24,212 | INFO | Round 10 | DOM comments: 38
+2026-09-19 19:52:25,222 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:25,229 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:28,800 | INFO | Clicked 'View more' button
+2026-09-19 19:52:30,806 | INFO | Round 11 | DOM comments: 38
+2026-09-19 19:52:32,117 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:32,127 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:36,107 | INFO | Clicked 'View more' button
+2026-09-19 19:52:37,912 | INFO | Round 12 | DOM comments: 38
+2026-09-19 19:52:38,971 | INFO | DOM growth: 38 → 38
+2026-09-19 19:52:38,980 | INFO | Scroll mode: COMMENT_CONTAINER
+2026-09-19 19:52:43,359 | INFO | Clicked 'View more' button
+2026-09-19 19:52:45,282 | INFO | Round 13 | DOM comments: 38
+2026-09-19 19:52:46,211 | INFO | No new comments after 12 rounds → stop.
+2026-09-19 19:52:46,211 | INFO | ======================================
+2026-09-19 19:52:46,211 | INFO | COMMENT RESULT: 18/50
+2026-09-19 19:52:46,211 | INFO | ======================================
+2026-09-19 19:52:46,213 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:52:46,213 | INFO | Done: 18 comments
+2026-09-19 19:52:48,586 | INFO | [6/12] https://www.tiktok.com/@alo.nng.nghe3/video/7652592505845730578
+2026-09-19 19:52:48,586 | INFO | Open video: https://www.tiktok.com/@alo.nng.nghe3/video/7652592505845730578
+2026-09-19 19:53:00,592 | INFO | ======================================
+2026-09-19 19:53:00,592 | INFO | START COMMENT CRAWLING
+2026-09-19 19:53:00,593 | INFO | ======================================
+2026-09-19 19:53:00,593 | INFO | Opening TikTok comment panel...
+2026-09-19 19:53:00,607 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:53:01,613 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:53:15,058 | WARNING | Comment DOM not detected.
+2026-09-19 19:53:15,059 | WARNING | Could not open/load comment section.
+2026-09-19 19:53:15,062 | INFO | Saved JSON: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\data\raw\tiktok\tiktok_metadata_comments.json
+2026-09-19 19:53:15,062 | INFO | Done: 0 comments
+2026-09-19 19:53:18,086 | INFO | [7/12] https://www.tiktok.com/@thuexemaydanang43hovy/video/7608939490995981589
+2026-09-19 19:53:18,086 | INFO | Open video: https://www.tiktok.com/@thuexemaydanang43hovy/video/7608939490995981589
+2026-09-19 19:53:31,026 | INFO | ======================================
+2026-09-19 19:53:31,026 | INFO | START COMMENT CRAWLING
+2026-09-19 19:53:31,027 | INFO | ======================================
+2026-09-19 19:53:31,027 | INFO | Opening TikTok comment panel...
+2026-09-19 19:53:31,051 | INFO | Selector [data-e2e="comment-icon"] -> 1 elements
+2026-09-19 19:53:32,111 | INFO | Clicked comment button: [data-e2e="comment-icon"]
+2026-09-19 19:53:33,507 | WARNING | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /session/5f1835dacc0b126e39969f457a397b4d
+2026-09-19 19:53:37,543 | WARNING | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=48972): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/5f1835dacc0b126e39969f457a397b4d
+2026-09-19 19:53:41,576 | WARNING | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=48972): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/5f1835dacc0b126e39969f457a397b4d
