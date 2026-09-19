@@ -1,0 +1,66 @@
+categories:
+  - id: attraction
+    name: Dia diem tham quan
+    subcategories:
+      - Di tich lich su
+      - Bai bien
+      - Vuon quoc gia
+      - Cong vien giai tri
+      - Den chua
+      - Danh lam thang canh
+
+  - id: food_beverage
+    name: Am thuc
+    subcategories:
+      - Nha hang
+      - Quan an dia phuong
+      - Quan ca phe
+      - Dac san vung mien
+      - Cho dem / Cho am thuc
+
+  - id: activity
+    name: Hoat dong & Trai nghiem
+    subcategories:
+      - Trekking & Leo nui
+      - Cam trai
+      - Le hoi & Van hoa
+      - Tour du lich sinh thai
+
+  - id: shopping
+    name: Mua sam
+    subcategories:
+      - Trung tam thuong mai
+      - Cho truyen thong
+      - Cua hang luu niem
+      - Cua hang dac san
+
+  - id: hotel
+    name: Khach san
+    subcategories:
+      - Khach san 5 sao
+      - Khach san 3-4 sao
+      - Nha nghi
+
+  - id: resort
+    name: Resort
+    subcategories:
+      - Resort bien
+      - Resort nui
+
+  - id: beach
+    name: Bai bien
+    subcategories:
+      - Bai bien cong cong
+      - Bai bien rieng
+
+  - id: museum
+    name: Bao tang
+    subcategories:
+      - Bao tang lich su
+      - Bao tang van hoa
+
+  - id: park
+    name: Cong vien
+    subcategories:
+      - Cong vien nuoc
+      - Cong vien sinh thai

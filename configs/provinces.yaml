@@ -1,0 +1,102 @@
+provinces:
+  - name: Da Nang
+    code: DN
+
+  - name: Ho Chi Minh City
+    code: HCM
+
+  - name: Hanoi
+    code: HN
+
+  - name: Quang Ninh
+    code: QN
+
+  - name: An Giang
+    code: AG
+
+  - name: Bac Ninh
+    code: BN
+
+  - name: Ca Mau
+    code: CM
+
+  - name: Can Tho
+    code: CT
+
+  - name: Cao Bang
+    code: CB
+
+  - name: Dak Lak
+    code: DL
+
+  - name: Dien Bien
+    code: DB
+
+  - name: Dong Nai
+    code: DN
+
+  - name: Dong Thap
+    code: DT
+
+  - name: Gia Lai
+    code: GL
+
+  - name: Ha Tinh
+    code: HT
+
+  - name: Hai Phong
+    code: HP
+
+  - name: Thua Thien Hue
+    code: TT
+
+  - name: Hung Yen
+    code: HY
+
+  - name: Khanh Hoa
+    code: KH
+
+  - name: Lai Chau
+    code: LC
+
+  - name: Lam Dong
+    code: LD
+
+  - name: Lang Son
+    code: LS
+
+  - name: Lao Cai
+    code: LCA
+
+  - name: Nghe An
+    code: NA
+
+  - name: Ninh Binh
+    code: NB
+
+  - name: Phu Tho
+    code: PT
+
+  - name: Quang Ngai
+    code: QNG
+
+  - name: Quang Tri
+    code: QT
+
+  - name: Son La
+    code: SL
+
+  - name: Tay Ninh
+    code: TN
+
+  - name: Thai Nguyen
+    code: TNG
+
+  - name: Thanh Hoa
+    code: TH
+
+  - name: Tuyen Quang
+    code: TQ
+
+  - name: Vinh Long
+    code: VL

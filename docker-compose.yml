@@ -1,5 +1,3 @@
-version: '3.8'
-
 networks:
   tourism-net:
     driver: bridge
@@ -8,7 +6,8 @@ volumes:
   minio_data:
   postgres_data:
   trino_data:
-  airflow_logs:
+  dagster_storage:
+  mlflow_data:
 
 services:
   minio:
@@ -40,7 +39,7 @@ services:
       - POSTGRES_PASSWORD=tourism
       - POSTGRES_DB=tourism
     ports:
-      - "5432:5432"
+      - "5431:5432"
     networks:
       - tourism-net
     volumes:
@@ -53,7 +52,8 @@ services:
 
   spark-master:
     build:
-      context: ./docker/spark
+      context: .
+      dockerfile: docker/spark/Dockerfile
     container_name: spark-master
     environment:
       - SPARK_MODE=master
@@ -74,7 +74,8 @@ services:
 
   spark-worker:
     build:
-      context: ./docker/spark-worker
+      context: .
+      dockerfile: docker/spark-worker/Dockerfile
     container_name: spark-worker
     environment:
       - SPARK_MODE=worker
@@ -84,14 +85,15 @@ services:
     depends_on:
       - spark-master
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8081 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
 
   trino:
     build:
-      context: ./docker/trino
+      context: .
+      dockerfile: docker/trino/Dockerfile
     container_name: trino
     environment:
       - TRINO_CATALOG=iceberg
@@ -104,97 +106,99 @@ services:
     volumes:
       - minio_data:/minio:ro
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/status"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-  airflow-init:
+  dagster-webserver:
     build:
-      context: ./docker/airflow
-    container_name: airflow-init
-    user: "root"
+      context: .
+      dockerfile: docker/dagster/Dockerfile
+    container_name: dagster-webserver
     environment:
-      - AIRFLOW_UID=50000
-      - AIRFLOW_GID=0
-    command: ["airflow", "db", "init"]
-    networks:
-      - tourism-net
-    depends_on:
-      - postgres
-    volumes:
-      - ./airflow:/opt/airflow
-
-  airflow-webserver:
-    build:
-      context: ./docker/airflow
-    container_name: airflow-webserver
-    user: "root"
-    environment:
-      - AIRFLOW_UID=50000
+      - DAGSTER_HOME=/opt/dagster/home
+      - PYTHONPATH=/opt/dagster/project:/opt:/opt/ingestion:/opt/nlp:/opt/spark:/opt/configs
     ports:
-      - "8082:8080"
+      - "3000:3000"
     networks:
       - tourism-net
     depends_on:
-      - airflow-init
-    command: ["airflow", "webserver"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  airflow-scheduler:
-    build:
-      context: ./docker/airflow
-    container_name: airflow-scheduler
-    user: "root"
-    environment:
-      - AIRFLOW_UID=50000
-    networks:
-      - tourism-net
-    depends_on:
-      - airflow-init
-      - airflow-webserver
-    command: ["airflow", "scheduler"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  nlp:
-    build:
-      context: ./docker/nlp
-    container_name: nlp
-    environment:
-      - MLFLOW_HOST=mlflow
-      - MLFLOW_PORT=5000
-    networks:
-      - tourism-net
+      postgres:
+        condition: service_healthy
+    command: ["dagster-webserver", "-h", "0.0.0.0", "-p", "3000", "-w", "/opt/dagster/project/workspace.yaml"]
     volumes:
-      - ./data/sample:/data:ro
-    depends_on:
-      - minio
+      - ./dagster_project:/opt/dagster/project
+      - ./ingestion:/opt/ingestion
+      - ./nlp:/opt/nlp
+      - ./spark:/opt/spark
+      - ./configs:/opt/configs
+      - dagster_storage:/opt/dagster/home
     healthcheck:
-      test: ["CMD", "python", "-c", "import torch; print(torch.__version__)"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-  mlflow:
-    image: bitnami/mlflow:latest
-    container_name: mlflow
+  dagster-daemon:
+    build:
+      context: .
+      dockerfile: docker/dagster/Dockerfile
+    container_name: dagster-daemon
     environment:
-      - MLFLOW_BACKEND=sqlite
-      - MLFLOW_SQLITE_DB_PATH=/mlflow/mlflow.db
-      - MLFLOW_TRACKING_URI=http://mlflow:5000
-    ports:
-      - "5000:5000"
+      - DAGSTER_HOME=/opt/dagster/home
+      - PYTHONPATH=/opt/dagster/project:/opt:/opt/ingestion:/opt/nlp:/opt/spark:/opt/configs
     networks:
       - tourism-net
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    entrypoint: ["dagster-daemon", "run", "-w", "/opt/dagster/project/workspace.yaml"]
     volumes:
-      - mlflow_data:/mlflow
+      - ./dagster_project:/opt/dagster/project
+      - ./ingestion:/opt/ingestion
+      - ./nlp:/opt/nlp
+      - ./spark:/opt/spark
+      - ./configs:/opt/configs
+      - dagster_storage:/opt/dagster/home
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c \"open('/proc/1/status').read(); print('ok')\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # nlp:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/nlp/Dockerfile
+  #   container_name: nlp
+  #   environment:
+  #     - MLFLOW_HOST=mlflow
+  #     - MLFLOW_PORT=5000
+  #   networks:
+  #     - tourism-net
+  #   volumes:
+  #     - ./data/sample:/data:ro
+  #   depends_on:
+  #     - minio
+  #   healthcheck:
+  #     test: ["CMD", "python", "-c", "import torch; print(torch.__version__)"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # mlflow:
+  #   image: bitnami/mlflow:latest
+  #   container_name: mlflow
+  #   environment:
+  #     - MLFLOW_BACKEND=sqlite
+  #     - MLFLOW_SQLITE_DB_PATH=/mlflow/mlflow.db
+  #     - MLFLOW_TRACKING_URI=http://mlflow:5000
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - tourism-net
+  #   depends_on:
+  #     - postgres
+  #   volumes:
+  #     - mlflow_data:/mlflow

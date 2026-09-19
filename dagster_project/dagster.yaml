@@ -1,0 +1,7 @@
+run_launcher:
+  module: dagster._core.launcher
+  class: DefaultRunLauncher
+
+scheduler:
+  module: dagster._core.scheduler
+  class: DagsterDaemonScheduler

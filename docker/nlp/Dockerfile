@@ -18,12 +18,12 @@ RUN pip install --no-cache-dir \
     accelerate \
     sentencepiece
 
-COPY --chown=1000:1000 nlp/requirements.txt /opt/nlp/requirements.txt
+COPY nlp/requirements.txt /opt/nlp/requirements.txt
 RUN pip install --no-cache-dir -r /opt/nlp/requirements.txt
 
 WORKDIR /opt/nlp
 
-COPY --chown=1000:1000 nlp /opt/nlp
+COPY nlp /opt/nlp
 
 ENV PYTHONPATH=/opt/nlp
 
