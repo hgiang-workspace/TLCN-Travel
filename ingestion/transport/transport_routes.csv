@@ -1,11 +1,122 @@
-origin,destination,url
-Hồ Chí Minh,Đà Lạt,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-lat-129t457.html
-Hồ Chí Minh,Nha Trang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nha-trang-129t417.html
-Hồ Chí Minh,Đà Nẵng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-nang-129t1151.html
-Hồ Chí Minh,Cần Thơ,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-can-tho-129t13.html
-Hồ Chí Minh,Phan Thiết,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phan-thiet.html
-Hồ Chí Minh,Vũng Tàu,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vung-tau.html
-Hồ Chí Minh,Quy Nhơn,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quy-nhon.html
-Hồ Chí Minh,Phú Quốc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-quoc.html
-Hồ Chí Minh,Buôn Ma Thuột,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-buon-ma-thuot.html
-Hồ Chí Minh,Đà Lạt,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-lat.html
+﻿origin,destination,url,transport_type
+Hồ Chí Minh,Vũng Tàu,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vung-tau-ba-ria-vung-tau-129t2131.html,bus
+Hồ Chí Minh,Bà Rịa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ba-ria-ba-ria-vung-tau-129t2132.html,bus
+Hồ Chí Minh,Biên Hòa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bien-hoa-dong-nai-129t751.html,bus
+Hồ Chí Minh,Đồng Nai,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-nai-129t75.html,bus
+Hồ Chí Minh,Long Khánh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-khanh-dong-nai-129t752.html,bus
+Hồ Chí Minh,Bình Dương,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-duong-129t74.html,bus
+Hồ Chí Minh,Thủ Dầu Một,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thu-dau-mot-binh-duong-129t741.html,bus
+Hồ Chí Minh,Tây Ninh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tay-ninh-129t70.html,bus
+Hồ Chí Minh,Bình Phước,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-phuoc-129t70.html,bus
+Hồ Chí Minh,Long An,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-an-129t80.html,bus
+Hồ Chí Minh,Tân An,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tan-an-long-an-129t801.html,bus
+Hồ Chí Minh,Tiền Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tien-giang-129t82.html,bus
+Hồ Chí Minh,Mỹ Tho,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-my-tho-tien-giang-129t821.html,bus
+Hồ Chí Minh,Bến Tre,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ben-tre-129t83.html,bus
+Hồ Chí Minh,Trà Vinh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tra-vinh-129t84.html,bus
+Hồ Chí Minh,Vĩnh Long,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-long-129t86.html,bus
+Hồ Chí Minh,Đồng Tháp,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-thap-129t87.html,bus
+Hồ Chí Minh,Cao Lãnh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cao-lanh-dong-thap-129t871.html,bus
+Hồ Chí Minh,Sa Đéc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-sa-dec-dong-thap-129t872.html,bus
+Hồ Chí Minh,An Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-an-giang-129t89.html,bus
+Hồ Chí Minh,Long Xuyên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-xuyen-an-giang-129t891.html,bus
+Hồ Chí Minh,Châu Đốc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-chau-doc-an-giang-129t892.html,bus
+Hồ Chí Minh,Kiên Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-kien-giang-129t91.html,bus
+Hồ Chí Minh,Rạch Giá,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-rach-gia-kien-giang-129t911.html,bus
+Hồ Chí Minh,Hà Tiên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-tien-kien-giang-129t912.html,bus
+Hồ Chí Minh,Cần Thơ,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-can-tho-129t13.html,bus
+Hồ Chí Minh,Hậu Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hau-giang-129t93.html,bus
+Hồ Chí Minh,Sóc Trăng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-soc-trang-129t94.html,bus
+Hồ Chí Minh,Bạc Liêu,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-lieu-129t95.html,bus
+Hồ Chí Minh,Cà Mau,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ca-mau-129t96.html,bus
+Hồ Chí Minh,Phan Thiết,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phan-thiet-binh-thuan-129t159.html,bus
+Hồ Chí Minh,Mũi Né,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-mui-ne-binh-thuan-129t1592.html,bus
+Hồ Chí Minh,Bình Thuận,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-thuan-129t15.html,bus
+Hồ Chí Minh,Phan Rang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phan-rang-ninh-thuan-129t58.html,bus
+Hồ Chí Minh,Ninh Thuận,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ninh-thuan-129t58.html,bus
+Hồ Chí Minh,Nha Trang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nha-trang-khanh-hoa-129t23591.html,bus
+Hồ Chí Minh,Khánh Hòa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-khanh-hoa-129t58.html,bus
+Hồ Chí Minh,Cam Ranh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cam-ranh-khanh-hoa-129t582.html,bus
+Hồ Chí Minh,Đà Lạt,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-lat-lam-dong-129t23991.html,bus
+Hồ Chí Minh,Lâm Đồng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lam-dong-129t23.html,bus
+Hồ Chí Minh,Bảo Lộc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bao-loc-lam-dong-129t231.html,bus
+Hồ Chí Minh,Buôn Ma Thuột,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-buon-ma-thuot-dak-lak-129t21431.html,bus
+Hồ Chí Minh,Đắk Lắk,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dak-lak-129t21.html,bus
+Hồ Chí Minh,Đắk Nông,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dak-nong-129t72.html,bus
+Hồ Chí Minh,Gia Lai,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-gia-lai-129t27.html,bus
+Hồ Chí Minh,Pleiku,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-pleiku-gia-lai-129t274.html,bus
+Hồ Chí Minh,Kon Tum,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-kon-tum-129t28.html,bus
+Hồ Chí Minh,Phú Yên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-yen-129t22.html,bus
+Hồ Chí Minh,Tuy Hòa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tuy-hoa-phu-yen-129t221.html,bus
+Hồ Chí Minh,Bình Định,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-dinh-129t181.html,bus
+Hồ Chí Minh,Quy Nhơn,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quy-nhon-binh-dinh-129t181.html,bus
+Hồ Chí Minh,Quảng Ngãi,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-ngai-129t51.html,bus
+Hồ Chí Minh,Quảng Nam,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-nam-129t49.html,bus
+Hồ Chí Minh,Hội An,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hoi-an-quang-nam-129t491.html,bus
+Hồ Chí Minh,Tam Kỳ,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tam-ky-quang-nam-129t492.html,bus
+Hồ Chí Minh,Đà Nẵng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-nang-129t1151.html,bus
+Hồ Chí Minh,Huế,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hue-thua-thien-hue-129t33.html,bus
+Hồ Chí Minh,Thừa Thiên Huế,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thua-thien-hue-129t33.html,bus
+Hồ Chí Minh,Quảng Trị,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-tri-129t32.html,bus
+Hồ Chí Minh,Đông Hà,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-ha-quang-tri-129t321.html,bus
+Hồ Chí Minh,Quảng Bình,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-binh-129t31.html,bus
+Hồ Chí Minh,Đồng Hới,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-hoi-quang-binh-129t311.html,bus
+Hồ Chí Minh,Hà Tĩnh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-tinh-129t30.html,bus
+Hồ Chí Minh,Nghệ An,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nghe-an-129t29.html,bus
+Hồ Chí Minh,Vinh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-nghe-an-129t291.html,bus
+Hồ Chí Minh,Thanh Hóa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thanh-hoa-129t38.html,bus
+Hồ Chí Minh,Ninh Bình,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ninh-binh-129t37.html,bus
+Hồ Chí Minh,Nam Định,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nam-dinh-129t36.html,bus
+Hồ Chí Minh,Thái Bình,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thai-binh-129t34.html,bus
+Hồ Chí Minh,Hà Nam,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-nam-129t35.html,bus
+Hồ Chí Minh,Hà Nội,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-noi-129t24.html,bus
+Hồ Chí Minh,Hải Phòng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hai-phong-129t31.html,bus
+Hồ Chí Minh,Quảng Ninh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-ninh-129t22.html,bus
+Hồ Chí Minh,Hạ Long,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-long-quang-ninh-129t221.html,bus
+Hồ Chí Minh,Cát Bà,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cat-ba-hai-phong-129t312.html,bus
+Hồ Chí Minh,Hải Dương,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hai-duong-129t30.html,bus
+Hồ Chí Minh,Hưng Yên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hung-yen-129t33.html,bus
+Hồ Chí Minh,Bắc Ninh,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-ninh-129t27.html,bus
+Hồ Chí Minh,Vĩnh Phúc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-phuc-129t26.html,bus
+Hồ Chí Minh,Phú Thọ,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-tho-129t25.html,bus
+Hồ Chí Minh,Thái Nguyên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thai-nguyen-129t19.html,bus
+Hồ Chí Minh,Bắc Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-giang-129t24.html,bus
+Hồ Chí Minh,Lạng Sơn,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lang-son-129t20.html,bus
+Hồ Chí Minh,Cao Bằng,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cao-bang-129t4.html,bus
+Hồ Chí Minh,Bắc Kạn,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-kan-129t6.html,bus
+Hồ Chí Minh,Tuyên Quang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tuyen-quang-129t8.html,bus
+Hồ Chí Minh,Hà Giang,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-giang-129t2.html,bus
+Hồ Chí Minh,Lào Cai,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lao-cai-129t10.html,bus
+Hồ Chí Minh,Sa Pa,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-sa-pa-lao-cai-129t101.html,bus
+Hồ Chí Minh,Yên Bái,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-yen-bai-129t15.html,bus
+Hồ Chí Minh,Sơn La,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-son-la-129t14.html,bus
+Hồ Chí Minh,Điện Biên,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dien-bien-129t11.html,bus
+Hồ Chí Minh,Lai Châu,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lai-chau-129t12.html,bus
+Hồ Chí Minh,Hòa Bình,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hoa-binh-129t17.html,bus
+Hồ Chí Minh,Phú Quốc,https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-quoc-kien-giang-129t912.html,bus
+Hồ Chí Minh,Hà Nội,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=24_area&from_airport=28284&to_airport=102188&from_station=SGO&to_station=HNO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Đà Nẵng,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=15_area&from_airport=28284&to_airport=135548&from_station=SGO&to_station=DAD&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Nha Trang,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=417_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Đà Lạt,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=457_area&from_airport=28284&to_airport=112068&from_station=SGO&to_station=DLI&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Huế,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=57_region&from_airport=28284&to_airport=135559&from_station=SGO&to_station=HUE&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Hải Phòng,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=27_region&from_airport=28284&to_airport=135551&from_station=SGO&to_station=HPH&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Phú Thọ,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=44_region&from_airport=28284&to_airport=102188&from_station=SGO&to_station=CCH&date[depart]=2026-10-01&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Quy Nhơn,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=131_area&from_airport=28284&to_airport=135545&from_station=SGO&to_station=DTR&date[depart]=2026-10-01&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Buôn Ma Thuột,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=204_area&from_airport=28284&to_airport=133906&from_station=SGO&date[depart]=2026-10-01&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Pleiku,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=274_area&from_airport=28284&to_airport=135555&from_station=SGO&to_station=PXU&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Phú Quốc,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=189322_area&from_airport=28284&to_airport=135554&from_station=SGO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Cam Ranh,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=135552_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Thanh Hóa,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=56_region&from_airport=28284&to_airport=135558&from_station=SGO&to_station=THO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Đồng Hới,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=568_area&from_airport=28284&to_airport=135557&from_station=SGO&to_station=DHO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Côn Đảo,https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=80_area&from_airport=28284&to_airport=135544&from_station=SGO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[inf]=0&fare_class=PT,flight
+Hồ Chí Minh,Hà Nội,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=24_region&from_airport=28284&to_airport=102188&from_station=SGO&to_station=HNO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Đà Nẵng,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=15_area&from_airport=28284&to_airport=135548&from_station=SGO&to_station=DNA&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Nha Trang,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171699_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Huế,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171657_area&from_airport=28284&to_airport=135559&from_station=SGO&to_station=HUE&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Vinh,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171758_area&from_airport=28284&to_airport=135555&from_station=SGO&to_station=VTH&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Thanh Hóa,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171738_area&from_airport=28284&to_airport=135558&from_station=SGO&to_station=THO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Đồng Hới,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171629_area&from_airport=28284&to_airport=135557&from_station=SGO&to_station=DHO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Phan Thiết,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=159_area&from_airport=28284&to_airport=135561&from_station=SGO&to_station=PTH&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Ninh Bình,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171691_area&from_airport=28284&to_airport=135558&from_station=SGO&to_station=NBI&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Nam Định,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171692_area&from_airport=28284&to_airport=135551&from_station=SGO&to_station=NDI&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
+Hồ Chí Minh,Biên Hòa,https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171607_area&from_airport=28284&to_airport=28284&from_station=SGO&to_station=BHO&date[depart]=2026-09-27&passenger[adt]=1&passenger[chd]=0&passenger[eld]=0&passenger[stu]=0&passenger[uni]=0,train
