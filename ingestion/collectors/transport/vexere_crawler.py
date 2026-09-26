@@ -3,7 +3,7 @@ import json
 import logging
 import re
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
@@ -12,18 +12,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import (
+    WebDriverException,
+    TimeoutException,
+    InvalidSessionIdException,
+)
 
 
 # ============================================================
 # PATH
 # ============================================================
 
-BASE_DIR = Path(__file__).resolve().parents[2]
 CURRENT_DIR = Path(__file__).resolve().parent
 
 ROUTE_FILE = CURRENT_DIR / "transport_routes.csv"
-OUTPUT_FILE = BASE_DIR / "data" / "raw" / "transport" / "vexere_transport.json"
-LOG_FILE = BASE_DIR / "logs" / "vexere_crawler.log"
+OUTPUT_FILE = CURRENT_DIR / "data" / "raw" / "transport" / "vexere_transport.json"
+LOG_FILE = CURRENT_DIR / "logs" / "vexere_crawler.log"
+DEBUG_DIR = CURRENT_DIR / "logs" / "debug_html"
 
 
 # ============================================================
@@ -31,40 +36,32 @@ LOG_FILE = BASE_DIR / "logs" / "vexere_crawler.log"
 # ============================================================
 
 WAIT_TIME = 5
-
-# Tối đa 10 chuyến hợp lệ / tuyến
 MAX_RECORDS_PER_ROUTE = 10
-
-# Tối đa số lần click "Xem thêm chuyến"
 MAX_LOAD_MORE_CLICKS = 10
-
 SOURCE = "vexere"
 
-# Tự động lấy ngày hiện tại theo máy
-CRAWL_DATE = datetime.now().strftime("%d-%m-%Y")
+# QUAN TRỌNG: crawl NGÀY MAI, không phải hôm nay
+CRAWL_DATE = (datetime.now() + timedelta(days=1)).strftime("%d-%m-%Y")
+
+TICKET_WAIT_TIMEOUT = 20
+ROUTE_DELAY = 3
 
 
 # ============================================================
 # LOGGING
 # ============================================================
 
-LOG_FILE.parent.mkdir(
-    parents=True,
-    exist_ok=True
-)
+LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)-8s | %(message)s",
     handlers=[
-        logging.FileHandler(
-            LOG_FILE,
-            encoding="utf-8"
-        ),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler(),
+    ],
 )
-
 logger = logging.getLogger(__name__)
 
 
@@ -73,64 +70,35 @@ logger = logging.getLogger(__name__)
 # ============================================================
 
 def load_routes():
-    """
-    Đọc danh sách tuyến từ transport_routes.csv.
-
-    CSV gồm:
-        origin,destination,url
-
-    Không cần cột date.
-    """
-
     if not ROUTE_FILE.exists():
-        raise FileNotFoundError(
-            f"Không tìm thấy file route: {ROUTE_FILE}"
-        )
+        raise FileNotFoundError(f"Không tìm thấy file route: {ROUTE_FILE}")
 
     routes = []
-
-    with open(
-        ROUTE_FILE,
-        "r",
-        encoding="utf-8-sig",
-        newline=""
-    ) as f:
-
+    with open(ROUTE_FILE, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
-
-        required_columns = {
-            "origin",
-            "destination",
-            "url"
-        }
-
-        if not required_columns.issubset(
-            reader.fieldnames or []
-        ):
-            raise ValueError(
-                "CSV phải có các cột: "
-                "origin,destination,url"
-            )
+        required = {"origin", "destination", "url"}
+        if not required.issubset(set(reader.fieldnames or [])):
+            raise ValueError("CSV phải có các cột: origin,destination,url")
 
         for row in reader:
-
-            origin = row["origin"].strip()
-            destination = row["destination"].strip()
-            url = row["url"].strip()
+            origin = (row.get("origin") or "").strip()
+            destination = (row.get("destination") or "").strip()
+            url = (row.get("url") or "").strip()
+            ttype = (row.get("transport_type") or "bus").strip().lower()
 
             if not origin or not destination or not url:
                 continue
+            if ttype not in ("bus", "flight", "train"):
+                ttype = "bus"
 
             routes.append({
                 "origin": origin,
                 "destination": destination,
-                "url": url
+                "url": url,
+                "transport_type": ttype,
             })
 
-    logger.info(
-        f"Đã đọc {len(routes)} tuyến từ CSV"
-    )
-
+    logger.info(f"Đã đọc {len(routes)} tuyến từ CSV")
     return routes
 
 
@@ -139,944 +107,539 @@ def load_routes():
 # ============================================================
 
 def create_driver():
-
     options = Options()
+    options.add_argument("--start-maximized")
+    options.add_argument("--disable-notifications")
+    options.add_argument("--lang=vi-VN")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_experimental_option("excludeSwitches", ["enable-logging", "enable-automation"])
+    options.add_experimental_option("useAutomationExtension", False)
 
-    options.add_argument(
-        "--start-maximized"
-    )
+    # options.add_argument("--headless=new")
+    # options.add_argument("--window-size=1920,1080")
 
-    options.add_argument(
-        "--disable-notifications"
-    )
-
-    options.add_argument(
-        "--lang=vi-VN"
-    )
-
-    # Giảm log Chrome không cần thiết
-    options.add_experimental_option(
-        "excludeSwitches",
-        ["enable-logging"]
-    )
-
-    driver = webdriver.Chrome(
-        options=options
-    )
-
-    driver.set_page_load_timeout(
-        60
-    )
-
+    driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(90)
+    driver.set_script_timeout(30)
+    try:
+        driver.execute_cdp_cmd(
+            "Page.addScriptToEvaluateOnNewDocument",
+            {
+                "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+            },
+        )
+    except Exception:
+        pass
     return driver
 
 
+def safe_quit(driver):
+    try:
+        if driver:
+            driver.quit()
+    except Exception:
+        pass
+
+
 # ============================================================
-# BUILD VEXERE URL
+# BUILD URL
 # ============================================================
 
-def build_vexere_url(
-    base_url,
-    crawl_date
-):
+def build_vexere_url(base_url, crawl_date, transport_type="bus"):
     """
-    CSV chỉ lưu URL gốc.
-
-    Python tự thêm:
-        date=DD-MM-YYYY
-        lt=1
-
-    Không tự thêm lf=1.
+    Bus: date=DD-MM-YYYY + lt=1
+    Flight/Train (dat-ve-*.vi): date[depart]=YYYY-MM-DD
     """
+    parsed = urlparse(base_url)
+    query = parse_qs(parsed.query, keep_blank_values=True)
 
-    parsed = urlparse(
-        base_url
-    )
+    # Xóa date cũ (cả 2 dạng)
+    for key in list(query.keys()):
+        if key in ("date", "lt", "lf") or key.startswith("date["):
+            query.pop(key, None)
 
-    query = parse_qs(
-        parsed.query,
-        keep_blank_values=True
-    )
+    if transport_type == "bus":
+        query["date"] = [crawl_date]  # DD-MM-YYYY
+        query["lt"] = ["1"]
+    else:
+        # Flight / Train dùng ISO date
+        # crawl_date đang là DD-MM-YYYY → chuyển YYYY-MM-DD
+        try:
+            d, m, y = crawl_date.split("-")
+            iso = f"{y}-{m}-{d}"
+        except Exception:
+            iso = crawl_date
+        query["date[depart]"] = [iso]
+        # đảm bảo passenger mặc định
+        if "passenger[adt]" not in query:
+            query["passenger[adt]"] = ["1"]
+        if "passenger[chd]" not in query:
+            query["passenger[chd]"] = ["0"]
+        if transport_type == "flight":
+            if "passenger[inf]" not in query:
+                query["passenger[inf]"] = ["0"]
+            if "fare_class" not in query:
+                query["fare_class"] = ["PT"]
+        else:  # train
+            for k, v in (
+                ("passenger[eld]", "0"),
+                ("passenger[stu]", "0"),
+                ("passenger[uni]", "0"),
+            ):
+                if k not in query:
+                    query[k] = [v]
 
-    # Xóa parameter cũ
-    query.pop(
-        "date",
-        None
-    )
-
-    query.pop(
-        "lt",
-        None
-    )
-
-    query.pop(
-        "lf",
-        None
-    )
-
-    # Ngày crawl
-    query["date"] = [
-        crawl_date
-    ]
-
-    # Loại tìm kiếm vé xe
-    query["lt"] = [
-        "1"
-    ]
-
-    new_query = urlencode(
-        query,
-        doseq=True
-    )
-
-    final_url = urlunparse((
-        parsed.scheme,
-        parsed.netloc,
-        parsed.path,
-        parsed.params,
-        new_query,
-        parsed.fragment
+    new_query = urlencode(query, doseq=True)
+    return urlunparse((
+        parsed.scheme, parsed.netloc, parsed.path,
+        parsed.params, new_query, parsed.fragment,
     ))
 
-    return final_url
-
 
 # ============================================================
-# PARSE PRICE
+# PARSE HELPERS
 # ============================================================
 
 def parse_price(text):
-    """
-    Parse giá vé Vexere.
-
-    Hỗ trợ:
-
-        Từ 500.000đ
-        500.000đ
-        765.000đ
-        1.200.000đ
-        Từ 1.200.000 ₫
-        500000 VND
-
-    Return:
-        int hoặc None
-    """
-
     if not text:
         return None
-
     text = text.strip()
-
-    # --------------------------------------------------------
-    # Cách 1:
-    # Tìm số có đơn vị tiền
-    # --------------------------------------------------------
-
-    matches = re.findall(
-        r"(\d+(?:[.,]\d+)*)\s*(?:đ|₫|vnd)",
-        text,
-        flags=re.IGNORECASE
-    )
-
+    matches = re.findall(r"(\d+(?:[.,]\d+)*)\s*(?:đ|₫|vnd)", text, flags=re.IGNORECASE)
     if matches:
-
         try:
-
-            # Lấy giá đầu tiên
-            value = matches[0]
-
-            # Xóa dấu phân cách hàng nghìn
-            value = value.replace(
-                ".",
-                ""
-            )
-
-            value = value.replace(
-                ",",
-                ""
-            )
-
-            return int(value)
-
+            return int(matches[0].replace(".", "").replace(",", ""))
         except ValueError:
             pass
-
-    # --------------------------------------------------------
-    # Cách 2:
-    # Fallback nếu chỉ có số
-    # --------------------------------------------------------
-
-    numbers = re.findall(
-        r"\d+(?:[.,]\d+)*",
-        text
-    )
-
+    numbers = re.findall(r"\d+(?:[.,]\d+)*", text)
     if numbers:
-
         try:
-
-            value = numbers[0]
-
-            value = value.replace(
-                ".",
-                ""
-            )
-
-            value = value.replace(
-                ",",
-                ""
-            )
-
-            return int(value)
-
+            return int(numbers[0].replace(".", "").replace(",", ""))
         except ValueError:
             pass
-
     return None
 
 
+def parse_duration(text):
+    if not text:
+        return None
+    text = text.lower().strip()
+    hours = minutes = 0
+    hour_match = re.search(r"(\d+)\s*h", text)
+    minute_match = re.search(r"(\d+)\s*(?:m|p|phút)", text)
+    if hour_match:
+        hours = int(hour_match.group(1))
+    if minute_match:
+        minutes = int(minute_match.group(1))
+    if hour_match or minute_match:
+        return hours * 60 + minutes
+    number_match = re.search(r"\d+", text)
+    if number_match:
+        return int(number_match.group())
+    return None
+
+
+def is_time(text):
+    if not text:
+        return False
+    return bool(re.fullmatch(r"\d{1,2}:\d{2}", text.strip()))
+
+
 # ============================================================
-# EXTRACT PRICE FROM TICKET
+# PRICE FROM TICKET
 # ============================================================
 
 def extract_price_from_ticket(ticket):
-    """
-    Tìm giá trong ticket.
-
-    Thứ tự ưu tiên:
-
-    1. .fare-sale
-    2. .fareSmall
-    3. Các element chứa đ / ₫ / VND
-    4. Toàn bộ text của ticket
-
-    Mục tiêu xử lý các trường hợp:
-        Từ 500.000đ
-        500.000đ
-        765.000đ
-    """
-
-    price_text = ""
-
-    # --------------------------------------------------------
-    # Cách 1: .fare-sale
-    # --------------------------------------------------------
+    for sel in (".fare-sale", ".fareSmall"):
+        try:
+            for el in ticket.find_elements(By.CSS_SELECTOR, sel):
+                text = el.text.strip()
+                if text:
+                    price = parse_price(text)
+                    if price is not None:
+                        return price
+        except Exception:
+            pass
 
     try:
-
-        elements = ticket.find_elements(
-            By.CSS_SELECTOR,
-            ".fare-sale"
-        )
-
-        for element in elements:
-
-            text = element.text.strip()
-
-            if text:
-                price_text = text
-                price = parse_price(text)
-
-                if price is not None:
-                    return price
-
-    except Exception:
-        pass
-
-    # --------------------------------------------------------
-    # Cách 2: .fareSmall
-    # --------------------------------------------------------
-
-    try:
-
-        elements = ticket.find_elements(
-            By.CSS_SELECTOR,
-            ".fareSmall"
-        )
-
-        for element in elements:
-
-            text = element.text.strip()
-
-            if text:
-                price_text = text
-                price = parse_price(text)
-
-                if price is not None:
-                    return price
-
-    except Exception:
-        pass
-
-    # --------------------------------------------------------
-    # Cách 3:
-    # Tìm element chứa đơn vị tiền
-    # --------------------------------------------------------
-
-    try:
-
         price_elements = ticket.find_elements(
             By.XPATH,
-            ".//*[contains(text(), 'đ') "
-            "or contains(text(), 'Đ') "
-            "or contains(text(), '₫') "
-            "or contains(translate(text(), "
-            "'vnd', 'VND'), 'VND')]"
+            ".//*[contains(text(), 'đ') or contains(text(), 'Đ') "
+            "or contains(text(), '₫') or contains(translate(text(), 'vnd', 'VND'), 'VND')]",
         )
-
-        for element in price_elements:
-
-            text = element.text.strip()
-
-            if not text:
-                continue
-
-            price = parse_price(
-                text
-            )
-
-            if price is not None:
-                return price
-
+        for el in price_elements:
+            text = el.text.strip()
+            if text:
+                price = parse_price(text)
+                if price is not None:
+                    return price
     except Exception:
         pass
-
-    # --------------------------------------------------------
-    # Cách 4:
-    # Quét toàn bộ text ticket
-    # --------------------------------------------------------
 
     try:
-
-        full_text = ticket.text.strip()
-
-        price = parse_price(
-            full_text
-        )
-
-        if price is not None:
-            return price
-
-        # Log để debug nếu không tìm thấy
-        logger.warning(
-            "Không parse được giá ticket | "
-            f"Text: {full_text[:300]!r}"
-        )
-
+        return parse_price(ticket.text.strip())
     except Exception:
         pass
-
     return None
 
 
 # ============================================================
-# PARSE DURATION
+# POPUPS
 # ============================================================
 
-def parse_duration(text):
-    """
-    Chuyển duration thành phút.
-
-    Ví dụ:
-        16h      -> 960
-        3h30m    -> 210
-        3h30p    -> 210
-        90p      -> 90
-    """
-
-    if not text:
-        return None
-
-    text = text.lower().strip()
-
-    hours = 0
-    minutes = 0
-
-    hour_match = re.search(
-        r"(\d+)\s*h",
-        text
-    )
-
-    minute_match = re.search(
-        r"(\d+)\s*(?:m|p)",
-        text
-    )
-
-    if hour_match:
-        hours = int(
-            hour_match.group(1)
-        )
-
-    if minute_match:
-        minutes = int(
-            minute_match.group(1)
-        )
-
-    if hour_match or minute_match:
-
-        return (
-            hours * 60
-            + minutes
-        )
-
-    number_match = re.search(
-        r"\d+",
-        text
-    )
-
-    if number_match:
-
-        return int(
-            number_match.group()
-        )
-
-    return None
-
-
-# ============================================================
-# CHECK TIME
-# ============================================================
-
-def is_time(text):
-    """
-    Kiểm tra chuỗi có dạng HH:MM.
-    """
-
-    if not text:
-        return False
-
-    return bool(
-        re.fullmatch(
-            r"\d{1,2}:\d{2}",
-            text.strip()
-        )
-    )
-
-
-# ============================================================
-# DETECT TRANSPORT TYPE
-# ============================================================
-
-def detect_transport_type(
-    vehicle_type
-):
-    """
-    Phân loại phương tiện.
-
-    Với Vexere hiện tại chủ yếu là bus.
-    """
-
-    if not vehicle_type:
-        return "bus"
-
-    text = vehicle_type.lower()
-
-    if any(
-        keyword in text
-        for keyword in [
-            "máy bay",
-            "may bay",
-            "flight",
-            "airline",
-            "plane"
-        ]
-    ):
-        return "flight"
-
-    if any(
-        keyword in text
-        for keyword in [
-            "tàu hỏa",
-            "tau hoa",
-            "train"
-        ]
-    ):
-        return "train"
-
-    return "bus"
-
-
-# ============================================================
-# WAIT FOR TICKETS
-# ============================================================
-
-def wait_for_tickets(
-    driver,
-    timeout=15
-):
-    """
-    Chờ ticket xuất hiện.
-    """
-
+def close_popups(driver):
     try:
-
-        WebDriverWait(
-            driver,
-            timeout
-        ).until(
-            EC.presence_of_element_located(
-                (
-                    By.CSS_SELECTOR,
-                    "div.ticket"
-                )
-            )
-        )
-
-        return True
-
-    except Exception:
-
-        return False
-
-
-# ============================================================
-# COUNT TICKETS
-# ============================================================
-
-def count_tickets(driver):
-    """
-    Đếm số ticket hiện tại trên trang.
-    """
-
-    try:
-
-        tickets = driver.find_elements(
-            By.CSS_SELECTOR,
-            "div.ticket"
-        )
-
-        return len(tickets)
-
-    except Exception:
-
-        return 0
-
-
-# ============================================================
-# CLICK "XEM THÊM CHUYẾN"
-# ============================================================
-
-def click_load_more_trips(
-    driver
-):
-    """
-    Chỉ click:
-
-        Xem thêm chuyến
-
-    Không click:
-
-        Xem thêm hãng
-    """
-
-    xpaths = [
-
-        "//button[contains("
-        "normalize-space(.), "
-        "'Xem thêm chuyến')]",
-
-        "//div[contains("
-        "normalize-space(.), "
-        "'Xem thêm chuyến')]",
-
-        "//span[contains("
-        "normalize-space(.), "
-        "'Xem thêm chuyến')]",
-
-        "//a[contains("
-        "normalize-space(.), "
-        "'Xem thêm chuyến')]"
-    ]
-
-    for xpath in xpaths:
-
-        try:
-
-            elements = driver.find_elements(
-                By.XPATH,
-                xpath
-            )
-
-            for element in elements:
-
+        for xpath in [
+            "//button[contains(., 'Chấp nhận tất cả')]",
+            "//button[contains(., 'Chấp nhận')]",
+            "//button[contains(., 'Đồng ý')]",
+            "//button[contains(., 'Accept')]",
+            "//button[contains(., 'Đóng')]",
+        ]:
+            for b in driver.find_elements(By.XPATH, xpath):
                 try:
-
-                    if not element.is_displayed():
-                        continue
-
-                    if not element.is_enabled():
-                        continue
-
-                    # Scroll tới nút
-                    driver.execute_script(
-                        """
-                        arguments[0].scrollIntoView({
-                            behavior: 'instant',
-                            block: 'center'
-                        });
-                        """,
-                        element
-                    )
-
-                    time.sleep(
-                        0.5
-                    )
-
-                    before_count = count_tickets(
-                        driver
-                    )
-
-                    # Click
-                    driver.execute_script(
-                        "arguments[0].click();",
-                        element
-                    )
-
-                    logger.info(
-                        "Đã click "
-                        "'Xem thêm chuyến' "
-                        f"(ticket trước: {before_count})"
-                    )
-
-                    # Chờ DOM cập nhật
-                    time.sleep(
-                        2
-                    )
-
-                    try:
-
-                        WebDriverWait(
-                            driver,
-                            5
-                        ).until(
-                            lambda d:
-                            count_tickets(d)
-                            > before_count
-                        )
-
-                    except Exception:
-                        pass
-
-                    after_count = count_tickets(
-                        driver
-                    )
-
-                    logger.info(
-                        "Ticket sau khi click: "
-                        f"{after_count}"
-                    )
-
-                    return True
-
+                    if b.is_displayed():
+                        b.click()
+                        time.sleep(0.4)
                 except Exception:
+                    pass
 
-                    continue
+        for sel in [
+            "button[aria-label='Close']",
+            ".modal-close",
+            "[class*='close-btn']",
+            "[class*='popup'] button",
+        ]:
+            for el in driver.find_elements(By.CSS_SELECTOR, sel):
+                try:
+                    if el.is_displayed():
+                        el.click()
+                        time.sleep(0.3)
+                except Exception:
+                    pass
+    except Exception:
+        pass
 
+
+# ============================================================
+# WAIT / COUNT / LOAD MORE
+# ============================================================
+
+def wait_for_tickets(driver, timeout=TICKET_WAIT_TIMEOUT):
+    end = time.time() + timeout
+    while time.time() < end:
+        try:
+            tickets = driver.find_elements(By.CSS_SELECTOR, "div.ticket")
+            if len(tickets) >= 1:
+                return True
+
+            body = driver.find_element(By.TAG_NAME, "body").text
+            if re.search(r"Kết quả[:\s]*\d+", body, re.IGNORECASE):
+                time.sleep(1.5)
+                tickets = driver.find_elements(By.CSS_SELECTOR, "div.ticket")
+                if len(tickets) >= 1:
+                    return True
+                if re.search(r"Kết quả[:\s]*0\s*chuyến", body, re.IGNORECASE):
+                    return False
+
+            if any(kw in body for kw in (
+                "Không tìm thấy",
+                "không có chuyến",
+                "Chưa có chuyến",
+                "Xin lỗi bạn",
+            )):
+                return False
         except Exception:
-
-            continue
-
+            pass
+        time.sleep(0.8)
     return False
 
 
-# ============================================================
-# LOAD ENOUGH TRIPS
-# ============================================================
+def count_tickets(driver):
+    try:
+        return len(driver.find_elements(By.CSS_SELECTOR, "div.ticket"))
+    except Exception:
+        return 0
 
-def load_more_trips_until_limit(
-    driver
-):
-    """
-    Click "Xem thêm chuyến".
 
-    Dừng khi:
+def click_load_more_trips(driver):
+    xpaths = [
+        "//button[contains(normalize-space(.), 'Xem thêm chuyến')]",
+        "//div[contains(normalize-space(.), 'Xem thêm chuyến')]",
+        "//span[contains(normalize-space(.), 'Xem thêm chuyến')]",
+        "//a[contains(normalize-space(.), 'Xem thêm chuyến')]",
+    ]
+    for xpath in xpaths:
+        try:
+            for element in driver.find_elements(By.XPATH, xpath):
+                try:
+                    if not element.is_displayed() or not element.is_enabled():
+                        continue
+                    driver.execute_script(
+                        "arguments[0].scrollIntoView({behavior:'instant',block:'center'});",
+                        element,
+                    )
+                    time.sleep(0.4)
+                    before = count_tickets(driver)
+                    driver.execute_script("arguments[0].click();", element)
+                    logger.info(f"Đã click 'Xem thêm chuyến' (trước: {before})")
+                    time.sleep(2)
+                    try:
+                        WebDriverWait(driver, 5).until(
+                            lambda d: count_tickets(d) > before
+                        )
+                    except Exception:
+                        pass
+                    logger.info(f"Ticket sau click: {count_tickets(driver)}")
+                    return True
+                except Exception:
+                    continue
+        except Exception:
+            continue
+    return False
 
-    - Có >= 10 ticket
-    - Không còn nút
-    - Quá số lần click cho phép
-    """
 
-    logger.info(
-        "Bắt đầu kiểm tra nút "
-        "'Xem thêm chuyến'..."
-    )
-
-    for click_number in range(
-        1,
-        MAX_LOAD_MORE_CLICKS + 1
-    ):
-
-        current_count = count_tickets(
-            driver
-        )
-
-        logger.info(
-            f"Ticket hiện tại: "
-            f"{current_count}/"
-            f"{MAX_RECORDS_PER_ROUTE}"
-        )
-
-        # Đủ ticket
-        if current_count >= MAX_RECORDS_PER_ROUTE:
-
-            logger.info(
-                "Đã đủ số chuyến yêu cầu."
-            )
-
+def load_more_trips_until_limit(driver):
+    for i in range(1, MAX_LOAD_MORE_CLICKS + 1):
+        current = count_tickets(driver)
+        logger.info(f"Ticket hiện tại: {current}/{MAX_RECORDS_PER_ROUTE}")
+        if current >= MAX_RECORDS_PER_ROUTE:
             break
-
-        clicked = click_load_more_trips(
-            driver
-        )
-
-        if not clicked:
-
-            logger.info(
-                "Không tìm thấy nút "
-                "'Xem thêm chuyến'."
-            )
-
+        if not click_load_more_trips(driver):
+            logger.info("Không còn nút 'Xem thêm chuyến'")
             break
-
-        logger.info(
-            "Đã click "
-            f"'Xem thêm chuyến' "
-            f"lần {click_number}"
-        )
-
-    final_count = count_tickets(
-        driver
-    )
-
-    logger.info(
-        "Tổng ticket sau khi load thêm: "
-        f"{final_count}"
-    )
+        logger.info(f"Click load-more lần {i}")
+    logger.info(f"Tổng ticket cuối: {count_tickets(driver)}")
 
 
 # ============================================================
-# EXTRACT TRIP CARDS
+# DEBUG DUMP
 # ============================================================
 
-def extract_trip_cards(
-    driver,
-    origin,
-    destination,
-    route_url
-):
-    """
-    Lấy tối đa 10 chuyến hợp lệ.
+def dump_debug_html(driver, origin, destination):
+    try:
+        safe_name = re.sub(r"[^\w\-]", "_", f"{origin}_{destination}")[:80]
+        path = DEBUG_DIR / f"{safe_name}.html"
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
+        logger.info(f"Đã lưu HTML debug: {path}")
+    except Exception as e:
+        logger.warning(f"Không lưu được debug HTML: {e}")
 
-    Không giới hạn theo hãng.
 
-    Duyệt nhiều hơn 10 ticket nếu cần
-    để tránh trường hợp ticket lỗi làm
-    thiếu số record.
-    """
+# ============================================================
+# EXTRACT BUS
+# ============================================================
 
-    tickets = driver.find_elements(
-        By.CSS_SELECTOR,
-        "div.ticket"
-    )
-
-    logger.info(
-        f"Tìm thấy {len(tickets)} "
-        "ticket trên trang"
-    )
+def extract_bus_tickets(driver, origin, destination, route_url):
+    tickets = driver.find_elements(By.CSS_SELECTOR, "div.ticket")
+    logger.info(f"Tìm thấy {len(tickets)} ticket bus")
 
     records = []
     seen = set()
 
-    # Không cắt tickets[:10] ở đây.
-    # Duyệt cho tới khi đủ 10 record hợp lệ.
-
-    for index, ticket in enumerate(
-        tickets,
-        start=1
-    ):
-
+    for index, ticket in enumerate(tickets, start=1):
         try:
-
-            # =================================================
-            # OPERATOR
-            # =================================================
-
             operator_name = ""
-
             try:
-
-                operator_name = ticket.find_element(
-                    By.CSS_SELECTOR,
-                    ".bus-name"
-                ).text.strip()
-
+                operator_name = ticket.find_element(By.CSS_SELECTOR, ".bus-name").text.strip()
             except Exception:
                 pass
-
-
-            # =================================================
-            # VEHICLE TYPE
-            # =================================================
 
             vehicle_type = ""
-
             try:
-
-                vehicle_type = ticket.find_element(
-                    By.CSS_SELECTOR,
-                    ".seat-type"
-                ).text.strip()
-
+                vehicle_type = ticket.find_element(By.CSS_SELECTOR, ".seat-type").text.strip()
             except Exception:
                 pass
-
-
-            # =================================================
-            # DEPARTURE TIME
-            # =================================================
 
             departure_time = ""
-
             try:
-
                 departure_time = ticket.find_element(
-                    By.CSS_SELECTOR,
-                    ".from-to "
-                    ".content.from "
-                    ".hour"
+                    By.CSS_SELECTOR, ".from-to .content.from .hour"
                 ).text.strip()
-
             except Exception:
-                pass
-
-
-            # =================================================
-            # ARRIVAL TIME
-            # =================================================
+                try:
+                    hours = ticket.find_elements(By.CSS_SELECTOR, ".hour")
+                    if hours:
+                        departure_time = hours[0].text.strip()
+                except Exception:
+                    pass
 
             arrival_time = ""
-
             try:
-
                 arrival_time = ticket.find_element(
-                    By.CSS_SELECTOR,
-                    ".from-to "
-                    ".content.to "
-                    ".hour"
+                    By.CSS_SELECTOR, ".from-to .content.to .hour"
                 ).text.strip()
-
             except Exception:
-                pass
-
-
-            # =================================================
-            # DURATION
-            # =================================================
+                try:
+                    hours = ticket.find_elements(By.CSS_SELECTOR, ".hour")
+                    if len(hours) >= 2:
+                        arrival_time = hours[1].text.strip()
+                except Exception:
+                    pass
 
             duration_text = ""
-
             try:
-
-                duration_text = ticket.find_element(
-                    By.CSS_SELECTOR,
-                    ".duration"
-                ).text.strip()
-
+                duration_text = ticket.find_element(By.CSS_SELECTOR, ".duration").text.strip()
             except Exception:
                 pass
 
-            duration_min = parse_duration(
-                duration_text
-            )
+            duration_min = parse_duration(duration_text)
+            price_vnd = extract_price_from_ticket(ticket)
 
-
-            # =================================================
-            # PRICE
-            # =================================================
-
-            price_vnd = extract_price_from_ticket(
-                ticket
-            )
-
-
-            # =================================================
-            # VALIDATION
-            # =================================================
-
-            if not is_time(
-                departure_time
-            ):
-
-                logger.warning(
-                    f"Ticket {index}: "
-                    "thiếu giờ đi"
-                )
-
+            if not is_time(departure_time):
+                logger.warning(f"Ticket {index}: thiếu giờ đi ({departure_time!r})")
                 continue
-
-
-            if not is_time(
-                arrival_time
-            ):
-
-                logger.warning(
-                    f"Ticket {index}: "
-                    "thiếu giờ đến"
-                )
-
-                continue
-
 
             if not operator_name:
-
                 operator_name = "Unknown"
-
-
             if not vehicle_type:
-
                 vehicle_type = "Unknown"
 
-
-            # =================================================
-            # UNIQUE KEY
-            # =================================================
-
             unique_key = (
-                origin,
-                destination,
-                operator_name,
-                vehicle_type,
-                departure_time,
-                arrival_time,
-                price_vnd
+                origin, destination, operator_name, vehicle_type,
+                departure_time, arrival_time, price_vnd,
             )
-
             if unique_key in seen:
                 continue
-
-            seen.add(
-                unique_key
-            )
-
-
-            # =================================================
-            # TRANSPORT TYPE
-            # =================================================
-
-            transport_type = detect_transport_type(
-                vehicle_type
-            )
-
-
-            # =================================================
-            # RECORD
-            # =================================================
+            seen.add(unique_key)
 
             record = {
                 "origin": origin,
                 "destination": destination,
                 "operator_name": operator_name,
-                "transport_type": transport_type,
+                "transport_type": "bus",
+                "vehicle_type": vehicle_type,
+                "departure_time": departure_time,
+                "arrival_time": arrival_time or "",
+                "duration_min": duration_min,
+                "price_vnd": price_vnd,
+                "crawl_date": CRAWL_DATE,
+                "source": SOURCE,
+                "source_url": route_url,
+            }
+            records.append(record)
+
+            price_str = f"{price_vnd:,} VND" if price_vnd else "N/A"
+            logger.info(
+                f"[{len(records)}] {operator_name} | {vehicle_type} | "
+                f"{departure_time} -> {arrival_time} | {price_str}"
+            )
+
+            if len(records) >= MAX_RECORDS_PER_ROUTE:
+                break
+        except Exception as e:
+            logger.warning(f"Lỗi parse ticket {index}: {e}")
+
+    return records
+
+
+# ============================================================
+# CLICK SEARCH (flight / train landing pages)
+# ============================================================
+
+def click_search_button(driver):
+    """Click nút Tìm kiếm trên trang flight/train."""
+    try:
+        for xpath in [
+            "//button[normalize-space()='Tìm kiếm']",
+            "//button[contains(., 'Tìm kiếm')]",
+            "//button[contains(@class,'search')]",
+        ]:
+            btns = driver.find_elements(By.XPATH, xpath)
+            for b in btns:
+                try:
+                    if b.is_displayed() and b.is_enabled():
+                        driver.execute_script("arguments[0].click();", b)
+                        logger.info("Đã click nút Tìm kiếm")
+                        time.sleep(5)
+                        return True
+                except Exception:
+                    continue
+    except Exception as e:
+        logger.warning(f"Không click được Tìm kiếm: {e}")
+    return False
+
+
+# ============================================================
+# EXTRACT TRAIN
+# ============================================================
+
+def extract_train_tickets(driver, origin, destination, route_url):
+    """
+    Selector: [class*="TrainTicketItem__Container"]
+    Text mẫu:
+        21:45  Ga Sài Gòn  7h 55p  05:40  Ga Nha Trang  Tàu SNT2  Ngồi mềm Từ 367K
+    """
+    selectors = [
+        '[class*="TrainTicketItem__Container"]',
+        '[class*="TrainTicketItem__Wrapper"]',
+    ]
+    cards = []
+    used = None
+    for sel in selectors:
+        found = driver.find_elements(By.CSS_SELECTOR, sel)
+        if found:
+            cards = found
+            used = sel
+            break
+
+    if not cards:
+        logger.warning(f"TRAIN | {origin} -> {destination}: không thấy TrainTicketItem")
+        return []
+
+    logger.info(f"Tìm thấy {len(cards)} train card | selector={used}")
+    records = []
+    seen = set()
+
+    for index, card in enumerate(cards, start=1):
+        try:
+            full = card.text.strip()
+            if len(full) < 20:
+                continue
+
+            times = re.findall(r"\b(\d{1,2}:\d{2})\b", full)
+            departure_time = times[0] if times else ""
+            arrival_time = times[1] if len(times) >= 2 else ""
+
+            # Tàu SE2 / SNT2 / TN1 ...
+            train_match = re.search(r"\b(?:Tàu\s+)?(SE\d+|SNT\d+|TN\d+|SPT\d+)\b", full, re.I)
+            operator_name = f"Tàu {train_match.group(1).upper()}" if train_match else "Vietnam Railways"
+
+            # Hạng ghế + giá thấp nhất "Từ 367K" hoặc "367.000đ"
+            vehicle_type = "Unknown"
+            for kw in ("Ngồi mềm", "Ngồi cứng", "Giường khoang 4", "Giường khoang 6", "Giường nằm"):
+                if kw.lower() in full.lower():
+                    vehicle_type = kw
+                    break
+
+            price_vnd = None
+            # Ưu tiên "Từ xxxK"
+            m = re.search(r"[Tt]ừ\s*(\d+(?:[.,]\d+)?)\s*[Kk]", full)
+            if m:
+                try:
+                    price_vnd = int(float(m.group(1).replace(",", ".")) * 1000)
+                except ValueError:
+                    pass
+            if price_vnd is None:
+                price_vnd = parse_price(full)
+
+            duration_min = parse_duration(full)
+
+            if not is_time(departure_time):
+                continue
+
+            key = (origin, destination, operator_name, vehicle_type, departure_time, arrival_time, price_vnd)
+            if key in seen:
+                continue
+            seen.add(key)
+
+            record = {
+                "origin": origin,
+                "destination": destination,
+                "operator_name": operator_name,
+                "transport_type": "train",
                 "vehicle_type": vehicle_type,
                 "departure_time": departure_time,
                 "arrival_time": arrival_time,
@@ -1084,57 +647,118 @@ def extract_trip_cards(
                 "price_vnd": price_vnd,
                 "crawl_date": CRAWL_DATE,
                 "source": SOURCE,
-                "source_url": route_url
+                "source_url": route_url,
             }
-
-            records.append(
-                record
+            records.append(record)
+            logger.info(
+                f"[{len(records)}] [train] {operator_name} | {vehicle_type} | "
+                f"{departure_time} -> {arrival_time} | {price_vnd or 'N/A'}"
             )
-
-
-            # =================================================
-            # LOG
-            # =================================================
-
-            if price_vnd is not None:
-
-                logger.info(
-                    f"[{len(records)}] "
-                    f"{operator_name} | "
-                    f"{vehicle_type} | "
-                    f"{departure_time} -> "
-                    f"{arrival_time} | "
-                    f"{price_vnd:,} VND"
-                )
-
-            else:
-
-                logger.warning(
-                    f"[{len(records)}] "
-                    f"{operator_name} | "
-                    f"{vehicle_type} | "
-                    f"{departure_time} -> "
-                    f"{arrival_time} | "
-                    f"Price N/A"
-                )
-
-
-            # =================================================
-            # ĐỦ 10 RECORD
-            # =================================================
-
             if len(records) >= MAX_RECORDS_PER_ROUTE:
-
                 break
-
-
         except Exception as e:
+            logger.warning(f"Lỗi parse train card {index}: {e}")
 
-            logger.warning(
-                f"Lỗi parse ticket "
-                f"{index}: {e}"
+    return records
+
+
+# ============================================================
+# EXTRACT FLIGHT
+# ============================================================
+
+def extract_flight_tickets(driver, origin, destination, route_url):
+    """
+    Selector: [class*="FlightTicketItem__FlightTicketItemContainer"]
+    Text mẫu:
+        VietJet Air  Deluxe  Airbus VJ160  20:30  SGN  2h10  22:40  HAN  1.362.341đ
+    """
+    selectors = [
+        '[class*="FlightTicketItem__FlightTicketItemContainer"]',
+        '[class*="FlightTicketItem"]',
+    ]
+    cards = []
+    used = None
+    for sel in selectors:
+        found = driver.find_elements(By.CSS_SELECTOR, sel)
+        # lọc card có text đủ dài
+        found = [c for c in found if len((c.text or "").strip()) > 40]
+        if found:
+            cards = found
+            used = sel
+            break
+
+    if not cards:
+        logger.warning(f"FLIGHT | {origin} -> {destination}: không thấy FlightTicketItem")
+        return []
+
+    logger.info(f"Tìm thấy {len(cards)} flight card | selector={used}")
+    records = []
+    seen = set()
+
+    for index, card in enumerate(cards, start=1):
+        try:
+            full = card.text.strip()
+            if len(full) < 30:
+                continue
+
+            times = re.findall(r"\b(\d{1,2}:\d{2})\b", full)
+            departure_time = times[0] if times else ""
+            arrival_time = times[1] if len(times) >= 2 else ""
+
+            operator_name = "Unknown"
+            for airline in (
+                "Vietnam Airlines", "VietJet Air", "Vietjet Air", "Bamboo Airways",
+                "Pacific Airlines", "Vietravel Airlines", "VietJet", "Bamboo",
+            ):
+                if airline.lower() in full.lower():
+                    operator_name = airline.replace("Vietjet Air", "VietJet Air")
+                    break
+
+            # Số hiệu / loại: VJ160, Airbus ...
+            vehicle_type = "Unknown"
+            m = re.search(r"\b((?:VJ|VN|QH|VU|BL)\d+)\b", full)
+            if m:
+                vehicle_type = m.group(1)
+            else:
+                for kw in ("Deluxe", "SkyBoss", "Business", "Eco", "Phổ thông", "Bay thẳng"):
+                    if kw.lower() in full.lower():
+                        vehicle_type = kw
+                        break
+
+            price_vnd = parse_price(full)
+            duration_min = parse_duration(full)
+
+            if not is_time(departure_time):
+                continue
+
+            key = (origin, destination, operator_name, vehicle_type, departure_time, arrival_time, price_vnd)
+            if key in seen:
+                continue
+            seen.add(key)
+
+            record = {
+                "origin": origin,
+                "destination": destination,
+                "operator_name": operator_name,
+                "transport_type": "flight",
+                "vehicle_type": vehicle_type,
+                "departure_time": departure_time,
+                "arrival_time": arrival_time,
+                "duration_min": duration_min,
+                "price_vnd": price_vnd,
+                "crawl_date": CRAWL_DATE,
+                "source": SOURCE,
+                "source_url": route_url,
+            }
+            records.append(record)
+            logger.info(
+                f"[{len(records)}] [flight] {operator_name} | {vehicle_type} | "
+                f"{departure_time} -> {arrival_time} | {price_vnd or 'N/A'}"
             )
-
+            if len(records) >= MAX_RECORDS_PER_ROUTE:
+                break
+        except Exception as e:
+            logger.warning(f"Lỗi parse flight card {index}: {e}")
 
     return records
 
@@ -1143,159 +767,87 @@ def extract_trip_cards(
 # CRAWL ONE ROUTE
 # ============================================================
 
-def crawl_route(
-    driver,
-    route,
-    route_index,
-    total_routes
-):
-    """
-    Crawl một tuyến.
-    """
-
+def crawl_route(driver, route, route_index, total_routes):
     origin = route["origin"]
     destination = route["destination"]
     base_url = route["url"]
+    transport_type = route.get("transport_type", "bus")
 
-    vexere_url = build_vexere_url(
-        base_url,
-        CRAWL_DATE
-    )
+    vexere_url = build_vexere_url(base_url, CRAWL_DATE, transport_type)
 
+    logger.info("=" * 70)
     logger.info(
-        "=" * 70
+        f"ROUTE {route_index}/{total_routes}: {origin} -> {destination} [{transport_type}]"
     )
-
-    logger.info(
-        f"ROUTE {route_index}/"
-        f"{total_routes}: "
-        f"{origin} -> {destination}"
-    )
-
-    logger.info(
-        f"URL: {vexere_url}"
-    )
+    logger.info(f"URL: {vexere_url}")
 
     try:
+        driver.get(vexere_url)
+        time.sleep(3)
+        close_popups(driver)
+        time.sleep(1)
 
-        # ----------------------------------------------------
-        # OPEN PAGE
-        # ----------------------------------------------------
+        if transport_type == "bus":
+            if not wait_for_tickets(driver, timeout=TICKET_WAIT_TIMEOUT):
+                logger.warning(
+                    f"{origin} -> {destination}: Không tìm thấy ticket "
+                    f"(có thể hết chuyến ngày {CRAWL_DATE} hoặc URL sai)"
+                )
+                dump_debug_html(driver, origin, destination)
+                return []
 
-        driver.get(
-            vexere_url
-        )
-
-        time.sleep(
-            3
-        )
-
-
-        # ----------------------------------------------------
-        # WAIT INITIAL TICKETS
-        # ----------------------------------------------------
-
-        if not wait_for_tickets(
-            driver,
-            timeout=15
-        ):
-
-            logger.warning(
-                f"{origin} -> {destination}: "
-                "Không tìm thấy ticket ban đầu"
-            )
-
-            return []
-
-
-        initial_count = count_tickets(
-            driver
-        )
-
-        logger.info(
-            f"Ticket ban đầu: "
-            f"{initial_count}"
-        )
-
-
-        # ----------------------------------------------------
-        # LOAD MORE
-        # ----------------------------------------------------
-
-        load_more_trips_until_limit(
-            driver
-        )
-
-
-        # ----------------------------------------------------
-        # EXTRACT
-        # ----------------------------------------------------
-
-        records = extract_trip_cards(
-            driver=driver,
-            origin=origin,
-            destination=destination,
-            route_url=vexere_url
-        )
-
+            logger.info(f"Ticket ban đầu: {count_tickets(driver)}")
+            load_more_trips_until_limit(driver)
+            records = extract_bus_tickets(driver, origin, destination, vexere_url)
+        elif transport_type == "train":
+            close_popups(driver)
+            # Nếu URL chưa phải dat-ve-tau → cần click Tìm kiếm
+            if "dat-ve-tau" not in vexere_url:
+                click_search_button(driver)
+                time.sleep(3)
+            else:
+                time.sleep(4)  # chờ list train render
+            close_popups(driver)
+            records = extract_train_tickets(driver, origin, destination, vexere_url)
+            if not records:
+                dump_debug_html(driver, origin, destination)
+        elif transport_type == "flight":
+            close_popups(driver)
+            if "dat-ve-may-bay" not in vexere_url:
+                click_search_button(driver)
+                time.sleep(4)
+            else:
+                time.sleep(5)  # chờ list flight render
+            close_popups(driver)
+            records = extract_flight_tickets(driver, origin, destination, vexere_url)
+            if not records:
+                dump_debug_html(driver, origin, destination)
+        else:
+            logger.warning(f"Unknown transport_type: {transport_type}")
+            records = []
 
         logger.info(
-            f"Hoàn thành "
-            f"{origin} -> {destination}: "
-            f"{len(records)} records"
+            f"Hoàn thành {origin} -> {destination} [{transport_type}]: {len(records)} records"
         )
-
         return records
 
-
+    except (InvalidSessionIdException, WebDriverException) as e:
+        logger.error(f"Driver lỗi trên route {origin} -> {destination}: {e}")
+        raise
     except Exception as e:
-
-        logger.exception(
-            f"Lỗi route "
-            f"{origin} -> {destination}: "
-            f"{e}"
-        )
-
+        logger.exception(f"Lỗi route {origin} -> {destination}: {e}")
         return []
 
 
 # ============================================================
-# SAVE JSON
+# SAVE
 # ============================================================
 
-def save_json(
-    records
-):
-    """
-    Lưu dữ liệu thành JSON.
-    """
-
-    OUTPUT_FILE.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    with open(
-        OUTPUT_FILE,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        json.dump(
-            records,
-            f,
-            ensure_ascii=False,
-            indent=2
-        )
-
-    logger.info(
-        f"Đã lưu {len(records)} "
-        "records vào:"
-    )
-
-    logger.info(
-        str(OUTPUT_FILE)
-    )
+def save_json(records):
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+    logger.info(f"Đã lưu {len(records)} records vào: {OUTPUT_FILE}")
 
 
 # ============================================================
@@ -1303,156 +855,64 @@ def save_json(
 # ============================================================
 
 def main():
-
-    logger.info(
-        "=" * 70
-    )
-
-    logger.info(
-        "VEXERE TRANSPORT CRAWLER"
-    )
-
-    logger.info(
-        f"Ngày crawl: {CRAWL_DATE}"
-    )
-
-    logger.info(
-        "Phạm vi: TP.HCM -> "
-        "các tỉnh/thành"
-    )
-
-    logger.info(
-        "Phương tiện: bus"
-    )
-
-    logger.info(
-        f"Max: "
-        f"{MAX_RECORDS_PER_ROUTE} "
-        "chuyến / tuyến"
-    )
-
-    logger.info(
-        "Nút được click: "
-        "'Xem thêm chuyến'"
-    )
-
-    logger.info(
-        "Không click: "
-        "'Xem thêm hãng'"
-    )
-
-    logger.info(
-        "=" * 70
-    )
-
-
-    # --------------------------------------------------------
-    # LOAD ROUTES
-    # --------------------------------------------------------
+    logger.info("=" * 70)
+    logger.info("VEXERE TRANSPORT CRAWLER (fixed)")
+    logger.info(f"Ngày crawl: {CRAWL_DATE} (ngày MAI)")
+    logger.info(f"Max: {MAX_RECORDS_PER_ROUTE} chuyến / tuyến")
+    logger.info("=" * 70)
 
     routes = load_routes()
-
     if not routes:
-
-        logger.warning(
-            "Không có route nào trong CSV."
-        )
-
+        logger.warning("Không có route nào trong CSV.")
         return
 
-
-    # --------------------------------------------------------
-    # CREATE DRIVER
-    # --------------------------------------------------------
-
     driver = create_driver()
-
     all_records = []
 
-
     try:
-
-        # ----------------------------------------------------
-        # CRAWL SEQUENTIALLY
-        # ----------------------------------------------------
-
-        for index, route in enumerate(
-            routes,
-            start=1
-        ):
-
-            records = crawl_route(
-                driver=driver,
-                route=route,
-                route_index=index,
-                total_routes=len(routes)
-            )
-
-            all_records.extend(
-                records
-            )
-
-            # Delay giữa các route
-            if index < len(routes):
-
-                time.sleep(
-                    2
+        index = 0
+        while index < len(routes):
+            route = routes[index]
+            try:
+                records = crawl_route(
+                    driver=driver,
+                    route=route,
+                    route_index=index + 1,
+                    total_routes=len(routes),
                 )
+                all_records.extend(records)
+                index += 1
+                if index < len(routes):
+                    time.sleep(ROUTE_DELAY)
 
+            except (InvalidSessionIdException, WebDriverException) as e:
+                logger.error(f"Chrome crash, restart driver... ({e})")
+                safe_quit(driver)
+                time.sleep(3)
+                driver = create_driver()
+                continue
 
     finally:
+        safe_quit(driver)
+        logger.info("Đã đóng Chrome driver.")
 
-        driver.quit()
+    save_json(all_records)
 
-        logger.info(
-            "Đã đóng Chrome driver."
-        )
+    by_type = {}
+    for r in all_records:
+        t = r.get("transport_type", "unknown")
+        by_type[t] = by_type.get(t, 0) + 1
 
+    logger.info("=" * 70)
+    logger.info("CRAWLER HOÀN TẤT")
+    logger.info(f"Tổng route: {len(routes)}")
+    logger.info(f"Tổng records: {len(all_records)}")
+    for t, cnt in sorted(by_type.items()):
+        logger.info(f"  - {t}: {cnt}")
+    logger.info(f"Output: {OUTPUT_FILE}")
+    logger.info(f"Debug HTML (nếu fail): {DEBUG_DIR}")
+    logger.info("=" * 70)
 
-    # --------------------------------------------------------
-    # SAVE
-    # --------------------------------------------------------
-
-    save_json(
-        all_records
-    )
-
-
-    # --------------------------------------------------------
-    # SUMMARY
-    # --------------------------------------------------------
-
-    logger.info(
-        "=" * 70
-    )
-
-    logger.info(
-        "CRAWLER HOÀN TẤT"
-    )
-
-    logger.info(
-        f"Tổng route: "
-        f"{len(routes)}"
-    )
-
-    logger.info(
-        f"Tổng records: "
-        f"{len(all_records)}"
-    )
-
-    logger.info(
-        f"Output: "
-        f"{OUTPUT_FILE}"
-    )
-
-    logger.info(
-        "=" * 70
-    )
-
-
-# ============================================================
-# RUN
-# ============================================================
 
 if __name__ == "__main__":
     main()
