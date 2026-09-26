@@ -1,204 +1,33 @@
-networks:
-  tourism-net:
-    driver: bridge
-
-volumes:
-  minio_data:
-  postgres_data:
-  trino_data:
-  dagster_storage:
-  mlflow_data:
+version: '3.8'
 
 services:
-  minio:
-    build:
-      context: ./docker/minio
-    container_name: minio
-    environment:
-      - MINIO_ROOT_USER=minioadmin
-      - MINIO_ROOT_PASSWORD=minioadmin
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    networks:
-      - tourism-net
-    volumes:
-      - minio_data:/data
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  postgres:
-    build:
-      context: ./docker/postgres
-    container_name: postgres
-    environment:
-      - POSTGRES_USER=tourism
-      - POSTGRES_PASSWORD=tourism
-      - POSTGRES_DB=tourism
-    ports:
-      - "5431:5432"
-    networks:
-      - tourism-net
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U tourism -d tourism"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
   spark-master:
-    build:
-      context: .
-      dockerfile: docker/spark/Dockerfile
-    container_name: spark-master
+    image: apache/spark:3.5.1
     environment:
       - SPARK_MODE=master
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
     ports:
-      - "7077:7077"
-      - "8080:8080"
-    networks:
-      - tourism-net
-    depends_on:
-      - minio
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - '8080:8080'
+    command: /opt/spark/sbin/start-master.sh
 
   spark-worker:
     build:
-      context: .
-      dockerfile: docker/spark-worker/Dockerfile
-    container_name: spark-worker
+      context: ./docker/spark-worker
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
-    networks:
-      - tourism-net
-    depends_on:
-      - spark-master
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8081 || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+    volumes:
+      - ./models:/opt/models:ro
 
-  trino:
-    build:
-      context: .
-      dockerfile: docker/trino/Dockerfile
-    container_name: trino
-    environment:
-      - TRINO_CATALOG=iceberg
+  minio:
+    image: minio/minio:latest
+    command: server /data
     ports:
-      - "8081:8080"
-    networks:
-      - tourism-net
-    depends_on:
-      - minio
-    volumes:
-      - minio_data:/minio:ro
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/status"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  dagster-webserver:
-    build:
-      context: .
-      dockerfile: docker/dagster/Dockerfile
-    container_name: dagster-webserver
+      - '9000:9000'
     environment:
-      - DAGSTER_HOME=/opt/dagster/home
-      - PYTHONPATH=/opt/dagster/project:/opt:/opt/ingestion:/opt/nlp:/opt/spark:/opt/configs
-    ports:
-      - "3000:3000"
-    networks:
-      - tourism-net
-    depends_on:
-      postgres:
-        condition: service_healthy
-    command: ["dagster-webserver", "-h", "0.0.0.0", "-p", "3000", "-w", "/opt/dagster/project/workspace.yaml"]
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
     volumes:
-      - ./dagster_project:/opt/dagster/project
-      - ./ingestion:/opt/ingestion
-      - ./nlp:/opt/nlp
-      - ./spark:/opt/spark
-      - ./configs:/opt/configs
-      - dagster_storage:/opt/dagster/home
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - minio-data:/data
 
-  dagster-daemon:
-    build:
-      context: .
-      dockerfile: docker/dagster/Dockerfile
-    container_name: dagster-daemon
-    environment:
-      - DAGSTER_HOME=/opt/dagster/home
-      - PYTHONPATH=/opt/dagster/project:/opt:/opt/ingestion:/opt/nlp:/opt/spark:/opt/configs
-    networks:
-      - tourism-net
-    depends_on:
-      postgres:
-        condition: service_healthy
-    entrypoint: ["dagster-daemon", "run", "-w", "/opt/dagster/project/workspace.yaml"]
-    volumes:
-      - ./dagster_project:/opt/dagster/project
-      - ./ingestion:/opt/ingestion
-      - ./nlp:/opt/nlp
-      - ./spark:/opt/spark
-      - ./configs:/opt/configs
-      - dagster_storage:/opt/dagster/home
-    healthcheck:
-      test: ["CMD-SHELL", "python3 -c \"open('/proc/1/status').read(); print('ok')\""]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # nlp:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/nlp/Dockerfile
-  #   container_name: nlp
-  #   environment:
-  #     - MLFLOW_HOST=mlflow
-  #     - MLFLOW_PORT=5000
-  #   networks:
-  #     - tourism-net
-  #   volumes:
-  #     - ./data/sample:/data:ro
-  #   depends_on:
-  #     - minio
-  #   healthcheck:
-  #     test: ["CMD", "python", "-c", "import torch; print(torch.__version__)"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
-
-  # mlflow:
-  #   image: bitnami/mlflow:latest
-  #   container_name: mlflow
-  #   environment:
-  #     - MLFLOW_BACKEND=sqlite
-  #     - MLFLOW_SQLITE_DB_PATH=/mlflow/mlflow.db
-  #     - MLFLOW_TRACKING_URI=http://mlflow:5000
-  #   ports:
-  #     - "5000:5000"
-  #   networks:
-  #     - tourism-net
-  #   depends_on:
-  #     - postgres
-  #   volumes:
-  #     - mlflow_data:/mlflow
+volumes:
+  minio-data:

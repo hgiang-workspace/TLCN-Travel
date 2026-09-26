@@ -1,0 +1,34 @@
+# Sentiment Pipeline Configuration
+# Pipeline version: 1.0.0
+
+pipeline:
+  output_root: "data/sentiment"
+  raw_root: "data/raw"
+
+model:
+  name: "5CD-AI/Vietnamese-Sentiment-visobert"
+  version: "visobert"
+  local_dir: "models/visobert"
+  batch_size: 32
+  max_length: 256
+  provider: "transformers"  # "transformers" | "stub"
+
+text:
+  lowercase: true
+  use_underthesea: true
+
+quality:
+  min_score: 0.3
+  max_score: 1.0
+  min_sentence_len: 3
+  max_sentence_len: 512
+  required_labels: ["negative", "neutral", "positive"]
+  label_distribution_min_pct: 0.01
+
+# Spark config (cho chạy trên cluster)
+spark:
+  master: "local[*]"
+  app_name: "tlcn-sentiment"
+  executor_memory: "4g"
+  driver_memory: "2g"
+  default_parallelism: 4
