@@ -9,3 +9,57 @@ tripadvisor:
   rate_limit:
     requests_per_second: 2
     concurrent_requests: 5
+
+tripadvisor_comments:
+  enabled: true
+  output_format: json
+  storage_layer: bronze
+  storage: local
+  crawler: "ingestion/collectors/tripadvisor/tripadvisor_comment_crawler.py"
+  output_path: "data/raw/tripadvisor/tripadvisor_comments.json"
+  images_dir: "data/raw/tripadvisor/images"
+  log_path: "logs/tripadvisor_comment_crawler.log"
+  query:
+    base_url: "https://www.tripadvisor.com.vn"
+    registry: "discovery/outputs/entity_registry_vn.json"
+    registry_fallback: "discovery/outputs/entity_registry_vn.csv"
+  selectors:
+    rating: 'div[data-automation="bubbleRatingValue"] span'
+    see_all_photos: 'button[data-automation="seeAllPhotosCountButton"]'
+    gallery_image: 'div[data-testid="tile_gallery"] img'
+    reviews_tab: 'a[href="#REVIEWS"]'
+    review_card: 'div[data-automation="reviewCard"]'
+    key_review: "h3"
+    detail_review: "div.fIrGe span"
+  crawl:
+    max_reviews: 10
+    max_images: 3
+    max_w_image: 1600
+    jpeg_quality: 80
+    navigation_timeout_ms: 60000
+    entity_delay_seconds: [2.0, 5.0]
+  rate_limit:
+    delay_between_requests: [2.0, 5.0]
+    delay_between_items: [1.0, 2.5]
+
+foody:
+  enabled: true
+  source: foody
+  entity_type: "quan an"
+  output_format: json
+  storage_layer: bronze
+  crawler: "ingestion/foody/foody_crawler.py"
+  output_path: "data/raw/foody/foody_quan_an.json"
+  query:
+    base_url: "https://www.foody.vn"
+    province_toggle_selector: "#head-province .rn-nav-name"
+    province_anchor_selector: "#popupLocation a[data-id]"
+    listing_path: "{province_slug}/food/quan-an"
+    pagination: "?page={page}"
+  crawl:
+    max_pages_per_province: 1
+    navigation_timeout_ms: 60000
+    map_wait_timeout_ms: 8000
+  rate_limit:
+    delay_between_requests: [1.5, 3.5]
+    delay_between_items: [1.0, 2.5]

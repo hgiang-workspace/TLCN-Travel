@@ -3,3 +3,6 @@ httpx
 pandas
 pydantic
 beautifulsoup4
+playwright
+playwright-stealth==1.0.6
+pillow
