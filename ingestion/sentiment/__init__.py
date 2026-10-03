@@ -14,14 +14,15 @@ Cấu trúc:
     adapters/        adapter theo từng nguồn (tripadvisor, tiktok)
     text/            chuẩn hoá text + tách câu (+ pandas UDF)
     inference/       ViSoBERT: get_model/predict_batch/mapInPandas UDF
+    aspects/         ABSA: dictionary, detection, segmentation, assembly
     quality/         rule kiểm định + quarantine
     report/          metric chất lượng
-    jobs/            S0..S5 (script __main__)
-    run_pipeline.py  chạy liên tiếp S1..S5
+    jobs/            S0..S7 (script __main__)
+    run_pipeline.py  chạy liên tiếp S1..S7
 """
 
 from __future__ import annotations
 
-PIPELINE_VERSION = "1.0.0"
+PIPELINE_VERSION = "1.2.0"
 
 __all__ = ["PIPELINE_VERSION"]

@@ -8,3 +8,4 @@ data/
 TLTK/# Sentiment pipeline runtime (local only)
 models/
 dist/
+__pycache__/

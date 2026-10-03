@@ -4,10 +4,12 @@ pandas>=2.0
 pyarrow>=14.0
 pyyaml>=6.0
 
-# NLP (optional - chỉ cần khi chạy inference thực tế)
-# transformers>=4.36
-# torch>=2.1
-# underthesea>=6.0
+# NLP (cần cho inference thật; dùng --allow-stub để chạy offline không cần các gói này)
+transformers>=4.36
+torch>=2.1
+underthesea>=6.0
+sentencepiece>=0.1.99  # tokenizer cho ViSoBERT (fix lỗi S3)
+tiktoken>=0.6  # tokenizer cho GPT models (nếu dùng)
 
 # Testing
 pytest>=7.0

@@ -9,4 +9,6 @@ __all__ = [
     "s3_infer",
     "s4_validate",
     "s5_report",
+    "s6_aspect",
+    "s7_absa_publish",
 ]

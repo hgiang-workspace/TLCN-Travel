@@ -21,6 +21,22 @@ class SentimentLabel(str, Enum):
     POSITIVE = "positive"
 
 
+class AspectLabel(str, Enum):
+    """Nhãn aspect chuẩn cho ABSA (lowercase, snake_case)."""
+
+    FOOD = "food"
+    DRINK = "drink"
+    SERVICE = "service"
+    AMBIANCE = "ambiance"
+    CLEANLINESS = "cleanliness"
+    PRICE = "price"
+    LOCATION = "location"
+    PORTION = "portion"
+    SPEED = "speed"
+    PARKING = "parking"
+    OTHER = "other"
+
+
 # Map từ nhãn model (thường là NEG/NEU/POS) sang nhãn chuẩn
 MODEL_LABEL_TO_STANDARD: dict[str, SentimentLabel] = {
     "NEG": SentimentLabel.NEGATIVE,
@@ -75,6 +91,7 @@ def build_stub_provider() -> LabelProvider:
 
 __all__ = [
     "SentimentLabel",
+    "AspectLabel",
     "MODEL_LABEL_TO_STANDARD",
     "STANDARD_TO_INT",
     "INT_TO_STANDARD",

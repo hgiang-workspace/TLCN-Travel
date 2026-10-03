@@ -11,6 +11,8 @@ from ingestion.sentiment.config import get, resolve_path
 STAGING_COMMENTS = "_staging/comments"
 STAGING_SENTENCES = "_staging/sentences"
 STAGING_PREDICTIONS = "_staging/predictions_raw"
+STAGING_ASPECTS = "_staging/aspects"  # S6
+STAGING_ABSA = "_staging/absa"         # S7
 QUARANTINE = "_quarantine"
 REPORTS = "_reports"
 
@@ -21,6 +23,8 @@ class SentimentPaths:
     staging_comments: Path
     staging_sentences: Path
     staging_predictions: Path
+    staging_aspects: Path
+    staging_absa: Path
     quarantine: Path
     reports: Path
     run_log: Path
@@ -36,6 +40,12 @@ class SentimentPaths:
         base = self.staging_predictions / source
         return base if not model_version else base / f"model_version={model_version}"
 
+    def aspects_dir(self, source: str) -> Path:
+        return self.staging_aspects / source
+
+    def absa_dir(self, source: str) -> Path:
+        return self.staging_absa / source
+
     def final_dir(self, source: str) -> Path:
         return self.root / source
 
@@ -45,6 +55,12 @@ class SentimentPaths:
     def final_parquet(self, source: str) -> Path:
         return self.final_dir(source) / "sentiment.parquet"
 
+    def absa_jsonl(self, source: str) -> Path:
+        return self.final_dir(source) / "absa.jsonl"
+
+    def absa_parquet(self, source: str) -> Path:
+        return self.final_dir(source) / "absa.parquet"
+
     def quarantine_file(self, source: str) -> Path:
         return self.quarantine / f"{source}.jsonl"
 
@@ -53,6 +69,9 @@ class SentimentPaths:
 
     def quality_file(self, run_id: str) -> Path:
         return self.reports / f"{run_id}_quality.json"
+
+    def absa_quality_file(self, run_id: str) -> Path:
+        return self.reports / f"{run_id}_absa_quality.json"
 
     def latest_quality_file(self) -> Path:
         return self.reports / "latest_quality.json"
@@ -69,6 +88,8 @@ def build_paths(cfg: dict[str, Any], output_root: str | Path | None = None) -> S
         staging_comments=root / STAGING_COMMENTS,
         staging_sentences=root / STAGING_SENTENCES,
         staging_predictions=root / STAGING_PREDICTIONS,
+        staging_aspects=root / STAGING_ASPECTS,
+        staging_absa=root / STAGING_ABSA,
         quarantine=root / QUARANTINE,
         reports=root / REPORTS,
         run_log=root / REPORTS / "run_log.jsonl",
@@ -79,6 +100,8 @@ def build_paths(cfg: dict[str, Any], output_root: str | Path | None = None) -> S
         paths.staging_comments,
         paths.staging_sentences,
         paths.staging_predictions,
+        paths.staging_aspects,
+        paths.staging_absa,
         paths.quarantine,
         paths.reports,
     ):

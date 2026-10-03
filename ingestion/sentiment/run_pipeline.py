@@ -1,4 +1,4 @@
-"""Pipeline runner: chạy liên tiếp S1→S2→S3→S4→S5.
+"""Pipeline runner: chạy liên tiếp S1→S2→S3→S4→S5→S6→S7.
 
 Usage:
     python -m ingestion.sentiment.run_pipeline --source tripadvisor --run-id run_20240101
@@ -23,6 +23,8 @@ JOBS = [
     ("S3", "ingestion.sentiment.jobs.s3_infer"),
     ("S4", "ingestion.sentiment.jobs.s4_validate"),
     ("S5", "ingestion.sentiment.jobs.s5_report"),
+    ("S6", "ingestion.sentiment.jobs.s6_aspect"),
+    ("S7", "ingestion.sentiment.jobs.s7_absa_publish"),
 ]
 
 JOB_ORDER = {job[0]: i for i, job in enumerate(JOBS)}
@@ -49,7 +51,7 @@ def run_pipeline(
     source: str,
     run_id: str,
     from_job: str = "S1",
-    to_job: str = "S5",
+    to_job: str = "S7",
     config: str | None = None,
     limit: int | None = None,
     model_version: str | None = None,
@@ -105,7 +107,7 @@ def run_pipeline(
                     continue
                 filtered.append(a)
             job_args = filtered
-        if job_name in ("S3", "S4") and model_version:
+        if job_name in ("S3", "S4", "S7") and model_version:
             job_args += ["--model-version", model_version]
 
         start = time.time()
@@ -116,7 +118,7 @@ def run_pipeline(
         results["jobs"][job_name] = job_result
 
         print(f"{job_name}: {job_result.get('status', 'unknown')} ({duration}s)")
-        if job_result.get("status") != "success":
+        if job_result.get("status") not in ("success", "skipped"):
             overall_success = False
             print(f"  Error: {job_result.get('error', 'Unknown')}")
             break  # Dừng pipeline khi job fail
@@ -134,11 +136,11 @@ def run_pipeline(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run sentiment pipeline S1→S5")
+    parser = argparse.ArgumentParser(description="Run sentiment pipeline S1→S7")
     parser.add_argument("--source", required=True, choices=["tripadvisor", "tiktok", "foody"])
     parser.add_argument("--run-id", required=True)
-    parser.add_argument("--from", dest="from_job", default="S1", choices=["S1", "S2", "S3", "S4", "S5"])
-    parser.add_argument("--to", dest="to_job", default="S5", choices=["S1", "S2", "S3", "S4", "S5"])
+    parser.add_argument("--from", dest="from_job", default="S1", choices=["S1", "S2", "S3", "S4", "S5", "S6", "S7"])
+    parser.add_argument("--to", dest="to_job", default="S7", choices=["S1", "S2", "S3", "S4", "S5", "S6", "S7"])
     parser.add_argument("--config", default=None)
     parser.add_argument("--limit", type=int, default=None, help="Giới hạn số comment (cho S1)")
     parser.add_argument("--model-version", default=None)

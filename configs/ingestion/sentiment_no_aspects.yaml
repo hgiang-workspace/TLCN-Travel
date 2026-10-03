@@ -28,22 +28,11 @@ quality:
   required_labels: ["negative", "neutral", "positive"]
   label_distribution_min_pct: 0.01
 
-# Aspects configuration (ABSA - aspect-aware segmentation)
+# Aspects configuration (ABSA)
 aspects:
-  enabled: true
+  enabled: false
   keywords_path: "configs/ingestion/aspect_keywords.yaml"
-  granularity: "aspect_span"   # "sentence" | "clause" | "aspect_span"
-  keep_unmatched: true         # clause không khớp -> aspect="other"
-  min_clause_len: 3
-  min_segment_len: 3
-  # Cấu hình dựng aspect segment (đoạn đưa RIÊNG vào model)
-  segment:
-    strategy: "hybrid"         # "clause" | "window" | "hybrid"
-    window_before: 6           # số token lấy trước keyword
-    window_after: 6            # số token lấy sau keyword
-    include_keyword: true
-    dedupe_by_hash: true       # dedupe (aspect, segment_text) trùng hệt
-    max_aspects_per_sentence: 6  # 0 = không giới hạn (chặn nhiễu)
+  granularity: "sentence"  # "sentence" | "clause"
   quality:
     min_aspect_coverage: 0.0
     required_aspects: []
