@@ -4799,3 +4799,1093 @@
 2026-09-26 19:15:14,346 | INFO     | Output: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\data\raw\transport\vexere_transport.json
 2026-09-26 19:15:14,347 | INFO     | Debug HTML (nếu fail): D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html
 2026-09-26 19:15:14,347 | INFO     | ======================================================================
+2026-09-26 19:42:18,413 | INFO     | ======================================================================
+2026-09-26 19:42:18,413 | INFO     | VEXERE TRANSPORT CRAWLER (fixed)
+2026-09-26 19:42:18,413 | INFO     | Ngày crawl: 27-09-2026 (ngày MAI)
+2026-09-26 19:42:18,414 | INFO     | Max: 10 chuyến / tuyến
+2026-09-26 19:42:18,414 | INFO     | ======================================================================
+2026-09-26 19:42:18,414 | INFO     | Đã đọc 121 tuyến từ CSV
+2026-09-26 19:42:21,939 | INFO     | ======================================================================
+2026-09-26 19:42:21,939 | INFO     | ROUTE 1/121: Hồ Chí Minh -> Vũng Tàu [bus]
+2026-09-26 19:42:21,939 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vung-tau-ba-ria-vung-tau-129t2131.html?date=27-09-2026&lt=1
+2026-09-26 19:42:30,078 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:42:30,091 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:42:30,104 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:42:30,120 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:42:30,426 | INFO     | [1] Hoa Mai | Ghế ngồi 16 chỗ | 11:00 -> 13:25 | 170,000 VND
+2026-09-26 19:42:30,635 | INFO     | [2] Huy Hoàng | Limousine 9 chỗ | 09:30 -> 11:50 | 200,000 VND
+2026-09-26 19:42:30,794 | INFO     | [3] Vie Limousine | Limousine 9 chỗ | 08:00 -> 10:00 | 230,000 VND
+2026-09-26 19:42:30,920 | INFO     | [4] Bến Thành Travel | Limousine 9 chỗ | 07:00 -> 09:00 | 210,000 VND
+2026-09-26 19:42:31,095 | INFO     | [5] Phương Trang | Ghế ngồi 28 chỗ | 08:30 -> 12:00 | 170,000 VND
+2026-09-26 19:42:31,236 | INFO     | [6] Thành Vinh (Vũng Tàu) | Limousine 9 chỗ | 11:10 -> 13:30 | 210,000 VND
+2026-09-26 19:42:31,334 | INFO     | [7] Hồng Minh Travel | Ghế ngồi 7 chỗ | 06:00 -> 09:00 | 160,000 VND
+2026-09-26 19:42:31,591 | INFO     | [8] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 13:30 -> 16:30 | 180,000 VND
+2026-09-26 19:42:31,789 | INFO     | [9] Hải Vân Vũng Tàu | Limousine 9 chỗ | 08:30 -> 11:25 | 230,000 VND
+2026-09-26 19:42:31,898 | INFO     | [10] Hoa Mai | Limousine 9 chỗ | 07:30 -> 09:55 | 220,000 VND
+2026-09-26 19:42:31,899 | INFO     | Hoàn thành Hồ Chí Minh -> Vũng Tàu [bus]: 10 records
+2026-09-26 19:42:34,900 | INFO     | ======================================================================
+2026-09-26 19:42:34,900 | INFO     | ROUTE 2/121: Hồ Chí Minh -> Bà Rịa [bus]
+2026-09-26 19:42:34,900 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ba-ria-ba-ria-vung-tau-129t2132.html?date=27-09-2026&lt=1
+2026-09-26 19:42:43,338 | WARNING  | Hồ Chí Minh -> Bà Rịa: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:42:43,437 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bà_Rịa.html
+2026-09-26 19:42:46,438 | INFO     | ======================================================================
+2026-09-26 19:42:46,438 | INFO     | ROUTE 3/121: Hồ Chí Minh -> Biên Hòa [bus]
+2026-09-26 19:42:46,438 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bien-hoa-dong-nai-129t751.html?date=27-09-2026&lt=1
+2026-09-26 19:42:56,817 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:42:56,835 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:42:56,850 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:42:56,862 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:42:57,094 | INFO     | [1] Hoa Mai | Limousine 9 chỗ | 11:30 -> 14:05 | 230,000 VND
+2026-09-26 19:42:57,398 | INFO     | [2] Huệ Nghĩa Limousine | Ghế ngồi 16 chỗ | 22:32 -> 23:20 | 130,000 VND
+2026-09-26 19:42:57,585 | INFO     | [3] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 14:30 -> 17:00 | 170,000 VND
+2026-09-26 19:42:57,772 | INFO     | [4] Hoa Mai | Ghế ngồi 16 chỗ | 13:00 -> 15:10 | 180,000 VND
+2026-09-26 19:42:57,940 | INFO     | [5] Hoa Mai | Ghế ngồi 16 chỗ | 05:30 -> 07:40 | 180,000 VND
+2026-09-26 19:42:58,061 | INFO     | [6] Huệ Nghĩa Limousine | Ghế ngồi 16 chỗ | 15:02 -> 15:50 | 130,000 VND
+2026-09-26 19:42:58,373 | INFO     | [7] Huệ Nghĩa Limousine | Ghế ngồi 16 chỗ | 14:32 -> 15:20 | 130,000 VND
+2026-09-26 19:42:58,567 | INFO     | [8] Toàn Thắng - Vũng Tàu | Limousine 9 chỗ | 13:00 -> 15:30 | 220,000 VND
+2026-09-26 19:42:58,919 | INFO     | [9] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 07:30 -> 10:00 | 170,000 VND
+2026-09-26 19:42:59,146 | INFO     | [10] Hoa Mai | Ghế ngồi 16 chỗ | 15:00 -> 17:40 | 180,000 VND
+2026-09-26 19:42:59,146 | INFO     | Hoàn thành Hồ Chí Minh -> Biên Hòa [bus]: 10 records
+2026-09-26 19:43:02,147 | INFO     | ======================================================================
+2026-09-26 19:43:02,148 | INFO     | ROUTE 4/121: Hồ Chí Minh -> Đồng Nai [bus]
+2026-09-26 19:43:02,148 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-nai-129t75.html?date=27-09-2026&lt=1
+2026-09-26 19:43:10,330 | WARNING  | Hồ Chí Minh -> Đồng Nai: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:43:10,419 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Đồng_Nai.html
+2026-09-26 19:43:13,420 | INFO     | ======================================================================
+2026-09-26 19:43:13,421 | INFO     | ROUTE 5/121: Hồ Chí Minh -> Long Khánh [bus]
+2026-09-26 19:43:13,422 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-khanh-dong-nai-129t752.html?date=27-09-2026&lt=1
+2026-09-26 19:43:21,617 | WARNING  | Hồ Chí Minh -> Long Khánh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:43:21,752 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Long_Khánh.html
+2026-09-26 19:43:24,753 | INFO     | ======================================================================
+2026-09-26 19:43:24,753 | INFO     | ROUTE 6/121: Hồ Chí Minh -> Bình Dương [bus]
+2026-09-26 19:43:24,753 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-duong-129t74.html?date=27-09-2026&lt=1
+2026-09-26 19:43:32,955 | WARNING  | Hồ Chí Minh -> Bình Dương: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:43:33,090 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bình_Dương.html
+2026-09-26 19:43:36,092 | INFO     | ======================================================================
+2026-09-26 19:43:36,092 | INFO     | ROUTE 7/121: Hồ Chí Minh -> Thủ Dầu Một [bus]
+2026-09-26 19:43:36,093 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thu-dau-mot-binh-duong-129t741.html?date=27-09-2026&lt=1
+2026-09-26 19:43:44,367 | WARNING  | Hồ Chí Minh -> Thủ Dầu Một: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:43:44,441 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Thủ_Dầu_Một.html
+2026-09-26 19:43:47,442 | INFO     | ======================================================================
+2026-09-26 19:43:47,443 | INFO     | ROUTE 8/121: Hồ Chí Minh -> Tây Ninh [bus]
+2026-09-26 19:43:47,443 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tay-ninh-129t70.html?date=27-09-2026&lt=1
+2026-09-26 19:43:56,718 | WARNING  | Hồ Chí Minh -> Tây Ninh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:43:56,965 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Tây_Ninh.html
+2026-09-26 19:43:59,966 | INFO     | ======================================================================
+2026-09-26 19:43:59,966 | INFO     | ROUTE 9/121: Hồ Chí Minh -> Bình Phước [bus]
+2026-09-26 19:43:59,966 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-phuoc-129t70.html?date=27-09-2026&lt=1
+2026-09-26 19:44:07,889 | WARNING  | Hồ Chí Minh -> Bình Phước: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:44:07,964 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bình_Phước.html
+2026-09-26 19:44:10,965 | INFO     | ======================================================================
+2026-09-26 19:44:10,965 | INFO     | ROUTE 10/121: Hồ Chí Minh -> Long An [bus]
+2026-09-26 19:44:10,965 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-an-129t80.html?date=27-09-2026&lt=1
+2026-09-26 19:44:18,296 | WARNING  | Hồ Chí Minh -> Long An: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:44:18,409 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Long_An.html
+2026-09-26 19:44:21,410 | INFO     | ======================================================================
+2026-09-26 19:44:21,410 | INFO     | ROUTE 11/121: Hồ Chí Minh -> Tân An [bus]
+2026-09-26 19:44:21,410 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tan-an-long-an-129t801.html?date=27-09-2026&lt=1
+2026-09-26 19:44:29,187 | WARNING  | Hồ Chí Minh -> Tân An: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:44:29,295 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Tân_An.html
+2026-09-26 19:44:32,296 | INFO     | ======================================================================
+2026-09-26 19:44:32,297 | INFO     | ROUTE 12/121: Hồ Chí Minh -> Tiền Giang [bus]
+2026-09-26 19:44:32,297 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tien-giang-129t82.html?date=27-09-2026&lt=1
+2026-09-26 19:44:44,993 | INFO     | Ticket ban đầu: 3
+2026-09-26 19:44:45,005 | INFO     | Ticket hiện tại: 3/10
+2026-09-26 19:44:45,127 | INFO     | Không còn nút 'Xem thêm chuyến'
+2026-09-26 19:44:45,151 | INFO     | Tổng ticket cuối: 3
+2026-09-26 19:44:45,187 | INFO     | Tìm thấy 3 ticket bus
+2026-09-26 19:44:45,446 | INFO     | [1] Vương Chi HP | Limousine 22 phòng VIP | 03:30 -> 04:30 | 1 VND
+2026-09-26 19:44:45,658 | INFO     | [2] Vương Chi HP | Limousine 22 phòng VIP | 03:30 -> 05:20 | 1 VND
+2026-09-26 19:44:45,832 | INFO     | [3] Vương Chi HP | Limousine 22 phòng VIP | 03:30 -> 04:00 | 1 VND
+2026-09-26 19:44:45,832 | INFO     | Hoàn thành Hồ Chí Minh -> Tiền Giang [bus]: 3 records
+2026-09-26 19:44:48,833 | INFO     | ======================================================================
+2026-09-26 19:44:48,834 | INFO     | ROUTE 13/121: Hồ Chí Minh -> Mỹ Tho [bus]
+2026-09-26 19:44:48,834 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-my-tho-tien-giang-129t821.html?date=27-09-2026&lt=1
+2026-09-26 19:44:58,760 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:44:58,777 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:44:58,808 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:44:58,840 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:44:59,176 | INFO     | [1] Minh Đức (Huế) | Limousine 32 phòng (WC) | 05:30 -> 01:30 | 580,000 VND
+2026-09-26 19:44:59,364 | INFO     | [2] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 10:30 -> 05:30 | 750,000 VND
+2026-09-26 19:44:59,554 | INFO     | [3] Phi Long (Mậu Hường) | Giường nằm 40 chỗ | 05:45 -> 02:20 | 500,000 VND
+2026-09-26 19:44:59,858 | INFO     | [4] Minh Đức (Huế) | Limousine 32 phòng (WC) | 06:30 -> 01:30 | 580,000 VND
+2026-09-26 19:45:00,086 | INFO     | [5] Phi Long (Mậu Hường) | Giường nằm 40 chỗ | 06:15 -> 02:20 | 500,000 VND
+2026-09-26 19:45:00,246 | INFO     | [6] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 11:00 -> 05:30 | 750,000 VND
+2026-09-26 19:45:00,369 | INFO     | [7] Quang Dũng VIP Limousine | Giường phòng 32 chỗ (Có WC) | 07:00 -> 02:00 | 562,500 VND
+2026-09-26 19:45:00,500 | INFO     | [8] Quang Dũng VIP Limousine | Giường phòng 32 chỗ (Có WC) | 07:30 -> 02:00 | 562,500 VND
+2026-09-26 19:45:00,721 | INFO     | [9] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 11:00 -> 05:50 | 595,000 VND
+2026-09-26 19:45:00,875 | INFO     | [10] Tân Quang Dũng | Limousine 32 phòng (WC) | 11:00 -> 10:30 | 630,000 VND
+2026-09-26 19:45:00,875 | INFO     | Hoàn thành Hồ Chí Minh -> Mỹ Tho [bus]: 10 records
+2026-09-26 19:45:03,876 | INFO     | ======================================================================
+2026-09-26 19:45:03,877 | INFO     | ROUTE 14/121: Hồ Chí Minh -> Bến Tre [bus]
+2026-09-26 19:45:03,877 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ben-tre-129t83.html?date=27-09-2026&lt=1
+2026-09-26 19:45:11,447 | WARNING  | Hồ Chí Minh -> Bến Tre: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:45:11,531 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bến_Tre.html
+2026-09-26 19:45:14,532 | INFO     | ======================================================================
+2026-09-26 19:45:14,532 | INFO     | ROUTE 15/121: Hồ Chí Minh -> Trà Vinh [bus]
+2026-09-26 19:45:14,532 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tra-vinh-129t84.html?date=27-09-2026&lt=1
+2026-09-26 19:45:22,640 | WARNING  | Hồ Chí Minh -> Trà Vinh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:45:22,718 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Trà_Vinh.html
+2026-09-26 19:45:25,718 | INFO     | ======================================================================
+2026-09-26 19:45:25,719 | INFO     | ROUTE 16/121: Hồ Chí Minh -> Vĩnh Long [bus]
+2026-09-26 19:45:25,719 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-long-129t86.html?date=27-09-2026&lt=1
+2026-09-26 19:45:34,767 | WARNING  | Hồ Chí Minh -> Vĩnh Long: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:45:34,865 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Vĩnh_Long.html
+2026-09-26 19:45:37,866 | INFO     | ======================================================================
+2026-09-26 19:45:37,866 | INFO     | ROUTE 17/121: Hồ Chí Minh -> Đồng Tháp [bus]
+2026-09-26 19:45:37,867 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-thap-129t87.html?date=27-09-2026&lt=1
+2026-09-26 19:45:45,615 | WARNING  | Hồ Chí Minh -> Đồng Tháp: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:45:45,698 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Đồng_Tháp.html
+2026-09-26 19:45:48,699 | INFO     | ======================================================================
+2026-09-26 19:45:48,700 | INFO     | ROUTE 18/121: Hồ Chí Minh -> Cao Lãnh [bus]
+2026-09-26 19:45:48,701 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cao-lanh-dong-thap-129t871.html?date=27-09-2026&lt=1
+2026-09-26 19:45:58,543 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:45:58,569 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:45:58,596 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:45:58,635 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:45:58,899 | INFO     | [1] Chí Dũng | Ghế ngồi 16 chỗ | 18:00 -> 20:30 | 120,000 VND
+2026-09-26 19:45:59,133 | INFO     | [2] Tiến Đạt (Bến Tre) | Ghế ngồi 16 chỗ | 07:00 -> 09:50 | 120,000 VND
+2026-09-26 19:45:59,438 | INFO     | [3] Phương Trang | Limousine giường nằm 34 chỗ | 16:00 -> 20:00 | 170,000 VND
+2026-09-26 19:45:59,805 | INFO     | [4] Kim Anh (Bến Tre) | Ghế ngồi 16 chỗ | 13:00 -> 15:45 | 140,000 VND
+2026-09-26 19:46:00,004 | INFO     | [5] Kim Hoàng | Giường Nằm 41 chỗ | 08:00 -> 10:00 | 160,000 VND
+2026-09-26 19:46:00,251 | INFO     | [6] Phát Tài | Giường nằm 41 chỗ | 18:30 -> 22:15 | 13 VND
+2026-09-26 19:46:00,544 | INFO     | [7] Tân Thanh Thuỷ | Giường nằm 45 chỗ (TV) | 12:00 -> 13:50 | 120,000 VND
+2026-09-26 19:46:00,764 | INFO     | [8] Tân Niên | Limousine Phòng Đôi 24 chỗ | 22:45 -> 00:30 | 210,000 VND
+2026-09-26 19:46:01,001 | INFO     | [9] Tiến Đạt (Bến Tre) | Ghế ngồi 16 chỗ | 08:30 -> 10:30 | 120,000 VND
+2026-09-26 19:46:01,234 | INFO     | [10] Tiến Đạt (Bến Tre) | Ghế ngồi 16 chỗ | 18:30 -> 20:30 | 120,000 VND
+2026-09-26 19:46:01,234 | INFO     | Hoàn thành Hồ Chí Minh -> Cao Lãnh [bus]: 10 records
+2026-09-26 19:46:04,235 | INFO     | ======================================================================
+2026-09-26 19:46:04,235 | INFO     | ROUTE 19/121: Hồ Chí Minh -> Sa Đéc [bus]
+2026-09-26 19:46:04,236 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-sa-dec-dong-thap-129t872.html?date=27-09-2026&lt=1
+2026-09-26 19:46:12,505 | WARNING  | Hồ Chí Minh -> Sa Đéc: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:46:12,618 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Sa_Đéc.html
+2026-09-26 19:46:15,619 | INFO     | ======================================================================
+2026-09-26 19:46:15,620 | INFO     | ROUTE 20/121: Hồ Chí Minh -> An Giang [bus]
+2026-09-26 19:46:15,620 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-an-giang-129t89.html?date=27-09-2026&lt=1
+2026-09-26 19:46:23,753 | WARNING  | Hồ Chí Minh -> An Giang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:46:23,881 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_An_Giang.html
+2026-09-26 19:46:26,881 | INFO     | ======================================================================
+2026-09-26 19:46:26,882 | INFO     | ROUTE 21/121: Hồ Chí Minh -> Long Xuyên [bus]
+2026-09-26 19:46:26,883 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-long-xuyen-an-giang-129t891.html?date=27-09-2026&lt=1
+2026-09-26 19:46:37,847 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:46:37,852 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:46:37,859 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:46:37,866 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:46:38,034 | INFO     | [1] Phương Anh (Phan Thiết) | Giường nằm 40 chỗ | 08:00 -> 08:00 | 180,000 VND
+2026-09-26 19:46:38,193 | INFO     | [2] Hoàng Yến Logistics | Limousine 9 chỗ | 10:00 -> 11:15 | 220,000 VND
+2026-09-26 19:46:38,395 | INFO     | [3] Petro Bình Phước | Solati Limousine 10 chỗ | 09:30 -> 11:30 | 230,000 VND
+2026-09-26 19:46:38,765 | INFO     | [4] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 17:00 -> 20:30 | 160,000 VND
+2026-09-26 19:46:38,975 | INFO     | [5] Thịnh Phát Xanh | Ghế 7 chỗ ngồi | 06:00 -> 10:00 | 297,500 VND
+2026-09-26 19:46:39,228 | INFO     | [6] Trường Thịnh Limousine | Limousine 11 chỗ | 11:00 -> 11:30 | 120,000 VND
+2026-09-26 19:46:39,538 | INFO     | [7] Hoàng Yến Logistics | Ghế ngồi 16 chỗ | 12:05 -> 13:20 | 170,000 VND
+2026-09-26 19:46:39,658 | INFO     | [8] Hoàng Yến Logistics | Ghế ngồi 16 chỗ | 19:30 -> 20:15 | 150,000 VND
+2026-09-26 19:46:39,835 | INFO     | [9] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 12:00 -> 14:30 | 160,000 VND
+2026-09-26 19:46:40,046 | INFO     | [10] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 06:30 -> 10:00 | 160,000 VND
+2026-09-26 19:46:40,047 | INFO     | Hoàn thành Hồ Chí Minh -> Long Xuyên [bus]: 10 records
+2026-09-26 19:46:43,048 | INFO     | ======================================================================
+2026-09-26 19:46:43,048 | INFO     | ROUTE 22/121: Hồ Chí Minh -> Châu Đốc [bus]
+2026-09-26 19:46:43,048 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-chau-doc-an-giang-129t892.html?date=27-09-2026&lt=1
+2026-09-26 19:46:50,855 | WARNING  | Hồ Chí Minh -> Châu Đốc: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:46:50,943 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Châu_Đốc.html
+2026-09-26 19:46:53,944 | INFO     | ======================================================================
+2026-09-26 19:46:53,944 | INFO     | ROUTE 23/121: Hồ Chí Minh -> Kiên Giang [bus]
+2026-09-26 19:46:53,945 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-kien-giang-129t91.html?date=27-09-2026&lt=1
+2026-09-26 19:47:01,534 | WARNING  | Hồ Chí Minh -> Kiên Giang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:47:01,675 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Kiên_Giang.html
+2026-09-26 19:47:04,676 | INFO     | ======================================================================
+2026-09-26 19:47:04,677 | INFO     | ROUTE 24/121: Hồ Chí Minh -> Rạch Giá [bus]
+2026-09-26 19:47:04,677 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-rach-gia-kien-giang-129t911.html?date=27-09-2026&lt=1
+2026-09-26 19:47:14,775 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:47:14,786 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:47:14,799 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:47:14,809 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:47:15,007 | INFO     | [1] Hoa Mai | Ghế ngồi 10 chỗ | 12:30 -> 14:45 | 180,000 VND
+2026-09-26 19:47:15,225 | INFO     | [2] Hoa Mai | Ghế ngồi 10 chỗ | 07:00 -> 09:15 | 180,000 VND
+2026-09-26 19:47:15,514 | INFO     | [3] Hoa Mai | Ghế ngồi 10 chỗ | 12:00 -> 14:15 | 180,000 VND
+2026-09-26 19:47:15,685 | INFO     | [4] Hoa Mai | Ghế ngồi 10 chỗ | 11:00 -> 13:15 | 180,000 VND
+2026-09-26 19:47:15,848 | INFO     | [5] Hoa Mai | Ghế ngồi 10 chỗ | 05:00 -> 07:15 | 180,000 VND
+2026-09-26 19:47:16,045 | INFO     | [6] Hoa Mai | Ghế ngồi 10 chỗ | 16:00 -> 18:15 | 180,000 VND
+2026-09-26 19:47:16,164 | INFO     | [7] Hoa Mai | Ghế ngồi 10 chỗ | 14:00 -> 15:45 | 180,000 VND
+2026-09-26 19:47:16,412 | INFO     | [8] Hoa Mai | Ghế ngồi 10 chỗ | 06:00 -> 08:15 | 180,000 VND
+2026-09-26 19:47:16,601 | INFO     | [9] Hoa Mai | Ghế ngồi 10 chỗ | 17:00 -> 19:15 | 180,000 VND
+2026-09-26 19:47:16,844 | INFO     | [10] Hoa Mai | Ghế ngồi 10 chỗ | 15:00 -> 17:15 | 180,000 VND
+2026-09-26 19:47:16,845 | INFO     | Hoàn thành Hồ Chí Minh -> Rạch Giá [bus]: 10 records
+2026-09-26 19:47:19,845 | INFO     | ======================================================================
+2026-09-26 19:47:19,846 | INFO     | ROUTE 25/121: Hồ Chí Minh -> Hà Tiên [bus]
+2026-09-26 19:47:19,846 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-tien-kien-giang-129t912.html?date=27-09-2026&lt=1
+2026-09-26 19:47:28,038 | WARNING  | Hồ Chí Minh -> Hà Tiên: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:47:28,141 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hà_Tiên.html
+2026-09-26 19:47:31,142 | INFO     | ======================================================================
+2026-09-26 19:47:31,142 | INFO     | ROUTE 26/121: Hồ Chí Minh -> Cần Thơ [bus]
+2026-09-26 19:47:31,143 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-can-tho-129t13.html?date=27-09-2026&lt=1
+2026-09-26 19:47:38,994 | WARNING  | Hồ Chí Minh -> Cần Thơ: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:47:39,089 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Cần_Thơ.html
+2026-09-26 19:47:42,090 | INFO     | ======================================================================
+2026-09-26 19:47:42,091 | INFO     | ROUTE 27/121: Hồ Chí Minh -> Hậu Giang [bus]
+2026-09-26 19:47:42,091 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hau-giang-129t93.html?date=27-09-2026&lt=1
+2026-09-26 19:47:49,798 | WARNING  | Hồ Chí Minh -> Hậu Giang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:47:49,903 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hậu_Giang.html
+2026-09-26 19:47:52,905 | INFO     | ======================================================================
+2026-09-26 19:47:52,905 | INFO     | ROUTE 28/121: Hồ Chí Minh -> Sóc Trăng [bus]
+2026-09-26 19:47:52,906 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-soc-trang-129t94.html?date=27-09-2026&lt=1
+2026-09-26 19:48:00,430 | WARNING  | Hồ Chí Minh -> Sóc Trăng: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:48:00,521 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Sóc_Trăng.html
+2026-09-26 19:48:03,522 | INFO     | ======================================================================
+2026-09-26 19:48:03,523 | INFO     | ROUTE 29/121: Hồ Chí Minh -> Bạc Liêu [bus]
+2026-09-26 19:48:03,523 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-lieu-129t95.html?date=27-09-2026&lt=1
+2026-09-26 19:48:10,715 | WARNING  | Hồ Chí Minh -> Bạc Liêu: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:48:10,820 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bạc_Liêu.html
+2026-09-26 19:48:13,821 | INFO     | ======================================================================
+2026-09-26 19:48:13,822 | INFO     | ROUTE 30/121: Hồ Chí Minh -> Cà Mau [bus]
+2026-09-26 19:48:13,822 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ca-mau-129t96.html?date=27-09-2026&lt=1
+2026-09-26 19:48:21,593 | WARNING  | Hồ Chí Minh -> Cà Mau: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:48:21,666 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Cà_Mau.html
+2026-09-26 19:48:24,667 | INFO     | ======================================================================
+2026-09-26 19:48:24,667 | INFO     | ROUTE 31/121: Hồ Chí Minh -> Phan Thiết [bus]
+2026-09-26 19:48:24,667 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phan-thiet-binh-thuan-129t159.html?date=27-09-2026&lt=1
+2026-09-26 19:48:34,765 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:48:34,780 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:48:34,790 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:48:34,798 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:48:34,938 | INFO     | [1] Hảo | Giường nằm 40 chỗ | 10:55 -> 17:25 | 210,000 VND
+2026-09-26 19:48:35,126 | INFO     | [2] Anh Tuấn (Bạc Liêu) | Limousine 22 phòng đơn | 11:30 -> 17:30 | 280,000 VND
+2026-09-26 19:48:35,287 | INFO     | [3] Ngọc Ánh (Sài Gòn) | Giường nằm 44 chỗ | 07:00 -> 14:15 | 210,000 VND
+2026-09-26 19:48:35,497 | INFO     | [4] Tuấn Hưng | Giường nằm 40 chỗ | 19:30 -> 01:30 | 200,000 VND
+2026-09-26 19:48:35,783 | INFO     | [5] Phương Trang | Limousine giường nằm 34 chỗ | 02:00 -> 08:00 | 260,000 VND
+2026-09-26 19:48:36,027 | INFO     | [6] Trí Nhân | Giường nằm 41 chỗ | 08:30 -> 15:02 | 210,000 VND
+2026-09-26 19:48:36,345 | INFO     | [7] Tuấn Hiệp | Limousine giường nằm 36 chỗ | 18:00 -> 03:00 | 300,000 VND
+2026-09-26 19:48:36,526 | INFO     | [8] Giáp Diệp | Giường nằm 40 chỗ | 16:00 -> 02:20 | 260,000 VND
+2026-09-26 19:48:36,755 | INFO     | [9] Cúc Tùng | Limousine giường nằm đơn 21 chỗ (WC) | 23:00 -> 04:15 | 500,000 VND
+2026-09-26 19:48:36,918 | INFO     | [10] Hảo | Giường nằm 40 chỗ | 14:45 -> 20:35 | 210,000 VND
+2026-09-26 19:48:36,919 | INFO     | Hoàn thành Hồ Chí Minh -> Phan Thiết [bus]: 10 records
+2026-09-26 19:48:39,920 | INFO     | ======================================================================
+2026-09-26 19:48:39,920 | INFO     | ROUTE 32/121: Hồ Chí Minh -> Mũi Né [bus]
+2026-09-26 19:48:39,921 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-mui-ne-binh-thuan-129t1592.html?date=27-09-2026&lt=1
+2026-09-26 19:48:50,112 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:48:50,123 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:48:50,134 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:48:50,141 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:48:50,241 | INFO     | [1] Mai Quyên | Limousine 34 Phòng | 11:00 -> 19:30 | 550,000 VND
+2026-09-26 19:48:50,493 | INFO     | [2] Mười Phương Express | Luxury 34 phòng | 18:15 -> 01:15 | 450,000 VND
+2026-09-26 19:48:50,659 | INFO     | [3] Rạng Đông Buslines | Limousine 24 Phòng VIP | 21:10 -> 05:30 | 550,000 VND
+2026-09-26 19:48:50,821 | INFO     | [4] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 19:20 -> 02:05 | 490,000 VND
+2026-09-26 19:48:51,042 | INFO     | [5] Thùy Trang Bình Định | Limousine 24 phòng | 17:20 -> 01:10 | 550,000 VND
+2026-09-26 19:48:51,165 | INFO     | [6] Tín Phát Limousine | Limousine 24 Phòng | 17:00 -> 02:20 | 455,000 VND
+2026-09-26 19:48:51,384 | INFO     | [7] Tuấn Tú Express | Luxury 34 phòng | 21:15 -> 05:30 | 540,000 VND
+2026-09-26 19:48:51,570 | INFO     | [8] Trung Thành | Limousine 24 phòng | 19:41 -> 01:41 | 600,000 VND
+2026-09-26 19:48:51,712 | INFO     | [9] Phong Nhung | Limousine 24 Phòng Đôi | 20:00 -> 03:55 | 24 VND
+2026-09-26 19:48:51,796 | INFO     | [10] Rạng Đông Buslines | Limousine 34 phòng | 18:10 -> 02:30 | 450,000 VND
+2026-09-26 19:48:51,796 | INFO     | Hoàn thành Hồ Chí Minh -> Mũi Né [bus]: 10 records
+2026-09-26 19:48:54,797 | INFO     | ======================================================================
+2026-09-26 19:48:54,797 | INFO     | ROUTE 33/121: Hồ Chí Minh -> Bình Thuận [bus]
+2026-09-26 19:48:54,798 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-thuan-129t15.html?date=27-09-2026&lt=1
+2026-09-26 19:49:02,495 | WARNING  | Hồ Chí Minh -> Bình Thuận: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:49:02,584 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bình_Thuận.html
+2026-09-26 19:49:05,584 | INFO     | ======================================================================
+2026-09-26 19:49:05,585 | INFO     | ROUTE 34/121: Hồ Chí Minh -> Phan Rang [bus]
+2026-09-26 19:49:05,585 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phan-rang-ninh-thuan-129t58.html?date=27-09-2026&lt=1
+2026-09-26 19:49:12,774 | WARNING  | Hồ Chí Minh -> Phan Rang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:49:12,898 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Phan_Rang.html
+2026-09-26 19:49:15,899 | INFO     | ======================================================================
+2026-09-26 19:49:15,900 | INFO     | ROUTE 35/121: Hồ Chí Minh -> Ninh Thuận [bus]
+2026-09-26 19:49:15,900 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ninh-thuan-129t58.html?date=27-09-2026&lt=1
+2026-09-26 19:49:23,776 | WARNING  | Hồ Chí Minh -> Ninh Thuận: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:49:23,859 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Ninh_Thuận.html
+2026-09-26 19:49:26,859 | INFO     | ======================================================================
+2026-09-26 19:49:26,860 | INFO     | ROUTE 36/121: Hồ Chí Minh -> Nha Trang [bus]
+2026-09-26 19:49:26,861 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nha-trang-khanh-hoa-129t23591.html?date=27-09-2026&lt=1
+2026-09-26 19:49:37,098 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:49:37,108 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:49:37,116 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:49:37,124 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:49:37,195 | INFO     | [1] Nhật Dương - Bình Minh Bus | Limousine 22 Phòng Đôi Luxury (WC) | 12:30 -> 19:21 | 330,000 VND
+2026-09-26 19:49:37,275 | INFO     | [2] Đà Lạt ơi | Limousine 24 Phòng ĐÔI | 23:45 -> 06:15 | 400,000 VND
+2026-09-26 19:49:37,387 | INFO     | [3] Phong Phú | Limousine 24 phòng đôi | 23:00 -> 06:40 | 249,000 VND
+2026-09-26 19:49:37,503 | INFO     | [4] Huỳnh Gia | Giường nằm 34 chỗ (WC) | 23:00 -> 04:50 | 250,000 VND
+2026-09-26 19:49:37,607 | INFO     | [5] Bình Minh Tải | Limousine 32 Phòng VIP (WC) | 14:30 -> 21:15 | 250,000 VND
+2026-09-26 19:49:37,725 | INFO     | [6] An Anh Limousine | Limousine 22 Phòng WC | 21:45 -> 07:00 | 429,000 VND
+2026-09-26 19:49:37,829 | INFO     | [7] Nam Hải Limousine | Limousine 34 giường | 05:30 -> 12:50 | 280,000 VND
+2026-09-26 19:49:37,946 | INFO     | [8] Phúc An Express | Limousine 22 giường phòng (WC) | 20:30 -> 04:00 | 450,000 VND
+2026-09-26 19:49:38,081 | INFO     | [9] Khanh Phong | Limousine 32 giường nằm (WC) | 22:20 -> 04:30 | 330,000 VND
+2026-09-26 19:49:38,233 | INFO     | [10] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 18:20 -> 01:00 | 520,000 VND
+2026-09-26 19:49:38,234 | INFO     | Hoàn thành Hồ Chí Minh -> Nha Trang [bus]: 10 records
+2026-09-26 19:49:41,235 | INFO     | ======================================================================
+2026-09-26 19:49:41,235 | INFO     | ROUTE 37/121: Hồ Chí Minh -> Khánh Hòa [bus]
+2026-09-26 19:49:41,236 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-khanh-hoa-129t58.html?date=27-09-2026&lt=1
+2026-09-26 19:49:49,599 | WARNING  | Hồ Chí Minh -> Khánh Hòa: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:49:49,712 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Khánh_Hòa.html
+2026-09-26 19:49:52,713 | INFO     | ======================================================================
+2026-09-26 19:49:52,714 | INFO     | ROUTE 38/121: Hồ Chí Minh -> Cam Ranh [bus]
+2026-09-26 19:49:52,715 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cam-ranh-khanh-hoa-129t582.html?date=27-09-2026&lt=1
+2026-09-26 19:50:01,553 | INFO     | Ticket ban đầu: 4
+2026-09-26 19:50:01,563 | INFO     | Ticket hiện tại: 4/10
+2026-09-26 19:50:01,635 | INFO     | Không còn nút 'Xem thêm chuyến'
+2026-09-26 19:50:01,642 | INFO     | Tổng ticket cuối: 4
+2026-09-26 19:50:01,653 | INFO     | Tìm thấy 4 ticket bus
+2026-09-26 19:50:01,764 | INFO     | [1] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 17:30 -> 07:55 | 670,000 VND
+2026-09-26 19:50:01,882 | INFO     | [2] Bốn Luyện Express | Limousine 24 Phòng | 10:30 -> 01:45 | 855,000 VND
+2026-09-26 19:50:02,095 | INFO     | [3] Mai Quyên | Limousine 34 Phòng | 11:00 -> 23:30 | 600,000 VND
+2026-09-26 19:50:02,343 | INFO     | [4] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 17:30 -> 07:25 | 670,000 VND
+2026-09-26 19:50:02,343 | INFO     | Hoàn thành Hồ Chí Minh -> Cam Ranh [bus]: 4 records
+2026-09-26 19:50:05,343 | INFO     | ======================================================================
+2026-09-26 19:50:05,344 | INFO     | ROUTE 39/121: Hồ Chí Minh -> Đà Lạt [bus]
+2026-09-26 19:50:05,344 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-lat-lam-dong-129t23991.html?date=27-09-2026&lt=1
+2026-09-26 19:50:16,022 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:50:16,048 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:50:16,077 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:50:16,093 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:50:16,222 | INFO     | [1] Đà Lạt ơi | Limousine 24 Phòng ĐÔI | 23:45 -> 06:15 | 370,000 VND
+2026-09-26 19:50:16,349 | INFO     | [2] Bình Minh Tải | Limousine 22 Phòng Luxury | 23:15 -> 05:51 | 350,000 VND
+2026-09-26 19:50:16,510 | INFO     | [3] Phong Phú | Limousine 24 phòng đôi | 03:00 -> 08:35 | 150,000 VND
+2026-09-26 19:50:16,640 | INFO     | [4] Long Vân Limousine | Limousine phòng đôi 22 chỗ (WC) | 15:00 -> 21:30 | 22 VND
+2026-09-26 19:50:16,742 | INFO     | [5] Trọng Minh | Limousine 21 phòng (WC) | 23:00 -> 07:00 | 450,000 VND
+2026-09-26 19:50:16,952 | INFO     | [6] An Anh Limousine | Limousine 24 Phòng Đôi | 23:30 -> 07:30 | 24 VND
+2026-09-26 19:50:17,036 | INFO     | [7] Thiện Thành Limousine | Limousine 24 phòng | 01:59 -> 07:29 | 360,000 VND
+2026-09-26 19:50:17,101 | INFO     | [8] Hoàng Thủy | Limousine 22 phòng (WC) | 22:29 -> 05:19 | 350,000 VND
+2026-09-26 19:50:17,160 | INFO     | [9] Tư Tiến | Limousine 24 Phòng Đôi | 01:15 -> 08:15 | 338,000 VND
+2026-09-26 19:50:17,334 | INFO     | [10] Tiến Oanh | Limousine 22 Phòng (WC) | 05:00 -> 12:50 | 279,000 VND
+2026-09-26 19:50:17,334 | INFO     | Hoàn thành Hồ Chí Minh -> Đà Lạt [bus]: 10 records
+2026-09-26 19:50:20,336 | INFO     | ======================================================================
+2026-09-26 19:50:20,336 | INFO     | ROUTE 40/121: Hồ Chí Minh -> Lâm Đồng [bus]
+2026-09-26 19:50:20,337 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lam-dong-129t23.html?date=27-09-2026&lt=1
+2026-09-26 19:50:27,914 | WARNING  | Hồ Chí Minh -> Lâm Đồng: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:50:28,011 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Lâm_Đồng.html
+2026-09-26 19:50:31,011 | INFO     | ======================================================================
+2026-09-26 19:50:31,011 | INFO     | ROUTE 41/121: Hồ Chí Minh -> Bảo Lộc [bus]
+2026-09-26 19:50:31,011 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bao-loc-lam-dong-129t231.html?date=27-09-2026&lt=1
+2026-09-26 19:50:40,815 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:50:40,830 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:50:40,854 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:50:40,872 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:50:41,008 | INFO     | [1] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 06:00 | 250,000 VND
+2026-09-26 19:50:41,207 | INFO     | [2] Huệ Nghĩa | Limousine 34 Giường | 21:00 -> 03:30 | 270,000 VND
+2026-09-26 19:50:41,343 | INFO     | [3] Tân Niên | Limousine Phòng Đôi 24 chỗ | 21:15 -> 03:15 | 360,000 VND
+2026-09-26 19:50:41,602 | INFO     | [4] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 05:30 | 240,000 VND
+2026-09-26 19:50:41,780 | INFO     | [5] Phương Trang | Limousine giường nằm 34 chỗ | 23:00 -> 05:00 | 240,000 VND
+2026-09-26 19:50:41,912 | INFO     | [6] Huệ Nghĩa | Limousine 34 Giường | 19:30 -> 01:40 | 270,000 VND
+2026-09-26 19:50:42,000 | INFO     | [7] Huệ Nghĩa | Limousine 36 giường | 10:30 -> 17:00 | 250,000 VND
+2026-09-26 19:50:42,088 | INFO     | [8] Tân Niên | Limousine Phòng Đôi 24 chỗ | 21:15 -> 03:45 | 360,000 VND
+2026-09-26 19:50:42,174 | INFO     | [9] Tân Niên | Limousine Phòng Đôi 24 chỗ | 21:15 -> 02:55 | 360,000 VND
+2026-09-26 19:50:42,287 | INFO     | [10] Phương Trang | Limousine giường nằm 34 chỗ | 22:15 -> 07:00 | 290,000 VND
+2026-09-26 19:50:42,287 | INFO     | Hoàn thành Hồ Chí Minh -> Bảo Lộc [bus]: 10 records
+2026-09-26 19:50:45,289 | INFO     | ======================================================================
+2026-09-26 19:50:45,289 | INFO     | ROUTE 42/121: Hồ Chí Minh -> Buôn Ma Thuột [bus]
+2026-09-26 19:50:45,290 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-buon-ma-thuot-dak-lak-129t21431.html?date=27-09-2026&lt=1
+2026-09-26 19:50:55,613 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:50:55,632 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:50:55,650 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:50:55,660 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:50:55,861 | INFO     | [1] Hoàng Thuỷ | Limousine 22 phòng (WC) | 23:00 -> 05:15 | 350,000 VND
+2026-09-26 19:50:56,020 | INFO     | [2] Long Vân Limousine | Mia Royal 22 phòng (WC) | 21:30 -> 05:25 | 2 VND
+2026-09-26 19:50:56,179 | INFO     | [3] Tiến Oanh | Giường nằm 34 chỗ | 21:45 -> 05:45 | 350,000 VND
+2026-09-26 19:50:56,331 | INFO     | [4] Hải Luân | Limousine 34 giường | 21:01 -> 04:26 | 330,000 VND
+2026-09-26 19:50:56,573 | INFO     | [5] Cường Ny | Limousine MILIAN 22 phòng (WC) | 22:05 -> 06:45 | 1 VND
+2026-09-26 19:50:56,771 | INFO     | [6] Nguyên Dịu | Limousine 34 phòng | 22:00 -> 06:50 | 350,000 VND
+2026-09-26 19:50:57,026 | INFO     | [7] Tuấn Trung | Limousine 22 phòng | 19:00 -> 02:45 | 450,000 VND
+2026-09-26 19:50:57,144 | INFO     | [8] Nhất Anh | Limousine 34P | 18:45 -> 02:45 | 329,000 VND
+2026-09-26 19:50:57,268 | INFO     | [9] Đức Hiếu (Cư Mgar) | Giường nằm 34 phòng | 20:00 -> 04:00 | 360,000 VND
+2026-09-26 19:50:57,441 | INFO     | [10] Quý Thảo (Đắk Lắk) | Limousine 24 Phòng | 21:15 -> 04:50 | 477,000 VND
+2026-09-26 19:50:57,441 | INFO     | Hoàn thành Hồ Chí Minh -> Buôn Ma Thuột [bus]: 10 records
+2026-09-26 19:51:00,442 | INFO     | ======================================================================
+2026-09-26 19:51:00,443 | INFO     | ROUTE 43/121: Hồ Chí Minh -> Đắk Lắk [bus]
+2026-09-26 19:51:00,443 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dak-lak-129t21.html?date=27-09-2026&lt=1
+2026-09-26 19:51:08,547 | WARNING  | Hồ Chí Minh -> Đắk Lắk: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:51:08,629 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Đắk_Lắk.html
+2026-09-26 19:51:11,630 | INFO     | ======================================================================
+2026-09-26 19:51:11,631 | INFO     | ROUTE 44/121: Hồ Chí Minh -> Đắk Nông [bus]
+2026-09-26 19:51:11,632 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dak-nong-129t72.html?date=27-09-2026&lt=1
+2026-09-26 19:51:19,333 | WARNING  | Hồ Chí Minh -> Đắk Nông: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:51:19,423 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Đắk_Nông.html
+2026-09-26 19:51:22,424 | INFO     | ======================================================================
+2026-09-26 19:51:22,424 | INFO     | ROUTE 45/121: Hồ Chí Minh -> Gia Lai [bus]
+2026-09-26 19:51:22,424 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-gia-lai-129t27.html?date=27-09-2026&lt=1
+2026-09-26 19:51:29,803 | WARNING  | Hồ Chí Minh -> Gia Lai: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:51:29,906 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Gia_Lai.html
+2026-09-26 19:51:32,908 | INFO     | ======================================================================
+2026-09-26 19:51:32,908 | INFO     | ROUTE 46/121: Hồ Chí Minh -> Pleiku [bus]
+2026-09-26 19:51:32,908 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-pleiku-gia-lai-129t274.html?date=27-09-2026&lt=1
+2026-09-26 19:51:42,998 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:51:43,008 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:51:43,019 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:51:43,030 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:51:43,192 | INFO     | [1] Mai Thảo | Limousine 34 phòng | 13:00 -> 18:30 | 162,000 VND
+2026-09-26 19:51:43,370 | INFO     | [2] Phương Trang | Limousine giường nằm 34 chỗ | 23:00 -> 05:30 | 210,000 VND
+2026-09-26 19:51:43,505 | INFO     | [3] Hiệp Thành | Limousine 34 phòng đơn | 08:00 -> 12:00 | 34 VND
+2026-09-26 19:51:43,661 | INFO     | [4] Thanh Bình ĐP | Limousine 34 phòng | 14:00 -> 17:50 | 180,000 VND
+2026-09-26 19:51:43,871 | INFO     | [5] Thiên Thiên Hương | Limousine 34 Phòng Đơn | 20:00 -> 02:20 | 34 VND
+2026-09-26 19:51:44,072 | INFO     | [6] Phương Trang | Limousine giường nằm 34 chỗ | 08:30 -> 14:00 | 200,000 VND
+2026-09-26 19:51:44,356 | INFO     | [7] Phương Trang | Limousine giường nằm 34 chỗ | 22:00 -> 03:30 | 200,000 VND
+2026-09-26 19:51:44,592 | INFO     | [8] Mai Thảo | Limousine 34 phòng | 18:00 -> 23:30 | 162,000 VND
+2026-09-26 19:51:44,806 | INFO     | [9] Mai Thảo | Limousine 34 phòng | 10:00 -> 15:35 | 162,000 VND
+2026-09-26 19:51:44,986 | INFO     | [10] Thanh Bình ĐP | Limousine 34 phòng | 19:30 -> 23:20 | 180,000 VND
+2026-09-26 19:51:44,987 | INFO     | Hoàn thành Hồ Chí Minh -> Pleiku [bus]: 10 records
+2026-09-26 19:51:47,987 | INFO     | ======================================================================
+2026-09-26 19:51:47,988 | INFO     | ROUTE 47/121: Hồ Chí Minh -> Kon Tum [bus]
+2026-09-26 19:51:47,988 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-kon-tum-129t28.html?date=27-09-2026&lt=1
+2026-09-26 19:51:55,589 | WARNING  | Hồ Chí Minh -> Kon Tum: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:51:55,697 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Kon_Tum.html
+2026-09-26 19:51:58,697 | INFO     | ======================================================================
+2026-09-26 19:51:58,698 | INFO     | ROUTE 48/121: Hồ Chí Minh -> Phú Yên [bus]
+2026-09-26 19:51:58,698 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-yen-129t22.html?date=27-09-2026&lt=1
+2026-09-26 19:52:09,813 | WARNING  | Hồ Chí Minh -> Phú Yên: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:52:09,912 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Phú_Yên.html
+2026-09-26 19:52:12,913 | INFO     | ======================================================================
+2026-09-26 19:52:12,914 | INFO     | ROUTE 49/121: Hồ Chí Minh -> Tuy Hòa [bus]
+2026-09-26 19:52:12,914 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tuy-hoa-phu-yen-129t221.html?date=27-09-2026&lt=1
+2026-09-26 19:52:22,653 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:52:22,663 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:52:22,674 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:52:22,684 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:52:22,857 | INFO     | [1] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 05:30 | 240,000 VND
+2026-09-26 19:52:23,091 | INFO     | [2] Huệ Nghĩa | Limousine 34 Giường | 21:00 -> 04:00 | 270,000 VND
+2026-09-26 19:52:23,198 | INFO     | [3] Tân Niên | Limousine Phòng Đôi 24 chỗ | 21:15 -> 03:15 | 360,000 VND
+2026-09-26 19:52:23,427 | INFO     | [4] Bốn Luyện Express | Giường nằm 34 chỗ Luxury | 21:31 -> 02:31 | 270,000 VND
+2026-09-26 19:52:23,678 | INFO     | [5] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 06:00 | 250,000 VND
+2026-09-26 19:52:23,845 | INFO     | [6] Phương Trang | Limousine giường nằm 34 chỗ | 23:00 -> 05:00 | 240,000 VND
+2026-09-26 19:52:24,357 | INFO     | [7] Huệ Nghĩa | Limousine 34 Giường | 08:00 -> 15:00 | 270,000 VND
+2026-09-26 19:52:24,568 | INFO     | [8] Phương Trang | Limousine giường nằm 34 chỗ | 22:15 -> 07:00 | 290,000 VND
+2026-09-26 19:52:24,745 | INFO     | [9] Phương Trang | Limousine giường nằm 34 chỗ | 23:01 -> 05:01 | 250,000 VND
+2026-09-26 19:52:25,071 | INFO     | [10] Phương Trang | Limousine giường nằm 34 chỗ | 22:00 -> 04:00 | 240,000 VND
+2026-09-26 19:52:25,072 | INFO     | Hoàn thành Hồ Chí Minh -> Tuy Hòa [bus]: 10 records
+2026-09-26 19:52:28,073 | INFO     | ======================================================================
+2026-09-26 19:52:28,073 | INFO     | ROUTE 50/121: Hồ Chí Minh -> Bình Định [bus]
+2026-09-26 19:52:28,073 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-binh-dinh-129t181.html?date=27-09-2026&lt=1
+2026-09-26 19:52:38,063 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:52:38,075 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:52:38,094 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:52:38,117 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:52:38,270 | INFO     | [1] Tài Phát Limousine | Limousine 24 Phòng Đôi | 19:30 -> 06:55 | 430,000 VND
+2026-09-26 19:52:38,659 | INFO     | [2] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 20:30 -> 07:00 | 450,000 VND
+2026-09-26 19:52:38,768 | INFO     | [3] Bình Minh Tải | Limousine 22 Phòng | 19:00 -> 06:00 | 441,000 VND
+2026-09-26 19:52:38,855 | INFO     | [4] Ba Quy | Limousine 22 chỗ | 18:40 -> 06:25 | 450,000 VND
+2026-09-26 19:52:38,963 | INFO     | [5] Dũng Thuỷ Express | Limousine 24 Phòng | 18:00 -> 05:50 | 550,000 VND
+2026-09-26 19:52:39,018 | INFO     | [6] An Phú Buslines | Limousine 24 Phòng Đơn | 19:00 -> 05:30 | 498,800 VND
+2026-09-26 19:52:39,079 | INFO     | [7] Tín Phát Limousine | Limousine 24 Phòng | 17:45 -> 06:00 | 490,000 VND
+2026-09-26 19:52:39,200 | INFO     | [8] Hồng Dung (Tân Hoa Châu) | Limousine 24 phòng | 18:50 -> 05:00 | 495,000 VND
+2026-09-26 19:52:39,347 | INFO     | [9] Quốc Phong Limousine | Limousine 24 phòng | 17:15 -> 06:00 | 500,000 VND
+2026-09-26 19:52:39,635 | INFO     | [10] Khang Thịnh | Limousine 34 phòng | 20:30 -> 06:00 | 500,000 VND
+2026-09-26 19:52:39,635 | INFO     | Hoàn thành Hồ Chí Minh -> Bình Định [bus]: 10 records
+2026-09-26 19:52:42,636 | INFO     | ======================================================================
+2026-09-26 19:52:42,637 | INFO     | ROUTE 51/121: Hồ Chí Minh -> Quy Nhơn [bus]
+2026-09-26 19:52:42,637 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quy-nhon-binh-dinh-129t181.html?date=27-09-2026&lt=1
+2026-09-26 19:52:52,020 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:52:52,032 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:52:52,044 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:52:52,054 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:52:52,191 | INFO     | [1] Tài Phát Limousine | Limousine 24 Phòng Đôi | 19:30 -> 06:55 | 430,000 VND
+2026-09-26 19:52:52,281 | INFO     | [2] Trọng Thủy Limousine | Limousine 24 phòng Đôi | 20:30 -> 07:00 | 450,000 VND
+2026-09-26 19:52:52,362 | INFO     | [3] Bình Minh Tải | Limousine 22 Phòng | 19:00 -> 06:00 | 441,000 VND
+2026-09-26 19:52:52,422 | INFO     | [4] Ba Quy | Limousine 22 chỗ | 18:40 -> 06:25 | 450,000 VND
+2026-09-26 19:52:52,489 | INFO     | [5] Dũng Thuỷ Express | Limousine 24 Phòng | 18:00 -> 05:50 | 550,000 VND
+2026-09-26 19:52:52,546 | INFO     | [6] An Phú Buslines | Limousine 24 Phòng Đơn | 19:00 -> 05:30 | 498,800 VND
+2026-09-26 19:52:52,811 | INFO     | [7] Tín Phát Limousine | Limousine 24 Phòng | 17:45 -> 06:00 | 490,000 VND
+2026-09-26 19:52:52,974 | INFO     | [8] Hồng Dung (Tân Hoa Châu) | Limousine 24 phòng | 18:50 -> 05:00 | 495,000 VND
+2026-09-26 19:52:53,182 | INFO     | [9] Quốc Phong Limousine | Limousine 24 phòng | 17:15 -> 06:00 | 500,000 VND
+2026-09-26 19:52:53,289 | INFO     | [10] Khang Thịnh | Limousine 34 phòng | 20:30 -> 06:00 | 500,000 VND
+2026-09-26 19:52:53,290 | INFO     | Hoàn thành Hồ Chí Minh -> Quy Nhơn [bus]: 10 records
+2026-09-26 19:52:56,290 | INFO     | ======================================================================
+2026-09-26 19:52:56,291 | INFO     | ROUTE 52/121: Hồ Chí Minh -> Quảng Ngãi [bus]
+2026-09-26 19:52:56,291 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-ngai-129t51.html?date=27-09-2026&lt=1
+2026-09-26 19:53:03,947 | WARNING  | Hồ Chí Minh -> Quảng Ngãi: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:53:04,082 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quảng_Ngãi.html
+2026-09-26 19:53:07,083 | INFO     | ======================================================================
+2026-09-26 19:53:07,083 | INFO     | ROUTE 53/121: Hồ Chí Minh -> Quảng Nam [bus]
+2026-09-26 19:53:07,083 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-nam-129t49.html?date=27-09-2026&lt=1
+2026-09-26 19:53:14,475 | WARNING  | Hồ Chí Minh -> Quảng Nam: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:53:14,584 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quảng_Nam.html
+2026-09-26 19:53:17,585 | INFO     | ======================================================================
+2026-09-26 19:53:17,586 | INFO     | ROUTE 54/121: Hồ Chí Minh -> Hội An [bus]
+2026-09-26 19:53:17,586 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hoi-an-quang-nam-129t491.html?date=27-09-2026&lt=1
+2026-09-26 19:53:27,796 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:53:27,804 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:53:27,812 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:53:27,826 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:53:28,077 | INFO     | [1] Phương Anh (Phan Thiết) | Giường nằm 40 chỗ | 08:00 -> 08:00 | 180,000 VND
+2026-09-26 19:53:28,303 | INFO     | [2] Hoàng Yến Logistics | Limousine 9 chỗ | 10:00 -> 11:15 | 220,000 VND
+2026-09-26 19:53:28,445 | INFO     | [3] Petro Bình Phước | Solati Limousine 10 chỗ | 09:30 -> 11:30 | 230,000 VND
+2026-09-26 19:53:28,598 | INFO     | [4] Toàn Thắng - Vũng Tàu | Ghế ngồi 16 chỗ | 17:00 -> 20:30 | 160,000 VND
+2026-09-26 19:53:28,655 | INFO     | [5] Thịnh Phát Xanh | Ghế 7 chỗ ngồi | 06:00 -> 10:00 | 297,500 VND
+2026-09-26 19:53:28,735 | INFO     | [6] Trường Thịnh Limousine | Limousine 11 chỗ | 11:00 -> 11:30 | 120,000 VND
+2026-09-26 19:53:28,891 | INFO     | [7] Tuấn Hiệp | Limousine 22 phòng đôi | 17:00 -> 19:30 | 22 VND
+2026-09-26 19:53:29,070 | INFO     | [8] Quang Hiếu | Limousine 34 phòng | 15:00 -> 18:10 | 300,000 VND
+2026-09-26 19:53:29,262 | INFO     | [9] Hoàng Yến Logistics | Ghế ngồi 16 chỗ | 12:05 -> 13:20 | 170,000 VND
+2026-09-26 19:53:29,526 | INFO     | [10] Hoàng Yến Logistics | Ghế ngồi 16 chỗ | 19:30 -> 20:15 | 150,000 VND
+2026-09-26 19:53:29,527 | INFO     | Hoàn thành Hồ Chí Minh -> Hội An [bus]: 10 records
+2026-09-26 19:53:32,528 | INFO     | ======================================================================
+2026-09-26 19:53:32,529 | INFO     | ROUTE 55/121: Hồ Chí Minh -> Tam Kỳ [bus]
+2026-09-26 19:53:32,529 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tam-ky-quang-nam-129t492.html?date=27-09-2026&lt=1
+2026-09-26 19:53:40,487 | WARNING  | Hồ Chí Minh -> Tam Kỳ: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:53:40,576 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Tam_Kỳ.html
+2026-09-26 19:53:43,577 | INFO     | ======================================================================
+2026-09-26 19:53:43,577 | INFO     | ROUTE 56/121: Hồ Chí Minh -> Đà Nẵng [bus]
+2026-09-26 19:53:43,577 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-da-nang-129t1151.html?date=27-09-2026&lt=1
+2026-09-26 19:53:53,554 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:53:53,563 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:53:53,574 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:53:53,585 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:53:53,784 | INFO     | [1] Tân Hiệp | Giường nằm 34 chỗ | 13:00 -> 08:30 | 450,000 VND
+2026-09-26 19:53:53,985 | INFO     | [2] Bảo Ngọc | Limousine giường phòng 22 chỗ (WC) | 19:30 -> 11:30 | 700,000 VND
+2026-09-26 19:53:54,088 | INFO     | [3] Đình Nhân | Limousine 32 Phòng (WC) | 16:30 -> 10:05 | 450,000 VND
+2026-09-26 19:53:54,233 | INFO     | [4] Hạnh Cafe - Hà Phương Limousine | Luxury 34 Phòng Vip | 07:45 -> 08:30 | 710,000 VND
+2026-09-26 19:53:54,338 | INFO     | [5] Minh Phương (MP Bus) | Limousine 22 phòng (WC) | 15:01 -> 10:31 | 644,000 VND
+2026-09-26 19:53:54,482 | INFO     | [6] Phi Hiệp | Limouisne 34 phòng | 13:25 -> 08:55 | 600,000 VND
+2026-09-26 19:53:54,556 | INFO     | [7] Tân Kim Chi | Limousine giường phòng 22 chỗ (CABIN) (WC) | 17:35 -> 11:05 | 700,000 VND
+2026-09-26 19:53:54,673 | INFO     | [8] Phương Trang | Limousine giường nằm 34 chỗ | 18:35 -> 15:25 | 560,000 VND
+2026-09-26 19:53:54,786 | INFO     | [9] Bốn Luyện Express | Giường nằm 34 chỗ Luxury | 23:00 -> 15:25 | 630,000 VND
+2026-09-26 19:53:54,915 | INFO     | [10] Hoàng Long - Hà Nội | Limousine 22 phòng đôi | 17:00 -> 12:52 | 1,300,000 VND
+2026-09-26 19:53:54,915 | INFO     | Hoàn thành Hồ Chí Minh -> Đà Nẵng [bus]: 10 records
+2026-09-26 19:53:57,916 | INFO     | ======================================================================
+2026-09-26 19:53:57,916 | INFO     | ROUTE 57/121: Hồ Chí Minh -> Huế [bus]
+2026-09-26 19:53:57,917 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hue-thua-thien-hue-129t33.html?date=27-09-2026&lt=1
+2026-09-26 19:54:05,738 | WARNING  | Hồ Chí Minh -> Huế: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:54:05,840 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Huế.html
+2026-09-26 19:54:08,841 | INFO     | ======================================================================
+2026-09-26 19:54:08,842 | INFO     | ROUTE 58/121: Hồ Chí Minh -> Thừa Thiên Huế [bus]
+2026-09-26 19:54:08,842 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thua-thien-hue-129t33.html?date=27-09-2026&lt=1
+2026-09-26 19:54:16,695 | WARNING  | Hồ Chí Minh -> Thừa Thiên Huế: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:54:16,899 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Thừa_Thiên_Huế.html
+2026-09-26 19:54:19,900 | INFO     | ======================================================================
+2026-09-26 19:54:19,900 | INFO     | ROUTE 59/121: Hồ Chí Minh -> Quảng Trị [bus]
+2026-09-26 19:54:19,900 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-tri-129t32.html?date=27-09-2026&lt=1
+2026-09-26 19:54:27,577 | WARNING  | Hồ Chí Minh -> Quảng Trị: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:54:27,678 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quảng_Trị.html
+2026-09-26 19:54:30,678 | INFO     | ======================================================================
+2026-09-26 19:54:30,679 | INFO     | ROUTE 60/121: Hồ Chí Minh -> Đông Hà [bus]
+2026-09-26 19:54:30,679 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-ha-quang-tri-129t321.html?date=27-09-2026&lt=1
+2026-09-26 19:54:40,698 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:54:40,712 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:54:40,723 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:54:40,734 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:54:40,862 | INFO     | [1] Minh Đức (Huế) | Limousine 32 phòng (WC) | 05:30 -> 01:30 | 580,000 VND
+2026-09-26 19:54:40,981 | INFO     | [2] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 10:30 -> 05:30 | 750,000 VND
+2026-09-26 19:54:41,103 | INFO     | [3] Phi Long (Mậu Hường) | Giường nằm 40 chỗ | 05:45 -> 02:20 | 500,000 VND
+2026-09-26 19:54:41,282 | INFO     | [4] Minh Đức (Huế) | Limousine 32 phòng (WC) | 06:30 -> 01:30 | 580,000 VND
+2026-09-26 19:54:41,387 | INFO     | [5] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 11:00 -> 05:30 | 750,000 VND
+2026-09-26 19:54:41,504 | INFO     | [6] Phi Long (Mậu Hường) | Giường nằm 40 chỗ | 06:15 -> 02:20 | 500,000 VND
+2026-09-26 19:54:41,619 | INFO     | [7] Quang Dũng VIP Limousine | Giường phòng 32 chỗ (Có WC) | 07:00 -> 02:00 | 562,500 VND
+2026-09-26 19:54:41,724 | INFO     | [8] Quang Dũng VIP Limousine | Giường phòng 32 chỗ (Có WC) | 07:30 -> 02:00 | 562,500 VND
+2026-09-26 19:54:41,843 | INFO     | [9] Quang Dũng VIP Limousine | Limousine 22 phòng (Có WC) | 11:00 -> 05:50 | 595,000 VND
+2026-09-26 19:54:41,984 | INFO     | [10] Tân Quang Dũng | Limousine 32 phòng (WC) | 11:00 -> 10:30 | 630,000 VND
+2026-09-26 19:54:41,984 | INFO     | Hoàn thành Hồ Chí Minh -> Đông Hà [bus]: 10 records
+2026-09-26 19:54:44,985 | INFO     | ======================================================================
+2026-09-26 19:54:44,986 | INFO     | ROUTE 61/121: Hồ Chí Minh -> Quảng Bình [bus]
+2026-09-26 19:54:44,987 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-binh-129t31.html?date=27-09-2026&lt=1
+2026-09-26 19:54:53,090 | WARNING  | Hồ Chí Minh -> Quảng Bình: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:54:53,190 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quảng_Bình.html
+2026-09-26 19:54:56,191 | INFO     | ======================================================================
+2026-09-26 19:54:56,192 | INFO     | ROUTE 62/121: Hồ Chí Minh -> Đồng Hới [bus]
+2026-09-26 19:54:56,192 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dong-hoi-quang-binh-129t311.html?date=27-09-2026&lt=1
+2026-09-26 19:55:06,379 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:55:06,389 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:55:06,399 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:55:06,408 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:55:06,565 | INFO     | [1] Hoa Mai | Ghế ngồi 10 chỗ | 12:30 -> 14:45 | 180,000 VND
+2026-09-26 19:55:06,743 | INFO     | [2] Hoa Mai | Ghế ngồi 10 chỗ | 07:00 -> 09:15 | 180,000 VND
+2026-09-26 19:55:06,934 | INFO     | [3] Hoa Mai | Ghế ngồi 10 chỗ | 12:00 -> 14:15 | 180,000 VND
+2026-09-26 19:55:07,308 | INFO     | [4] Hoa Mai | Ghế ngồi 10 chỗ | 11:00 -> 13:15 | 180,000 VND
+2026-09-26 19:55:07,535 | INFO     | [5] Hoa Mai | Ghế ngồi 10 chỗ | 05:00 -> 07:15 | 180,000 VND
+2026-09-26 19:55:07,736 | INFO     | [6] Hoa Mai | Ghế ngồi 10 chỗ | 16:00 -> 18:15 | 180,000 VND
+2026-09-26 19:55:07,976 | INFO     | [7] Hoa Mai | Ghế ngồi 10 chỗ | 14:00 -> 15:45 | 180,000 VND
+2026-09-26 19:55:08,155 | INFO     | [8] Hoa Mai | Ghế ngồi 10 chỗ | 06:00 -> 08:15 | 180,000 VND
+2026-09-26 19:55:08,382 | INFO     | [9] Hoa Mai | Ghế ngồi 10 chỗ | 17:00 -> 19:15 | 180,000 VND
+2026-09-26 19:55:08,696 | INFO     | [10] Hoa Mai | Ghế ngồi 10 chỗ | 15:00 -> 17:15 | 180,000 VND
+2026-09-26 19:55:08,697 | INFO     | Hoàn thành Hồ Chí Minh -> Đồng Hới [bus]: 10 records
+2026-09-26 19:55:11,697 | INFO     | ======================================================================
+2026-09-26 19:55:11,698 | INFO     | ROUTE 63/121: Hồ Chí Minh -> Hà Tĩnh [bus]
+2026-09-26 19:55:11,698 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-tinh-129t30.html?date=27-09-2026&lt=1
+2026-09-26 19:55:18,958 | WARNING  | Hồ Chí Minh -> Hà Tĩnh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:55:19,086 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hà_Tĩnh.html
+2026-09-26 19:55:22,088 | INFO     | ======================================================================
+2026-09-26 19:55:22,088 | INFO     | ROUTE 64/121: Hồ Chí Minh -> Nghệ An [bus]
+2026-09-26 19:55:22,088 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nghe-an-129t29.html?date=27-09-2026&lt=1
+2026-09-26 19:55:29,161 | WARNING  | Hồ Chí Minh -> Nghệ An: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:55:29,244 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Nghệ_An.html
+2026-09-26 19:55:32,245 | INFO     | ======================================================================
+2026-09-26 19:55:32,246 | INFO     | ROUTE 65/121: Hồ Chí Minh -> Vinh [bus]
+2026-09-26 19:55:32,246 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-nghe-an-129t291.html?date=27-09-2026&lt=1
+2026-09-26 19:55:41,625 | INFO     | Ticket ban đầu: 19
+2026-09-26 19:55:41,640 | INFO     | Ticket hiện tại: 19/10
+2026-09-26 19:55:41,659 | INFO     | Tổng ticket cuối: 19
+2026-09-26 19:55:41,671 | INFO     | Tìm thấy 19 ticket bus
+2026-09-26 19:55:41,842 | INFO     | [1] Phương Trang | Limousine giường nằm 34 chỗ | 23:00 -> 05:00 | 240,000 VND
+2026-09-26 19:55:41,991 | INFO     | [2] Phương Trang | Limousine giường nằm 34 chỗ | 12:00 -> 18:00 | 240,000 VND
+2026-09-26 19:55:42,116 | INFO     | [3] Phương Trang | Limousine giường nằm 34 chỗ | 06:00 -> 12:00 | 240,000 VND
+2026-09-26 19:55:42,288 | INFO     | [4] Phương Trang | Limousine giường nằm 34 chỗ | 16:00 -> 22:00 | 240,000 VND
+2026-09-26 19:55:42,500 | INFO     | [5] Huệ Nghĩa | Limousine 34 Giường | 21:30 -> 04:30 | 270,000 VND
+2026-09-26 19:55:42,658 | INFO     | [6] Huệ Nghĩa | Limousine 34 Giường | 22:00 -> 04:00 | 270,000 VND
+2026-09-26 19:55:42,893 | INFO     | [7] Huệ Nghĩa | Limousine 34 Giường | 22:00 -> 04:30 | 270,000 VND
+2026-09-26 19:55:43,139 | INFO     | [8] Huệ Nghĩa | Limousine 34 Giường | 21:30 -> 04:00 | 270,000 VND
+2026-09-26 19:55:43,275 | INFO     | [9] Huệ Nghĩa | Limousine 34 Giường | 19:30 -> 01:30 | 230,000 VND
+2026-09-26 19:55:43,408 | INFO     | [10] Huệ Nghĩa | Limousine 34 Giường | 19:30 -> 01:00 | 230,000 VND
+2026-09-26 19:55:43,409 | INFO     | Hoàn thành Hồ Chí Minh -> Vinh [bus]: 10 records
+2026-09-26 19:55:46,409 | INFO     | ======================================================================
+2026-09-26 19:55:46,410 | INFO     | ROUTE 66/121: Hồ Chí Minh -> Thanh Hóa [bus]
+2026-09-26 19:55:46,410 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thanh-hoa-129t38.html?date=27-09-2026&lt=1
+2026-09-26 19:55:53,580 | WARNING  | Hồ Chí Minh -> Thanh Hóa: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:55:53,672 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Thanh_Hóa.html
+2026-09-26 19:55:56,673 | INFO     | ======================================================================
+2026-09-26 19:55:56,673 | INFO     | ROUTE 67/121: Hồ Chí Minh -> Ninh Bình [bus]
+2026-09-26 19:55:56,674 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ninh-binh-129t37.html?date=27-09-2026&lt=1
+2026-09-26 19:56:04,527 | WARNING  | Hồ Chí Minh -> Ninh Bình: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:04,597 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Ninh_Bình.html
+2026-09-26 19:56:07,598 | INFO     | ======================================================================
+2026-09-26 19:56:07,598 | INFO     | ROUTE 68/121: Hồ Chí Minh -> Nam Định [bus]
+2026-09-26 19:56:07,599 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-nam-dinh-129t36.html?date=27-09-2026&lt=1
+2026-09-26 19:56:15,550 | WARNING  | Hồ Chí Minh -> Nam Định: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:15,620 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Nam_Định.html
+2026-09-26 19:56:18,621 | INFO     | ======================================================================
+2026-09-26 19:56:18,622 | INFO     | ROUTE 69/121: Hồ Chí Minh -> Thái Bình [bus]
+2026-09-26 19:56:18,622 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thai-binh-129t34.html?date=27-09-2026&lt=1
+2026-09-26 19:56:26,571 | WARNING  | Hồ Chí Minh -> Thái Bình: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:26,682 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Thái_Bình.html
+2026-09-26 19:56:29,683 | INFO     | ======================================================================
+2026-09-26 19:56:29,684 | INFO     | ROUTE 70/121: Hồ Chí Minh -> Hà Nam [bus]
+2026-09-26 19:56:29,684 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-nam-129t35.html?date=27-09-2026&lt=1
+2026-09-26 19:56:37,554 | WARNING  | Hồ Chí Minh -> Hà Nam: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:37,641 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hà_Nam.html
+2026-09-26 19:56:40,642 | INFO     | ======================================================================
+2026-09-26 19:56:40,643 | INFO     | ROUTE 71/121: Hồ Chí Minh -> Hà Nội [bus]
+2026-09-26 19:56:40,644 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-noi-129t24.html?date=27-09-2026&lt=1
+2026-09-26 19:56:48,003 | WARNING  | Hồ Chí Minh -> Hà Nội: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:48,089 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hà_Nội.html
+2026-09-26 19:56:51,090 | INFO     | ======================================================================
+2026-09-26 19:56:51,091 | INFO     | ROUTE 72/121: Hồ Chí Minh -> Hải Phòng [bus]
+2026-09-26 19:56:51,091 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hai-phong-129t31.html?date=27-09-2026&lt=1
+2026-09-26 19:56:58,625 | WARNING  | Hồ Chí Minh -> Hải Phòng: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:56:58,712 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hải_Phòng.html
+2026-09-26 19:57:01,712 | INFO     | ======================================================================
+2026-09-26 19:57:01,713 | INFO     | ROUTE 73/121: Hồ Chí Minh -> Quảng Ninh [bus]
+2026-09-26 19:57:01,713 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-quang-ninh-129t22.html?date=27-09-2026&lt=1
+2026-09-26 19:57:09,675 | WARNING  | Hồ Chí Minh -> Quảng Ninh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:57:09,771 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quảng_Ninh.html
+2026-09-26 19:57:12,772 | INFO     | ======================================================================
+2026-09-26 19:57:12,773 | INFO     | ROUTE 74/121: Hồ Chí Minh -> Hạ Long [bus]
+2026-09-26 19:57:12,774 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-long-quang-ninh-129t221.html?date=27-09-2026&lt=1
+2026-09-26 19:57:22,550 | INFO     | Ticket ban đầu: 20
+2026-09-26 19:57:22,555 | INFO     | Ticket hiện tại: 20/10
+2026-09-26 19:57:22,603 | INFO     | Tổng ticket cuối: 20
+2026-09-26 19:57:22,618 | INFO     | Tìm thấy 20 ticket bus
+2026-09-26 19:57:22,894 | INFO     | [1] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 05:30 | 240,000 VND
+2026-09-26 19:57:23,104 | INFO     | [2] Huệ Nghĩa | Limousine 34 Giường | 21:00 -> 04:00 | 270,000 VND
+2026-09-26 19:57:23,260 | INFO     | [3] Tân Niên | Limousine Phòng Đôi 24 chỗ | 21:15 -> 03:15 | 360,000 VND
+2026-09-26 19:57:23,394 | INFO     | [4] Bốn Luyện Express | Giường nằm 34 chỗ Luxury | 21:31 -> 02:31 | 270,000 VND
+2026-09-26 19:57:23,543 | INFO     | [5] Phương Trang | Limousine giường nằm 34 chỗ | 23:30 -> 06:00 | 250,000 VND
+2026-09-26 19:57:23,691 | INFO     | [6] Phương Trang | Limousine giường nằm 34 chỗ | 23:00 -> 05:00 | 240,000 VND
+2026-09-26 19:57:24,078 | INFO     | [7] Huệ Nghĩa | Limousine 34 Giường | 08:00 -> 15:00 | 270,000 VND
+2026-09-26 19:57:24,265 | INFO     | [8] Phương Trang | Limousine giường nằm 34 chỗ | 22:15 -> 07:00 | 290,000 VND
+2026-09-26 19:57:24,666 | INFO     | [9] Phương Trang | Limousine giường nằm 34 chỗ | 23:01 -> 05:01 | 250,000 VND
+2026-09-26 19:57:24,858 | INFO     | [10] Phương Trang | Limousine giường nằm 34 chỗ | 22:00 -> 04:00 | 240,000 VND
+2026-09-26 19:57:24,858 | INFO     | Hoàn thành Hồ Chí Minh -> Hạ Long [bus]: 10 records
+2026-09-26 19:57:27,859 | INFO     | ======================================================================
+2026-09-26 19:57:27,859 | INFO     | ROUTE 75/121: Hồ Chí Minh -> Cát Bà [bus]
+2026-09-26 19:57:27,860 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cat-ba-hai-phong-129t312.html?date=27-09-2026&lt=1
+2026-09-26 19:57:36,512 | WARNING  | Hồ Chí Minh -> Cát Bà: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:57:36,617 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Cát_Bà.html
+2026-09-26 19:57:39,618 | INFO     | ======================================================================
+2026-09-26 19:57:39,618 | INFO     | ROUTE 76/121: Hồ Chí Minh -> Hải Dương [bus]
+2026-09-26 19:57:39,619 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hai-duong-129t30.html?date=27-09-2026&lt=1
+2026-09-26 19:57:46,838 | WARNING  | Hồ Chí Minh -> Hải Dương: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:57:46,916 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hải_Dương.html
+2026-09-26 19:57:49,918 | INFO     | ======================================================================
+2026-09-26 19:57:49,918 | INFO     | ROUTE 77/121: Hồ Chí Minh -> Hưng Yên [bus]
+2026-09-26 19:57:49,918 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hung-yen-129t33.html?date=27-09-2026&lt=1
+2026-09-26 19:57:57,100 | WARNING  | Hồ Chí Minh -> Hưng Yên: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:57:57,199 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hưng_Yên.html
+2026-09-26 19:58:00,201 | INFO     | ======================================================================
+2026-09-26 19:58:00,202 | INFO     | ROUTE 78/121: Hồ Chí Minh -> Bắc Ninh [bus]
+2026-09-26 19:58:00,202 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-ninh-129t27.html?date=27-09-2026&lt=1
+2026-09-26 19:58:07,971 | WARNING  | Hồ Chí Minh -> Bắc Ninh: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:58:08,064 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bắc_Ninh.html
+2026-09-26 19:58:11,065 | INFO     | ======================================================================
+2026-09-26 19:58:11,066 | INFO     | ROUTE 79/121: Hồ Chí Minh -> Vĩnh Phúc [bus]
+2026-09-26 19:58:11,067 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-vinh-phuc-129t26.html?date=27-09-2026&lt=1
+2026-09-26 19:58:19,145 | WARNING  | Hồ Chí Minh -> Vĩnh Phúc: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:58:19,244 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Vĩnh_Phúc.html
+2026-09-26 19:58:22,245 | INFO     | ======================================================================
+2026-09-26 19:58:22,246 | INFO     | ROUTE 80/121: Hồ Chí Minh -> Phú Thọ [bus]
+2026-09-26 19:58:22,246 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-tho-129t25.html?date=27-09-2026&lt=1
+2026-09-26 19:58:30,226 | WARNING  | Hồ Chí Minh -> Phú Thọ: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:58:30,330 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Phú_Thọ.html
+2026-09-26 19:58:33,330 | INFO     | ======================================================================
+2026-09-26 19:58:33,331 | INFO     | ROUTE 81/121: Hồ Chí Minh -> Thái Nguyên [bus]
+2026-09-26 19:58:33,331 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-thai-nguyen-129t19.html?date=27-09-2026&lt=1
+2026-09-26 19:58:41,365 | WARNING  | Hồ Chí Minh -> Thái Nguyên: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:58:41,452 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Thái_Nguyên.html
+2026-09-26 19:58:44,453 | INFO     | ======================================================================
+2026-09-26 19:58:44,453 | INFO     | ROUTE 82/121: Hồ Chí Minh -> Bắc Giang [bus]
+2026-09-26 19:58:44,454 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-giang-129t24.html?date=27-09-2026&lt=1
+2026-09-26 19:58:52,313 | WARNING  | Hồ Chí Minh -> Bắc Giang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:58:52,416 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bắc_Giang.html
+2026-09-26 19:58:55,417 | INFO     | ======================================================================
+2026-09-26 19:58:55,417 | INFO     | ROUTE 83/121: Hồ Chí Minh -> Lạng Sơn [bus]
+2026-09-26 19:58:55,418 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lang-son-129t20.html?date=27-09-2026&lt=1
+2026-09-26 19:59:02,940 | WARNING  | Hồ Chí Minh -> Lạng Sơn: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:03,027 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Lạng_Sơn.html
+2026-09-26 19:59:06,028 | INFO     | ======================================================================
+2026-09-26 19:59:06,029 | INFO     | ROUTE 84/121: Hồ Chí Minh -> Cao Bằng [bus]
+2026-09-26 19:59:06,029 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-cao-bang-129t4.html?date=27-09-2026&lt=1
+2026-09-26 19:59:13,358 | WARNING  | Hồ Chí Minh -> Cao Bằng: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:13,482 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Cao_Bằng.html
+2026-09-26 19:59:16,483 | INFO     | ======================================================================
+2026-09-26 19:59:16,484 | INFO     | ROUTE 85/121: Hồ Chí Minh -> Bắc Kạn [bus]
+2026-09-26 19:59:16,484 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-bac-kan-129t6.html?date=27-09-2026&lt=1
+2026-09-26 19:59:23,588 | WARNING  | Hồ Chí Minh -> Bắc Kạn: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:23,734 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Bắc_Kạn.html
+2026-09-26 19:59:26,734 | INFO     | ======================================================================
+2026-09-26 19:59:26,735 | INFO     | ROUTE 86/121: Hồ Chí Minh -> Tuyên Quang [bus]
+2026-09-26 19:59:26,736 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-tuyen-quang-129t8.html?date=27-09-2026&lt=1
+2026-09-26 19:59:33,809 | WARNING  | Hồ Chí Minh -> Tuyên Quang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:33,939 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Tuyên_Quang.html
+2026-09-26 19:59:36,940 | INFO     | ======================================================================
+2026-09-26 19:59:36,940 | INFO     | ROUTE 87/121: Hồ Chí Minh -> Hà Giang [bus]
+2026-09-26 19:59:36,941 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-ha-giang-129t2.html?date=27-09-2026&lt=1
+2026-09-26 19:59:44,329 | WARNING  | Hồ Chí Minh -> Hà Giang: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:44,456 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hà_Giang.html
+2026-09-26 19:59:47,456 | INFO     | ======================================================================
+2026-09-26 19:59:47,457 | INFO     | ROUTE 88/121: Hồ Chí Minh -> Lào Cai [bus]
+2026-09-26 19:59:47,457 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lao-cai-129t10.html?date=27-09-2026&lt=1
+2026-09-26 19:59:55,903 | WARNING  | Hồ Chí Minh -> Lào Cai: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 19:59:56,001 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Lào_Cai.html
+2026-09-26 19:59:59,002 | INFO     | ======================================================================
+2026-09-26 19:59:59,003 | INFO     | ROUTE 89/121: Hồ Chí Minh -> Sa Pa [bus]
+2026-09-26 19:59:59,003 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-sa-pa-lao-cai-129t101.html?date=27-09-2026&lt=1
+2026-09-26 20:00:07,434 | WARNING  | Hồ Chí Minh -> Sa Pa: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:00:07,536 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Sa_Pa.html
+2026-09-26 20:00:10,536 | INFO     | ======================================================================
+2026-09-26 20:00:10,537 | INFO     | ROUTE 90/121: Hồ Chí Minh -> Yên Bái [bus]
+2026-09-26 20:00:10,537 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-yen-bai-129t15.html?date=27-09-2026&lt=1
+2026-09-26 20:00:18,039 | WARNING  | Hồ Chí Minh -> Yên Bái: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:00:18,129 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Yên_Bái.html
+2026-09-26 20:00:21,130 | INFO     | ======================================================================
+2026-09-26 20:00:21,131 | INFO     | ROUTE 91/121: Hồ Chí Minh -> Sơn La [bus]
+2026-09-26 20:00:21,131 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-son-la-129t14.html?date=27-09-2026&lt=1
+2026-09-26 20:00:28,693 | WARNING  | Hồ Chí Minh -> Sơn La: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:00:28,800 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Sơn_La.html
+2026-09-26 20:00:31,801 | INFO     | ======================================================================
+2026-09-26 20:00:31,801 | INFO     | ROUTE 92/121: Hồ Chí Minh -> Điện Biên [bus]
+2026-09-26 20:00:31,801 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-dien-bien-129t11.html?date=27-09-2026&lt=1
+2026-09-26 20:00:39,751 | WARNING  | Hồ Chí Minh -> Điện Biên: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:00:39,844 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Điện_Biên.html
+2026-09-26 20:00:42,845 | INFO     | ======================================================================
+2026-09-26 20:00:42,846 | INFO     | ROUTE 93/121: Hồ Chí Minh -> Lai Châu [bus]
+2026-09-26 20:00:42,846 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-lai-chau-129t12.html?date=27-09-2026&lt=1
+2026-09-26 20:00:51,413 | WARNING  | Hồ Chí Minh -> Lai Châu: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:00:51,494 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Lai_Châu.html
+2026-09-26 20:00:54,494 | INFO     | ======================================================================
+2026-09-26 20:00:54,495 | INFO     | ROUTE 94/121: Hồ Chí Minh -> Hòa Bình [bus]
+2026-09-26 20:00:54,496 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-hoa-binh-129t17.html?date=27-09-2026&lt=1
+2026-09-26 20:01:02,381 | WARNING  | Hồ Chí Minh -> Hòa Bình: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:01:02,554 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Hòa_Bình.html
+2026-09-26 20:01:05,555 | INFO     | ======================================================================
+2026-09-26 20:01:05,556 | INFO     | ROUTE 95/121: Hồ Chí Minh -> Phú Quốc [bus]
+2026-09-26 20:01:05,556 | INFO     | URL: https://vexere.com/vi-VN/ve-xe-khach-tu-sai-gon-di-phu-quoc-kien-giang-129t912.html?date=27-09-2026&lt=1
+2026-09-26 20:01:13,678 | WARNING  | Hồ Chí Minh -> Phú Quốc: Không tìm thấy ticket (có thể hết chuyến ngày 27-09-2026 hoặc URL sai)
+2026-09-26 20:01:13,772 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Phú_Quốc.html
+2026-09-26 20:01:16,774 | INFO     | ======================================================================
+2026-09-26 20:01:16,774 | INFO     | ROUTE 96/121: Hồ Chí Minh -> Hà Nội [flight]
+2026-09-26 20:01:16,775 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=24_area&from_airport=28284&to_airport=102188&from_station=SGO&to_station=HNO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:01:44,033 | INFO     | Tìm thấy 50 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:01:44,330 | INFO     | [1] [flight] VietJet Air | VJ120 | 05:00 -> 07:10 | 1332341
+2026-09-26 20:01:44,445 | INFO     | [2] [flight] VietJet Air | VJ168 | 23:00 -> 01:10 | 1332341
+2026-09-26 20:01:44,558 | INFO     | [3] [flight] Vietravel Airlines | VU750 | 05:35 -> 07:45 | 1374621
+2026-09-26 20:01:44,674 | INFO     | [4] [flight] Vietravel Airlines | VU780 | 17:10 -> 19:20 | 1374621
+2026-09-26 20:01:44,784 | INFO     | [5] [flight] Unknown | Eco | 05:15 -> 07:25 | 1411181
+2026-09-26 20:01:44,907 | INFO     | [6] [flight] Unknown | Eco | 05:45 -> 07:55 | 1411181
+2026-09-26 20:01:45,041 | INFO     | [7] [flight] VietJet Air | VJ120 | 05:00 -> 07:10 | 1453061
+2026-09-26 20:01:45,210 | INFO     | [8] [flight] VietJet Air | VJ126 | 07:30 -> 09:40 | 1453061
+2026-09-26 20:01:45,277 | INFO     | [9] [flight] VietJet Air | VJ162 | 22:40 -> 00:50 | 1453061
+2026-09-26 20:01:45,405 | INFO     | [10] [flight] Vietravel Airlines | VU750 | 05:35 -> 07:45 | 1493421
+2026-09-26 20:01:45,406 | INFO     | Hoàn thành Hồ Chí Minh -> Hà Nội [flight]: 10 records
+2026-09-26 20:01:48,407 | INFO     | ======================================================================
+2026-09-26 20:01:48,408 | INFO     | ROUTE 97/121: Hồ Chí Minh -> Đà Nẵng [flight]
+2026-09-26 20:01:48,408 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=15_area&from_airport=28284&to_airport=135548&from_station=SGO&to_station=DAD&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:02:14,025 | INFO     | Tìm thấy 50 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:02:14,183 | INFO     | [1] [flight] VietJet Air | VJ628 | 10:50 -> 12:15 | 648917
+2026-09-26 20:02:14,544 | INFO     | [2] [flight] Vietravel Airlines | VU684 | 18:20 -> 19:45 | 964221
+2026-09-26 20:02:14,677 | INFO     | [3] [flight] VietJet Air | VJ636 | 13:00 -> 14:20 | 1052381
+2026-09-26 20:02:14,809 | INFO     | [4] [flight] Vietravel Airlines | VU672 | 08:50 -> 10:15 | 1061421
+2026-09-26 20:02:14,925 | INFO     | [5] [flight] Vietravel Airlines | VU684 | 18:20 -> 19:45 | 1061421
+2026-09-26 20:02:15,049 | INFO     | [6] [flight] VietJet Air | VJ636 | 13:00 -> 14:20 | 1165781
+2026-09-26 20:02:15,291 | INFO     | [7] [flight] Vietravel Airlines | VU672 | 08:50 -> 10:15 | 1191021
+2026-09-26 20:02:15,398 | INFO     | [8] [flight] Vietravel Airlines | VU684 | 18:20 -> 19:45 | 1191021
+2026-09-26 20:02:15,517 | INFO     | [9] [flight] VietJet Air | VJ634 | 10:55 -> 12:15 | 1241381
+2026-09-26 20:02:15,636 | INFO     | [10] [flight] VietJet Air | VJ640 | 15:10 -> 16:30 | 1241381
+2026-09-26 20:02:15,637 | INFO     | Hoàn thành Hồ Chí Minh -> Đà Nẵng [flight]: 10 records
+2026-09-26 20:02:18,638 | INFO     | ======================================================================
+2026-09-26 20:02:18,639 | INFO     | ROUTE 98/121: Hồ Chí Minh -> Nha Trang [flight]
+2026-09-26 20:02:18,639 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=417_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:02:39,063 | INFO     | Tìm thấy 30 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:02:39,296 | INFO     | [1] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 898181
+2026-09-26 20:02:39,495 | INFO     | [2] [flight] Vietnam Airlines | VN1342 | 09:05 -> 10:10 | 985181
+2026-09-26 20:02:39,634 | INFO     | [3] [flight] Vietnam Airlines | VN7340 | 12:50 -> 13:55 | 985181
+2026-09-26 20:02:39,798 | INFO     | [4] [flight] VietJet Air | VJ608 | 10:00 -> 11:00 | 1044821
+2026-09-26 20:02:39,946 | INFO     | [5] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 1047181
+2026-09-26 20:02:40,086 | INFO     | [6] [flight] Vietnam Airlines | VN1342 | 09:05 -> 10:10 | 1126181
+2026-09-26 20:02:40,232 | INFO     | [7] [flight] Vietnam Airlines | VN7340 | 12:50 -> 13:55 | 1126181
+2026-09-26 20:02:40,423 | INFO     | [8] [flight] Vietnam Airlines | VN1344 | 13:05 -> 14:05 | 1126181
+2026-09-26 20:02:40,517 | INFO     | [9] [flight] VietJet Air | VJ608 | 10:00 -> 11:00 | 1165781
+2026-09-26 20:02:40,637 | INFO     | [10] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 1157181
+2026-09-26 20:02:40,637 | INFO     | Hoàn thành Hồ Chí Minh -> Nha Trang [flight]: 10 records
+2026-09-26 20:02:43,638 | INFO     | ======================================================================
+2026-09-26 20:02:43,639 | INFO     | ROUTE 99/121: Hồ Chí Minh -> Đà Lạt [flight]
+2026-09-26 20:02:43,639 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=457_area&from_airport=28284&to_airport=112068&from_station=SGO&to_station=DLI&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:03:03,539 | INFO     | Tìm thấy 29 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:03:03,641 | INFO     | [1] [flight] Vietnam Airlines | VN1380 | 05:50 -> 06:45 | 955181
+2026-09-26 20:03:03,738 | INFO     | [2] [flight] VietJet Air | VJ1362 | 06:10 -> 07:05 | 1044821
+2026-09-26 20:03:03,840 | INFO     | [3] [flight] Vietnam Airlines | VN1380 | 05:50 -> 06:45 | 1126181
+2026-09-26 20:03:03,927 | INFO     | [4] [flight] VietJet Air | VJ1362 | 06:10 -> 07:05 | 1165781
+2026-09-26 20:03:04,014 | INFO     | [5] [flight] VietJet Air | VJ362 | 14:35 -> 15:30 | 1233821
+2026-09-26 20:03:04,090 | INFO     | [6] [flight] Vietnam Airlines | VN1380 | 05:50 -> 06:45 | 1255181
+2026-09-26 20:03:04,242 | INFO     | [7] [flight] VietJet Air | VJ362 | 14:35 -> 15:30 | 1435781
+2026-09-26 20:03:04,438 | INFO     | [8] [flight] Vietnam Airlines | VN6170 | 07:00 -> 07:55 | 1432181
+2026-09-26 20:03:04,572 | INFO     | [9] [flight] Vietnam Airlines | VN7388 | 14:25 -> 15:20 | 1482181
+2026-09-26 20:03:04,709 | INFO     | [10] [flight] Vietnam Airlines | VN6170 | 07:00 -> 07:55 | 1515181
+2026-09-26 20:03:04,709 | INFO     | Hoàn thành Hồ Chí Minh -> Đà Lạt [flight]: 10 records
+2026-09-26 20:03:07,710 | INFO     | ======================================================================
+2026-09-26 20:03:07,711 | INFO     | ROUTE 100/121: Hồ Chí Minh -> Huế [flight]
+2026-09-26 20:03:07,712 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=57_region&from_airport=28284&to_airport=135559&from_station=SGO&to_station=HUE&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:03:30,242 | INFO     | Tìm thấy 41 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:03:30,378 | INFO     | [1] [flight] VietJet Air | VJ302 | 05:30 -> 06:55 | 1022381
+2026-09-26 20:03:30,519 | INFO     | [2] [flight] VietJet Air | VJ304 | 09:05 -> 10:30 | 1022381
+2026-09-26 20:03:30,629 | INFO     | [3] [flight] Vietnam Airlines | VN1366 | 05:45 -> 07:15 | 1050181
+2026-09-26 20:03:30,931 | INFO     | [4] [flight] VietJet Air | VJ308 | 14:15 -> 15:40 | 1143101
+2026-09-26 20:03:31,049 | INFO     | [5] [flight] VietJet Air | VJ302 | 05:30 -> 06:55 | 1165781
+2026-09-26 20:03:31,131 | INFO     | [6] [flight] VietJet Air | VJ304 | 09:05 -> 10:30 | 1165781
+2026-09-26 20:03:31,215 | INFO     | [7] [flight] Vietnam Airlines | VN6252 | 15:35 -> 17:05 | 1157181
+2026-09-26 20:03:31,376 | INFO     | [8] [flight] Vietnam Airlines | VN1366 | 05:45 -> 07:15 | 1255181
+2026-09-26 20:03:31,510 | INFO     | [9] [flight] Vietnam Airlines | VN1370 | 11:20 -> 12:40 | 1255181
+2026-09-26 20:03:31,600 | INFO     | [10] [flight] VietJet Air | VJ308 | 14:15 -> 15:40 | 1295381
+2026-09-26 20:03:31,601 | INFO     | Hoàn thành Hồ Chí Minh -> Huế [flight]: 10 records
+2026-09-26 20:03:34,602 | INFO     | ======================================================================
+2026-09-26 20:03:34,602 | INFO     | ROUTE 101/121: Hồ Chí Minh -> Hải Phòng [flight]
+2026-09-26 20:03:34,603 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=27_region&from_airport=28284&to_airport=135551&from_station=SGO&to_station=HPH&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:03:54,383 | INFO     | Tìm thấy 39 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:03:54,484 | INFO     | [1] [flight] Vietnam Airlines | VN1176 | 07:35 -> 09:40 | 1236181
+2026-09-26 20:03:54,587 | INFO     | [2] [flight] Unknown | Eco | 07:05 -> 09:10 | 1281181
+2026-09-26 20:03:54,677 | INFO     | [3] [flight] VietJet Air | VJ272 | 09:00 -> 11:00 | 1362341
+2026-09-26 20:03:54,779 | INFO     | [4] [flight] VietJet Air | VJ274 | 11:35 -> 13:35 | 1362341
+2026-09-26 20:03:54,880 | INFO     | [5] [flight] VietJet Air | VJ278 | 13:55 -> 15:55 | 1453061
+2026-09-26 20:03:54,961 | INFO     | [6] [flight] Unknown | Eco | 16:15 -> 18:20 | 1486181
+2026-09-26 20:03:55,090 | INFO     | [7] [flight] VietJet Air | VJ282 | 17:40 -> 19:40 | 1543781
+2026-09-26 20:03:55,222 | INFO     | [8] [flight] Vietnam Airlines | VN1176 | 07:35 -> 09:40 | 1547181
+2026-09-26 20:03:55,321 | INFO     | [9] [flight] VietJet Air | VJ272 | 09:00 -> 11:00 | 1597781
+2026-09-26 20:03:55,425 | INFO     | [10] [flight] VietJet Air | VJ274 | 11:35 -> 13:35 | 1597781
+2026-09-26 20:03:55,425 | INFO     | Hoàn thành Hồ Chí Minh -> Hải Phòng [flight]: 10 records
+2026-09-26 20:03:58,426 | INFO     | ======================================================================
+2026-09-26 20:03:58,426 | INFO     | ROUTE 102/121: Hồ Chí Minh -> Phú Thọ [flight]
+2026-09-26 20:03:58,427 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=44_region&from_airport=28284&to_airport=102188&from_station=SGO&to_station=CCH&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:04:22,685 | INFO     | Tìm thấy 50 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:04:22,785 | INFO     | [1] [flight] VietJet Air | VJ120 | 05:00 -> 07:10 | 1332341
+2026-09-26 20:04:22,893 | INFO     | [2] [flight] VietJet Air | VJ168 | 23:00 -> 01:10 | 1332341
+2026-09-26 20:04:22,983 | INFO     | [3] [flight] Vietravel Airlines | VU750 | 05:35 -> 07:45 | 1374621
+2026-09-26 20:04:23,147 | INFO     | [4] [flight] Vietravel Airlines | VU780 | 17:10 -> 19:20 | 1374621
+2026-09-26 20:04:23,263 | INFO     | [5] [flight] Unknown | Eco | 05:15 -> 07:25 | 1411181
+2026-09-26 20:04:23,387 | INFO     | [6] [flight] Unknown | Eco | 05:45 -> 07:55 | 1411181
+2026-09-26 20:04:23,540 | INFO     | [7] [flight] VietJet Air | VJ120 | 05:00 -> 07:10 | 1453061
+2026-09-26 20:04:23,691 | INFO     | [8] [flight] VietJet Air | VJ126 | 07:30 -> 09:40 | 1453061
+2026-09-26 20:04:23,779 | INFO     | [9] [flight] VietJet Air | VJ162 | 22:40 -> 00:50 | 1453061
+2026-09-26 20:04:23,882 | INFO     | [10] [flight] Vietravel Airlines | VU750 | 05:35 -> 07:45 | 1493421
+2026-09-26 20:04:23,883 | INFO     | Hoàn thành Hồ Chí Minh -> Phú Thọ [flight]: 10 records
+2026-09-26 20:04:26,884 | INFO     | ======================================================================
+2026-09-26 20:04:26,884 | INFO     | ROUTE 103/121: Hồ Chí Minh -> Quy Nhơn [flight]
+2026-09-26 20:04:26,884 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=131_area&from_airport=28284&to_airport=135545&from_station=SGO&to_station=DTR&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:04:40,075 | WARNING  | FLIGHT | Hồ Chí Minh -> Quy Nhơn: không thấy FlightTicketItem
+2026-09-26 20:04:40,293 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Quy_Nhơn.html
+2026-09-26 20:04:40,293 | INFO     | Hoàn thành Hồ Chí Minh -> Quy Nhơn [flight]: 0 records
+2026-09-26 20:04:43,294 | INFO     | ======================================================================
+2026-09-26 20:04:43,295 | INFO     | ROUTE 104/121: Hồ Chí Minh -> Buôn Ma Thuột [flight]
+2026-09-26 20:04:43,295 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=204_area&from_airport=28284&to_airport=133906&from_station=SGO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:05:06,741 | INFO     | Tìm thấy 11 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:05:06,862 | INFO     | [1] [flight] VietJet Air | VJ350 | 06:30 -> 07:30 | 1014821
+2026-09-26 20:05:07,020 | INFO     | [2] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1082181
+2026-09-26 20:05:07,129 | INFO     | [3] [flight] VietJet Air | VJ350 | 06:30 -> 07:30 | 1165781
+2026-09-26 20:05:07,361 | INFO     | [4] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1180181
+2026-09-26 20:05:07,534 | INFO     | [5] [flight] VietJet Air | VJ352 | 17:55 -> 18:55 | 1233821
+2026-09-26 20:05:07,714 | INFO     | [6] [flight] VietJet Air | VJ352 | 17:55 -> 18:55 | 1435781
+2026-09-26 20:05:07,850 | INFO     | [7] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1558181
+2026-09-26 20:05:08,048 | INFO     | [8] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1655181
+2026-09-26 20:05:08,237 | INFO     | [9] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1928181
+2026-09-26 20:05:08,389 | INFO     | [10] [flight] Vietnam Airlines | VN6200 | 10:05 -> 11:05 | 1933181
+2026-09-26 20:05:08,389 | INFO     | Hoàn thành Hồ Chí Minh -> Buôn Ma Thuột [flight]: 10 records
+2026-09-26 20:05:11,390 | INFO     | ======================================================================
+2026-09-26 20:05:11,391 | INFO     | ROUTE 105/121: Hồ Chí Minh -> Pleiku [flight]
+2026-09-26 20:05:11,391 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=274_area&from_airport=28284&to_airport=135555&from_station=SGO&to_station=PXU&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:05:24,848 | WARNING  | FLIGHT | Hồ Chí Minh -> Pleiku: không thấy FlightTicketItem
+2026-09-26 20:05:25,074 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Pleiku.html
+2026-09-26 20:05:25,075 | INFO     | Hoàn thành Hồ Chí Minh -> Pleiku [flight]: 0 records
+2026-09-26 20:05:28,076 | INFO     | ======================================================================
+2026-09-26 20:05:28,076 | INFO     | ROUTE 106/121: Hồ Chí Minh -> Phú Quốc [flight]
+2026-09-26 20:05:28,076 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=189322_area&from_airport=28284&to_airport=135554&from_station=SGO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:06:05,752 | INFO     | Tìm thấy 1 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:06:05,892 | INFO     | [1] [flight] VietJet Air | VJ339 | 07:50 -> 08:50 | 627749
+2026-09-26 20:06:05,893 | INFO     | Hoàn thành Hồ Chí Minh -> Phú Quốc [flight]: 1 records
+2026-09-26 20:06:08,894 | INFO     | ======================================================================
+2026-09-26 20:06:08,894 | INFO     | ROUTE 107/121: Hồ Chí Minh -> Cam Ranh [flight]
+2026-09-26 20:06:08,895 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=135552_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:06:29,076 | INFO     | Tìm thấy 30 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:06:29,226 | INFO     | [1] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 898181
+2026-09-26 20:06:29,363 | INFO     | [2] [flight] Vietnam Airlines | VN1342 | 09:05 -> 10:10 | 985181
+2026-09-26 20:06:29,500 | INFO     | [3] [flight] Vietnam Airlines | VN7340 | 12:50 -> 13:55 | 985181
+2026-09-26 20:06:29,607 | INFO     | [4] [flight] VietJet Air | VJ608 | 10:00 -> 11:00 | 1044821
+2026-09-26 20:06:29,758 | INFO     | [5] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 1047181
+2026-09-26 20:06:29,910 | INFO     | [6] [flight] Vietnam Airlines | VN1342 | 09:05 -> 10:10 | 1126181
+2026-09-26 20:06:30,059 | INFO     | [7] [flight] Vietnam Airlines | VN7340 | 12:50 -> 13:55 | 1126181
+2026-09-26 20:06:30,215 | INFO     | [8] [flight] Vietnam Airlines | VN1344 | 13:05 -> 14:05 | 1126181
+2026-09-26 20:06:30,331 | INFO     | [9] [flight] VietJet Air | VJ608 | 10:00 -> 11:00 | 1165781
+2026-09-26 20:06:30,497 | INFO     | [10] [flight] Vietnam Airlines | VN6242 | 12:10 -> 13:15 | 1157181
+2026-09-26 20:06:30,498 | INFO     | Hoàn thành Hồ Chí Minh -> Cam Ranh [flight]: 10 records
+2026-09-26 20:06:33,499 | INFO     | ======================================================================
+2026-09-26 20:06:33,500 | INFO     | ROUTE 108/121: Hồ Chí Minh -> Thanh Hóa [flight]
+2026-09-26 20:06:33,500 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=56_region&from_airport=28284&to_airport=135558&from_station=SGO&to_station=THO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:06:54,270 | INFO     | Tìm thấy 31 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:06:54,390 | INFO     | [1] [flight] Vietnam Airlines | VN7276 | 06:05 -> 08:05 | 1236181
+2026-09-26 20:06:54,512 | INFO     | [2] [flight] Vietnam Airlines | VN1272 | 10:25 -> 12:25 | 1236181
+2026-09-26 20:06:54,641 | INFO     | [3] [flight] Vietnam Airlines | VN1276 | 13:00 -> 15:00 | 1236181
+2026-09-26 20:06:54,781 | INFO     | [4] [flight] VietJet Air | VJ244 | 12:15 -> 14:15 | 1362341
+2026-09-26 20:06:54,890 | INFO     | [5] [flight] VietJet Air | VJ252 | 13:40 -> 15:40 | 1362341
+2026-09-26 20:06:55,028 | INFO     | [6] [flight] VietJet Air | VJ254 | 17:20 -> 19:20 | 1362341
+2026-09-26 20:06:55,163 | INFO     | [7] [flight] VietJet Air | VJ248 | 18:15 -> 20:15 | 1453061
+2026-09-26 20:06:55,330 | INFO     | [8] [flight] Vietnam Airlines | VN7276 | 06:05 -> 08:05 | 1547181
+2026-09-26 20:06:55,498 | INFO     | [9] [flight] Vietnam Airlines | VN1272 | 10:25 -> 12:25 | 1547181
+2026-09-26 20:06:55,712 | INFO     | [10] [flight] Vietnam Airlines | VN1276 | 13:00 -> 15:00 | 1547181
+2026-09-26 20:06:55,713 | INFO     | Hoàn thành Hồ Chí Minh -> Thanh Hóa [flight]: 10 records
+2026-09-26 20:06:58,714 | INFO     | ======================================================================
+2026-09-26 20:06:58,715 | INFO     | ROUTE 109/121: Hồ Chí Minh -> Đồng Hới [flight]
+2026-09-26 20:06:58,715 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_area&to=568_area&from_airport=28284&to_airport=135557&from_station=SGO&to_station=DHO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:07:15,030 | INFO     | Tìm thấy 11 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:07:15,181 | INFO     | [1] [flight] VietJet Air | VJ260 | 06:35 -> 08:10 | 825821
+2026-09-26 20:07:15,521 | INFO     | [2] [flight] VietJet Air | VJ262 | 17:40 -> 19:15 | 1007021
+2026-09-26 20:07:15,775 | INFO     | [3] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 1158181
+2026-09-26 20:07:15,895 | INFO     | [4] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 1396181
+2026-09-26 20:07:16,029 | INFO     | [5] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 1601181
+2026-09-26 20:07:16,160 | INFO     | [6] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 2389181
+2026-09-26 20:07:16,310 | INFO     | [7] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 2584181
+2026-09-26 20:07:16,423 | INFO     | [8] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 3124181
+2026-09-26 20:07:16,589 | INFO     | [9] [flight] Vietnam Airlines | VN1404 | 06:55 -> 08:30 | 3219181
+2026-09-26 20:07:16,589 | INFO     | Hoàn thành Hồ Chí Minh -> Đồng Hới [flight]: 9 records
+2026-09-26 20:07:19,590 | INFO     | ======================================================================
+2026-09-26 20:07:19,591 | INFO     | ROUTE 110/121: Hồ Chí Minh -> Côn Đảo [flight]
+2026-09-26 20:07:19,592 | INFO     | URL: https://vexere.com/vn/ve-may-bay/dat-ve-may-bay.vi?from=29_region&to=80_area&from_airport=28284&to_airport=135544&from_station=SGO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Binf%5D=0&fare_class=PT&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:07:46,484 | INFO     | Tìm thấy 50 flight card | selector=[class*="FlightTicketItem__FlightTicketItemContainer"]
+2026-09-26 20:07:46,619 | INFO     | [1] [flight] Vietnam Airlines | VN8031 | 05:25 -> 06:15 | 1355181
+2026-09-26 20:07:46,773 | INFO     | [2] [flight] Vietnam Airlines | VN8081 | 06:20 -> 07:10 | 1355181
+2026-09-26 20:07:46,906 | INFO     | [3] [flight] Vietnam Airlines | VN8059 | 06:40 -> 07:30 | 1355181
+2026-09-26 20:07:47,039 | INFO     | [4] [flight] Vietnam Airlines | VN8093 | 15:15 -> 16:10 | 1355181
+2026-09-26 20:07:47,144 | INFO     | [5] [flight] Vietnam Airlines | VN8087 | 15:15 -> 16:10 | 1355181
+2026-09-26 20:07:47,230 | INFO     | [6] [flight] Vietnam Airlines | VN8069 | 15:30 -> 16:25 | 1355181
+2026-09-26 20:07:47,316 | INFO     | [7] [flight] Vietnam Airlines | VN8031 | 05:25 -> 06:15 | 1450181
+2026-09-26 20:07:47,457 | INFO     | [8] [flight] Vietnam Airlines | VN8081 | 06:20 -> 07:10 | 1450181
+2026-09-26 20:07:47,534 | INFO     | [9] [flight] Vietnam Airlines | VN8059 | 06:40 -> 07:30 | 1450181
+2026-09-26 20:07:47,639 | INFO     | [10] [flight] Vietnam Airlines | VN8091 | 14:30 -> 15:25 | 1450181
+2026-09-26 20:07:47,640 | INFO     | Hoàn thành Hồ Chí Minh -> Côn Đảo [flight]: 10 records
+2026-09-26 20:07:50,641 | INFO     | ======================================================================
+2026-09-26 20:07:50,641 | INFO     | ROUTE 111/121: Hồ Chí Minh -> Hà Nội [train]
+2026-09-26 20:07:50,641 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=24_region&from_airport=28284&to_airport=102188&from_station=SGO&to_station=HNO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:08:05,501 | INFO     | Tìm thấy 5 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:08:05,753 | INFO     | [1] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 03:40 | 1323
+2026-09-26 20:08:07,638 | INFO     | Hoàn thành Hồ Chí Minh -> Hà Nội [train]: 1 records
+2026-09-26 20:08:10,640 | INFO     | ======================================================================
+2026-09-26 20:08:10,640 | INFO     | ROUTE 112/121: Hồ Chí Minh -> Đà Nẵng [train]
+2026-09-26 20:08:10,641 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=15_area&from_airport=28284&to_airport=135548&from_station=SGO&to_station=DNA&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:08:23,641 | INFO     | Tìm thấy 6 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:08:23,818 | INFO     | [1] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 08:44 | 824000
+2026-09-26 20:08:23,948 | INFO     | [2] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 23:21 | 892000
+2026-09-26 20:08:24,068 | INFO     | [3] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 01:46 | 892000
+2026-09-26 20:08:24,182 | INFO     | [4] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 13:06 | 903000
+2026-09-26 20:08:24,315 | INFO     | [5] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 12:13 | 1312
+2026-09-26 20:08:24,398 | INFO     | [6] [train] Tàu SE22 | Giường khoang 4 | 10:15 -> 05:40 | 1385
+2026-09-26 20:08:24,398 | INFO     | Hoàn thành Hồ Chí Minh -> Đà Nẵng [train]: 6 records
+2026-09-26 20:08:27,399 | INFO     | ======================================================================
+2026-09-26 20:08:27,400 | INFO     | ROUTE 113/121: Hồ Chí Minh -> Nha Trang [train]
+2026-09-26 20:08:27,400 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171699_area&from_airport=28284&to_airport=135552&from_station=SGO&to_station=NTR&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:08:40,987 | INFO     | Tìm thấy 7 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:08:41,134 | INFO     | [1] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 13:43 | 315000
+2026-09-26 20:08:41,257 | INFO     | [2] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 16:06 | 363000
+2026-09-26 20:08:41,370 | INFO     | [3] [train] Tàu SNT2 | Ngồi mềm | 21:45 -> 05:40 | 367000
+2026-09-26 20:08:41,487 | INFO     | [4] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 21:51 | 440000
+2026-09-26 20:08:41,627 | INFO     | [5] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 03:44 | 487000
+2026-09-26 20:08:41,703 | INFO     | [6] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 02:40 | 778000
+2026-09-26 20:08:41,788 | INFO     | [7] [train] Tàu SE22 | Giường khoang 4 | 10:15 -> 18:05 | 793000
+2026-09-26 20:08:41,788 | INFO     | Hoàn thành Hồ Chí Minh -> Nha Trang [train]: 7 records
+2026-09-26 20:08:44,789 | INFO     | ======================================================================
+2026-09-26 20:08:44,790 | INFO     | ROUTE 114/121: Hồ Chí Minh -> Huế [train]
+2026-09-26 20:08:44,791 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171657_area&from_airport=28284&to_airport=135559&from_station=SGO&to_station=HUE&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:08:58,355 | INFO     | Tìm thấy 5 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:08:58,460 | INFO     | [1] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 12:10 | 895000
+2026-09-26 20:08:58,558 | INFO     | [2] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 02:12 | 937000
+2026-09-26 20:08:58,646 | INFO     | [3] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 04:44 | 937000
+2026-09-26 20:08:58,757 | INFO     | [4] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 15:49 | 983000
+2026-09-26 20:08:58,815 | INFO     | [5] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 15:05 | 1331
+2026-09-26 20:08:58,815 | INFO     | Hoàn thành Hồ Chí Minh -> Huế [train]: 5 records
+2026-09-26 20:09:01,816 | INFO     | ======================================================================
+2026-09-26 20:09:01,817 | INFO     | ROUTE 115/121: Hồ Chí Minh -> Vinh [train]
+2026-09-26 20:09:01,817 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171758_area&from_airport=28284&to_airport=135555&from_station=SGO&to_station=VTH&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:09:13,825 | WARNING  | TRAIN | Hồ Chí Minh -> Vinh: không thấy TrainTicketItem
+2026-09-26 20:09:14,089 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Vinh.html
+2026-09-26 20:09:14,089 | INFO     | Hoàn thành Hồ Chí Minh -> Vinh [train]: 0 records
+2026-09-26 20:09:17,090 | INFO     | ======================================================================
+2026-09-26 20:09:17,091 | INFO     | ROUTE 116/121: Hồ Chí Minh -> Thanh Hóa [train]
+2026-09-26 20:09:17,091 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171738_area&from_airport=28284&to_airport=135558&from_station=SGO&to_station=THO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:09:30,822 | INFO     | Tìm thấy 5 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:09:30,895 | INFO     | [1] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 23:51 | 1190
+2026-09-26 20:09:31,093 | INFO     | [2] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 12:50 | 1264
+2026-09-26 20:09:31,243 | INFO     | [3] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 15:26 | 1264
+2026-09-26 20:09:31,388 | INFO     | [4] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 02:14 | 1284
+2026-09-26 20:09:31,486 | INFO     | [5] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 01:03 | 1679
+2026-09-26 20:09:31,487 | INFO     | Hoàn thành Hồ Chí Minh -> Thanh Hóa [train]: 5 records
+2026-09-26 20:09:34,488 | INFO     | ======================================================================
+2026-09-26 20:09:34,488 | INFO     | ROUTE 117/121: Hồ Chí Minh -> Đồng Hới [train]
+2026-09-26 20:09:34,489 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171629_area&from_airport=28284&to_airport=135557&from_station=SGO&to_station=DHO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:09:47,864 | INFO     | Tìm thấy 5 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:09:47,980 | INFO     | [1] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 15:18 | 1030
+2026-09-26 20:09:48,082 | INFO     | [2] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 05:22 | 1107
+2026-09-26 20:09:48,200 | INFO     | [3] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 08:13 | 1107
+2026-09-26 20:09:48,282 | INFO     | [4] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 18:56 | 1126
+2026-09-26 20:09:48,356 | INFO     | [5] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 18:06 | 1473
+2026-09-26 20:09:48,356 | INFO     | Hoàn thành Hồ Chí Minh -> Đồng Hới [train]: 5 records
+2026-09-26 20:09:51,357 | INFO     | ======================================================================
+2026-09-26 20:09:51,357 | INFO     | ROUTE 118/121: Hồ Chí Minh -> Phan Thiết [train]
+2026-09-26 20:09:51,358 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=159_area&from_airport=28284&to_airport=135561&from_station=SGO&to_station=PTH&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:10:03,809 | INFO     | Tìm thấy 1 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:10:03,887 | INFO     | [1] [train] Tàu SPT2 | Ngồi mềm | 06:45 -> 10:42 | 171000
+2026-09-26 20:10:03,888 | INFO     | Hoàn thành Hồ Chí Minh -> Phan Thiết [train]: 1 records
+2026-09-26 20:10:06,888 | INFO     | ======================================================================
+2026-09-26 20:10:06,889 | INFO     | ROUTE 119/121: Hồ Chí Minh -> Ninh Bình [train]
+2026-09-26 20:10:06,889 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_region&to=171691_area&from_airport=28284&to_airport=135558&from_station=SGO&to_station=NBI&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:10:20,139 | INFO     | Tìm thấy 4 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:10:20,321 | INFO     | [1] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 13:56 | 1278
+2026-09-26 20:10:20,418 | INFO     | [2] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 16:52 | 1278
+2026-09-26 20:10:20,513 | INFO     | [3] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 03:21 | 1335
+2026-09-26 20:10:20,601 | INFO     | [4] [train] Tàu SE4 | Giường khoang 4 | 19:20 -> 02:11 | 1746
+2026-09-26 20:10:20,602 | INFO     | Hoàn thành Hồ Chí Minh -> Ninh Bình [train]: 4 records
+2026-09-26 20:10:23,602 | INFO     | ======================================================================
+2026-09-26 20:10:23,603 | INFO     | ROUTE 120/121: Hồ Chí Minh -> Nam Định [train]
+2026-09-26 20:10:23,603 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171692_area&from_airport=28284&to_airport=135551&from_station=SGO&to_station=NDI&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:10:36,723 | WARNING  | TRAIN | Hồ Chí Minh -> Nam Định: không thấy TrainTicketItem
+2026-09-26 20:10:36,942 | INFO     | Đã lưu HTML debug: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html\Hồ_Chí_Minh_Nam_Định.html
+2026-09-26 20:10:36,943 | INFO     | Hoàn thành Hồ Chí Minh -> Nam Định [train]: 0 records
+2026-09-26 20:10:39,943 | INFO     | ======================================================================
+2026-09-26 20:10:39,944 | INFO     | ROUTE 121/121: Hồ Chí Minh -> Biên Hòa [train]
+2026-09-26 20:10:39,945 | INFO     | URL: https://vexere.com/vn/ve-tau-hoa/dat-ve-tau.vi?from=29_area&to=171607_area&from_airport=28284&to_airport=28284&from_station=SGO&to_station=BHO&passenger%5Badt%5D=1&passenger%5Bchd%5D=0&passenger%5Beld%5D=0&passenger%5Bstu%5D=0&passenger%5Buni%5D=0&date%5Bdepart%5D=2026-09-27
+2026-09-26 20:10:54,140 | INFO     | Tìm thấy 8 train card | selector=[class*="TrainTicketItem__Container"]
+2026-09-26 20:10:54,244 | INFO     | [1] [train] Tàu SE8 | Ngồi mềm | 06:00 -> 06:44 | 31000
+2026-09-26 20:10:54,340 | INFO     | [2] [train] Tàu SE22 | Ngồi mềm | 10:15 -> 10:59 | 31000
+2026-09-26 20:10:54,471 | INFO     | [3] [train] Tàu SE4 | Ngồi mềm | 19:20 -> 20:04 | 31000
+2026-09-26 20:10:54,577 | INFO     | [4] [train] Tàu SE2 | Ngồi mềm | 20:35 -> 21:20 | 31000
+2026-09-26 20:10:54,662 | INFO     | [5] [train] Tàu SNT2 | Ngồi mềm | 21:45 -> 22:31 | 31000
+2026-09-26 20:10:54,740 | INFO     | [6] [train] Tàu SE6 | Ngồi mềm | 08:45 -> 09:29 | 33000
+2026-09-26 20:10:54,904 | INFO     | [7] [train] Tàu SE10 | Ngồi mềm | 13:15 -> 13:59 | 36000
+2026-09-26 20:10:55,031 | INFO     | [8] [train] Tàu SPT2 | Ngồi mềm | 06:45 -> 07:31 | 39000
+2026-09-26 20:10:55,032 | INFO     | Hoàn thành Hồ Chí Minh -> Biên Hòa [train]: 8 records
+2026-09-26 20:10:59,735 | INFO     | Đã đóng Chrome driver.
+2026-09-26 20:10:59,753 | INFO     | Đã lưu 389 records vào: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\data\raw\transport\vexere_transport.json
+2026-09-26 20:10:59,754 | INFO     | ======================================================================
+2026-09-26 20:10:59,754 | INFO     | CRAWLER HOÀN TẤT
+2026-09-26 20:10:59,754 | INFO     | Tổng route: 121
+2026-09-26 20:10:59,755 | INFO     | Tổng records: 389
+2026-09-26 20:10:59,755 | INFO     |   - bus: 227
+2026-09-26 20:10:59,755 | INFO     |   - flight: 120
+2026-09-26 20:10:59,755 | INFO     |   - train: 42
+2026-09-26 20:10:59,756 | INFO     | Output: D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\data\raw\transport\vexere_transport.json
+2026-09-26 20:10:59,756 | INFO     | Debug HTML (nếu fail): D:\TIỂU LUẬN CHUYÊN NGÀNH\TLCN-Travel\ingestion\transport\logs\debug_html
+2026-09-26 20:10:59,756 | INFO     | ======================================================================
