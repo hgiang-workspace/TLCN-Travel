@@ -1,0 +1,35 @@
+version: "1.0.0"
+connection:
+  url: "${QDRANT_URL:-http://qdrant:6333}"
+  api_key_env: "QDRANT_API_KEY"
+
+collections:
+  reviews: "travel_reviews_v1"
+  review_aspects: "travel_review_aspects_v1"
+
+vector_config: "configs/models/embedding.yaml"
+
+payload_indexes:
+  reviews:
+    source_id: "keyword"
+    review_id: "keyword"
+    source_record_sk: "keyword"
+    place_id: "keyword"
+    sentiment: "keyword"
+    source_release_id: "keyword"
+    index_generation: "keyword"
+  review_aspects:
+    source_id: "keyword"
+    review_id: "keyword"
+    review_sentiment_id: "keyword"
+    source_record_sk: "keyword"
+    place_id: "keyword"
+    aspect: "keyword"
+    sentiment: "keyword"
+    source_release_id: "keyword"
+    index_generation: "keyword"
+
+indexing:
+  batch_size: 256
+  on_disk_payload: true
+  status: ""

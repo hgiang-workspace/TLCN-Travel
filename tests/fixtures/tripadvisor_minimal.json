@@ -1,0 +1,15 @@
+[
+  {
+    "record_id": "ta-1",
+    "source_url": "https://example.test/place/1",
+    "scraped_at": "2026-09-22T22:18:25+00:00",
+    "status": "partial",
+    "entity_name": "Núi Ngũ Hành Sơn",
+    "detail_review": "Tổng hợp cấp địa điểm; không phải review bổ sung.",
+    "reviews": [
+      {"index": 1, "key_review": "Đẹp", "detail_review": "Rất đẹp!"},
+      {"index": 2, "key_review": "便利", "detail_review": "景色很好"}
+    ]
+  }
+]
+

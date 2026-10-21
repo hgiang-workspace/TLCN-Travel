@@ -1,0 +1,16 @@
+FROM golang:1.24.8-alpine3.22 AS build
+
+ADD https://github.com/minio/minio/archive/refs/tags/RELEASE.2025-10-15T17-29-55Z.tar.gz /tmp/minio.tar.gz
+RUN echo "be6d0bd3696c3a13a35f02d3a0280b64319c67918b4501c5c3d87f96d000085c  /tmp/minio.tar.gz" | sha256sum -c - \
+    && mkdir /src \
+    && tar -xzf /tmp/minio.tar.gz --strip-components=1 -C /src
+WORKDIR /src
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/minio .
+
+FROM alpine:3.22.1
+RUN apk add --no-cache ca-certificates curl \
+    && addgroup -S minio \
+    && adduser -S -G minio minio
+COPY --from=build /out/minio /usr/local/bin/minio
+USER minio
+ENTRYPOINT ["minio"]

@@ -1,0 +1,23 @@
+version: "1.0.0"
+model:
+  id: "5CD-AI/Vietnamese-Sentiment-visobert"
+  revision: "d7738b85200272f10ba8b048d80236c8c582b581"
+  local_artifact_path: "models/visobert"
+  fingerprint_generation: "model_revision_and_config_hash"
+
+classification:
+  labels: ["negative", "neutral", "positive"]
+
+inference:
+  provider: "transformers"
+  device: "auto"
+  batch_size: 32
+  max_length: 256
+
+training:
+  epochs: 3
+  batch_size: 16
+  learning_rate: 2.0e-5
+  datasets:
+    sentiment:
+      type: "classification"

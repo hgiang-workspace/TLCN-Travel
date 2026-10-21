@@ -6,6 +6,7 @@ __pycache__/
 .coverage
 htmlcov/
 .env
+.env.*
 !.env.example
 dist/
 build/
@@ -15,4 +16,3 @@ docs/*
 scripts/g01
 data/
 *.safetensors
-.cache/*

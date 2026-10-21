@@ -1,0 +1,20 @@
+version: "1.0.0"
+
+model:
+  id: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  revision: "e8f8c211226b894fcb81acc59f3b34ba3efd5f42"
+  status: "configured"
+  local_artifact_path: "models/embeddings/paraphrase-multilingual-MiniLM-L12-v2"
+  fingerprint_generation: "model_revision_and_config_hash"
+
+vector:
+  dimension: 384
+  distance: "Cosine"
+  datatype: "float32"
+  normalize: true
+
+inference:
+  provider: "sentence-transformers"
+  device: "auto"
+  batch_size: 32
+  max_seq_length: 128
