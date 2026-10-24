@@ -20,7 +20,12 @@ RUN echo "8dd8c90e54ed1a20f2461309d047a255ee56382eb7c0a46162b27a4936fd86dc  /tmp
 # inventory and other Python-side lakehouse utilities.
 RUN python3 -m pip install --no-cache-dir \
     "PyYAML==6.0.2" \
-    "minio==7.2.15"
+    "minio==7.2.15" \
+    "sentence-transformers==3.4.1" \
+    "torch==2.12.0" \
+    "transformers==4.41.2"
+
+RUN python3 -m pip install --no-cache-dir "underthesea==9.5.0"
 
 COPY scripts/smoke/spark_iceberg_smoke.py /opt/g01/spark_iceberg_smoke.py
 

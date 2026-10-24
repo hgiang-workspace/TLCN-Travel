@@ -11,7 +11,7 @@ classification:
 inference:
   provider: "transformers"
   device: "auto"
-  batch_size: 32
+  batch_size: 128
   max_length: 256
 
 training:

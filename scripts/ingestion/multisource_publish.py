@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish a synthetic Foody, TikTok or Vexere fixture to MinIO."""
+"""Publish a validated Foody, TikTok or Vexere snapshot to MinIO."""
 
 from __future__ import annotations
 
@@ -27,11 +27,18 @@ def main() -> int:
     parser.add_argument(
         "--bucket", default=os.environ.get("S3_BUCKET", "travel-lakehouse")
     )
+    parser.add_argument(
+        "--allow-local-source",
+        action="store_true",
+        help="allow a snapshot outside tests/fixtures after explicit review",
+    )
     args = parser.parse_args()
     if args.snapshot.resolve().parent != Path("tests/fixtures").resolve():
-        parser.error(
-            "synthetic fixture only: snapshot must be directly under tests/fixtures"
-        )
+        if not args.allow_local_source:
+            parser.error(
+                "snapshot must be directly under tests/fixtures unless "
+                "--allow-local-source is provided"
+            )
     adapter = {"foody": adapt_foody, "tiktok": adapt_tiktok, "vexere": adapt_vexere}[
         args.source
     ]

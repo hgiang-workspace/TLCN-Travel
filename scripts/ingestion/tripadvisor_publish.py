@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish only the synthetic TripAdvisor fixture to MinIO."""
+"""Publish a validated TripAdvisor snapshot to MinIO."""
 
 from __future__ import annotations
 
@@ -23,11 +23,17 @@ def main() -> int:
         "--bucket", default=os.environ.get("S3_BUCKET", "travel-lakehouse")
     )
     parser.add_argument("--secure", action="store_true")
+    parser.add_argument(
+        "--allow-local-source",
+        action="store_true",
+        help="allow a snapshot outside tests/fixtures after explicit review",
+    )
     args = parser.parse_args()
     fixture_root = Path("tests/fixtures").resolve()
-    if args.snapshot.resolve().parent != fixture_root:
+    if args.snapshot.resolve().parent != fixture_root and not args.allow_local_source:
         parser.error(
-            "synthetic fixture only: snapshot must be directly under tests/fixtures"
+            "snapshot must be directly under tests/fixtures unless "
+            "--allow-local-source is provided"
         )
     result = adapt_tripadvisor(args.snapshot)
     client = Minio(

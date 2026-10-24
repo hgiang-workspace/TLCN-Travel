@@ -16,10 +16,10 @@ from travel_intelligence.common.configuration import (
 )
 from travel_intelligence.sentiment.enrichment import (
     AspectSegmenter,
+    EnrichmentError,
     ViSoBERTClassifier,
     enrich_reviews,
     input_fingerprint,
-    publish_enrichment,
 )
 from travel_intelligence.sentiment.spark_store import SparkIcebergEnrichmentStore
 from travel_intelligence.silver.tripadvisor_source import (
@@ -83,6 +83,10 @@ def main() -> int:
         help="normalization_run.run_id; defaults to the latest committed TripAdvisor release",
     )
     parser.add_argument("--processing-run-id")
+    parser.add_argument("--batch-size", type=int, default=128)
+    parser.add_argument("--chunk-size", type=int, default=1000)
+    parser.add_argument("--max-chunks", type=int)
+    parser.add_argument("--partitions", type=int, default=32)
     parser.add_argument(
         "--occurrence-key",
         action="append",
@@ -92,6 +96,8 @@ def main() -> int:
         "--fail-after", choices=("reviews", "aspects"), help=argparse.SUPPRESS
     )
     args = parser.parse_args()
+    if args.batch_size < 1 or args.chunk_size < 1 or args.partitions < 1 or (args.max_chunks is not None and args.max_chunks < 1):
+        parser.error("--batch-size, --chunk-size, --partitions and --max-chunks must be positive")
 
     paths = default_config_paths()
     pipeline, pipeline_fp = load_validated("pipeline", paths["pipeline"])
@@ -99,6 +105,8 @@ def main() -> int:
     model_config, model_config_fp = load_validated("visobert", paths["visobert"])
     spark = build_spark()
     try:
+        from pyspark.sql import functions as F
+
         runs = [
             row.asDict(recursive=True)
             for row in spark.table("travel.silver.normalization_run").collect()
@@ -119,11 +127,24 @@ def main() -> int:
             raise RuntimeError(
                 "no committed TripAdvisor release with complete source evidence was found"
             )
-        rows = [
-            row.asDict(recursive=True)
-            for row in spark.sql(TRIPADVISOR_REVIEW_SQL).collect()
-        ]
-        occurrences = select_tripadvisor_reviews(rows, committed)
+        if not args.source_release_id:
+            latest = max(
+                committed.values(),
+                key=lambda run: (str(run.get("finished_at") or ""), str(run["run_id"])),
+            )
+            committed = {
+                batch: run
+                for batch, run in committed.items()
+                if run["run_id"] == latest["run_id"]
+            }
+        batch_ids = tuple(committed)
+        review_frame = spark.sql(TRIPADVISOR_REVIEW_SQL).where(
+            F.col("batch_id").isin(*batch_ids)
+        ).repartition(args.partitions)
+        occurrences = select_tripadvisor_reviews(
+            (row.asDict(recursive=True) for row in review_frame.toLocalIterator()),
+            committed,
+        )
         if args.occurrence_key:
             wanted = set(args.occurrence_key)
             occurrences = tuple(
@@ -150,39 +171,81 @@ def main() -> int:
             repository_root=Path(__file__).resolve().parents[2],
         )
         segmenter = AspectSegmenter(pipeline, aspects)
-        run_id = (
-            args.processing_run_id
-            or hashlib.sha256(
-                f"{occurrences[0].source_release_id}|{classifier.model_fingerprint}|{pipeline_fp}|{aspect_fp}".encode()
-            ).hexdigest()
-        )
-        batch = enrich_reviews(
-            occurrences,
-            classifier,
-            segmenter,
-            config_fingerprint=hashlib.sha256(
-                f"{pipeline_fp}|{aspect_fp}".encode()
-            ).hexdigest(),
-            processing_run_id=run_id,
-        )
         store = SparkIcebergEnrichmentStore(spark)
         store.create_tables()
-        result = publish_enrichment(
-            store,
-            batch,
-            source_release_id=occurrences[0].source_release_id,
-            model_id=classifier.model_id,
-            model_fingerprint=classifier.model_fingerprint,
-            config_fingerprint=hashlib.sha256(
-                f"{pipeline_fp}|{aspect_fp}".encode()
-            ).hexdigest(),
-            input_fingerprint=input_fingerprint(occurrences),
-            processing_run_id=run_id,
-            fail_after=args.fail_after,
-        )
-        print(
-            json.dumps({**result, "excluded_count": len(batch.exclusions)}, default=str)
-        )
+        config_fingerprint = hashlib.sha256(
+            f"{pipeline_fp}|{aspect_fp}".encode()
+        ).hexdigest()
+        prior_runs = {
+            str(row["processing_run_id"]): row.asDict(recursive=True)
+            for row in spark.table("travel.silver.review_enrichment_run").collect()
+        }
+        chunk_count = (len(occurrences) + args.chunk_size - 1) // args.chunk_size
+        chunks_to_run = min(chunk_count, args.max_chunks) if args.max_chunks else chunk_count
+        results = []
+        for chunk_index, start in enumerate(range(0, len(occurrences), args.chunk_size), start=1):
+            if chunk_index > chunks_to_run:
+                break
+            chunk = occurrences[start : start + args.chunk_size]
+            expected_aspects = sum(len(segmenter.segment(item.review_text)) for item in chunk)
+            run_id = args.processing_run_id if args.processing_run_id and chunk_count == 1 else hashlib.sha256(
+                f"{chunk[0].source_release_id}|{classifier.model_fingerprint}|{pipeline_fp}|{aspect_fp}|chunk:{chunk_index}:{chunk_count}".encode()
+            ).hexdigest()
+            prior = prior_runs.get(run_id)
+            if (
+                prior
+                and prior.get("status") == "committed"
+                and int(prior.get("expected_review_count", -1)) == len(chunk)
+                and int(prior.get("actual_review_count", -1)) == len(chunk)
+                and int(prior.get("expected_aspect_count", -1)) == expected_aspects
+                and int(prior.get("actual_aspect_count", -1)) == expected_aspects
+            ):
+                results.append({**prior, "replayed": True})
+                print(json.dumps({**prior, "replayed": True}, default=str), flush=True)
+                continue
+            run = {
+                "processing_run_id": run_id,
+                "source_id": "tripadvisor",
+                "source_release_id": chunk[0].source_release_id,
+                "model_id": classifier.model_id,
+                "model_fingerprint": classifier.model_fingerprint,
+                "config_fingerprint": config_fingerprint,
+                "input_fingerprint": input_fingerprint(chunk),
+                "status": "partial",
+                "expected_review_count": len(chunk),
+                "expected_aspect_count": expected_aspects,
+            }
+            store.begin(run)
+            exclusions = 0
+            try:
+                batch = enrich_reviews(
+                    chunk,
+                    classifier,
+                    segmenter,
+                    config_fingerprint=config_fingerprint,
+                    processing_run_id=run_id,
+                )
+                exclusions = len(batch.exclusions)
+                store.upsert_reviews(batch.review_rows)
+                if args.fail_after == "reviews":
+                    raise EnrichmentError("controlled failure after review write")
+                store.upsert_aspects(batch.aspect_rows)
+                if args.fail_after == "aspects":
+                    raise EnrichmentError("controlled failure after aspect write")
+                reconciliation = store.reconcile(run)
+                if (
+                    reconciliation["review_count"] != len(chunk)
+                    or reconciliation["aspect_count"] != expected_aspects
+                ):
+                    raise EnrichmentError("enrichment result reconciliation failed")
+                store.commit(run, reconciliation)
+                result = {**run, **reconciliation, "status": "committed", "chunk_index": chunk_index, "chunk_count": chunk_count, "excluded_count": exclusions, "replayed": False}
+                results.append(result)
+                print(json.dumps(result, default=str), flush=True)
+            except Exception as error:
+                store.fail(run, str(error))
+                raise
+        print(json.dumps({"source_release_id": occurrences[0].source_release_id, "chunk_count": chunk_count, "processed_chunks": chunks_to_run, "committed_chunks": len(results)}, default=str), flush=True)
         return 0
     finally:
         spark.stop()

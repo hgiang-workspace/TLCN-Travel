@@ -401,16 +401,32 @@ def enrich_reviews(
     review_rows: list[dict[str, Any]] = []
     aspect_rows: list[dict[str, Any]] = []
     exclusions: list[dict[str, Any]] = []
+    prepared: list[tuple[TripAdvisorReviewOccurrence, str, tuple[TextChunk, ...], tuple[AspectSegment, ...]]] = []
     for occurrence in occurrences:
         try:
             text = validate_text(occurrence.review_text, field="review_text")
             chunks = token_aware_chunks(
                 text, classifier.tokenizer, max_length=classifier.max_length
             ) if hasattr(classifier, "tokenizer") else (_single_chunk(text),)
-            chunk_predictions = classifier.predict([chunk.text for chunk in chunks])
-            if len(chunk_predictions) != len(chunks):
-                raise InferenceFailure("classifier returned the wrong prediction count")
-            prediction = _aggregate_predictions(chunk_predictions, chunks)
+            segments = segmenter.segment(text)
+            prepared.append((occurrence, text, chunks, segments))
+        except EnrichmentError as error:
+            exclusions.append({"review_id": occurrence.review_id, "reason": str(error)})
+
+    chunk_inputs = [chunk.text for _, _, chunks, _ in prepared for chunk in chunks]
+    segment_inputs = [segment.text for _, _, _, segments in prepared for segment in segments]
+    chunk_predictions = classifier.predict(chunk_inputs)
+    segment_predictions = classifier.predict(segment_inputs)
+    if len(chunk_predictions) != len(chunk_inputs) or len(segment_predictions) != len(segment_inputs):
+        raise InferenceFailure("classifier returned the wrong prediction count")
+
+    chunk_cursor = 0
+    segment_cursor = 0
+    for occurrence, text, chunks, segments in prepared:
+        try:
+            occurrence_chunk_predictions = chunk_predictions[chunk_cursor : chunk_cursor + len(chunks)]
+            chunk_cursor += len(chunks)
+            prediction = _aggregate_predictions(occurrence_chunk_predictions, chunks)
             review_text_hash = text_hash(text)
             review_id = review_sentiment_id(
                 occurrence.review_id,
@@ -442,16 +458,11 @@ def enrich_reviews(
                     "quality_codes": ["chunked"] if len(chunks) > 1 else [],
                 }
             )
-            segments = segmenter.segment(text)
             if not segments:
-                exclusions.append(
-                    {"review_id": occurrence.review_id, "reason": "no_aspects_detected"}
-                )
                 continue
-            segment_predictions = classifier.predict([segment.text for segment in segments])
-            if len(segment_predictions) != len(segments):
-                raise InferenceFailure("classifier returned the wrong segment count")
-            for segment, segment_prediction in zip(segments, segment_predictions, strict=True):
+            occurrence_segment_predictions = segment_predictions[segment_cursor : segment_cursor + len(segments)]
+            segment_cursor += len(segments)
+            for segment, segment_prediction in zip(segments, occurrence_segment_predictions, strict=True):
                 aspect_rows.append(
                     {
                         "aspect_sentiment_id": aspect_sentiment_id(

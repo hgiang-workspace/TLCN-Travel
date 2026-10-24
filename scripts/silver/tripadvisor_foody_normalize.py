@@ -1,4 +1,4 @@
-"""Manifest-driven synthetic TripAdvisor/Foody Bronze v2 to Silver driver."""
+"""Manifest-driven Bronze v2 to Silver driver with bounded driver memory."""
 
 from __future__ import annotations
 
@@ -8,12 +8,14 @@ import json
 import os
 import sys
 import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal
 from types import SimpleNamespace
-from typing import Any
+from typing import Any, Iterator
 
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
 from pyspark.sql.types import (
     ArrayType,
     DateType,
@@ -33,13 +35,11 @@ from travel_intelligence.silver.foundation import (
     SILVER_NAMESPACE,
     SILVER_TABLES,
     committed_replay_is_noop,
-    execute_table_writes,
     validate_bronze_manifest,
     validate_release_tables,
 )
 from travel_intelligence.silver.normalization import (
     bronze_parquet_timestamp,
-    nested_input_count,
     normalize_foody_row,
     normalize_tiktok_row,
     normalize_tripadvisor_row,
@@ -95,6 +95,10 @@ def build_spark() -> SparkSession:
             required("MINIO_ROOT_PASSWORD"),
         )
         .config("spark.sql.session.timeZone", "UTC")
+        # MERGE must keep the normalized source distributed.  Broadcasting a
+        # wide source frame collects it through the driver block manager.
+        .config("spark.sql.autoBroadcastJoinThreshold", "-1")
+        .config("spark.sql.adaptive.autoBroadcastJoinThreshold", "-1")
         .config("spark.ui.enabled", "false")
         .getOrCreate()
     )
@@ -138,16 +142,20 @@ def _manifest(spark: SparkSession, bucket: str, key: str) -> dict[str, Any]:
     return result
 
 
-def _bronze_rows(spark: SparkSession, bucket: str, manifest: dict[str, Any]):
+@contextmanager
+def _bronze_frame(
+    spark: SparkSession, bucket: str, manifest: dict[str, Any]
+) -> Iterator[Any]:
     with tempfile.NamedTemporaryFile(suffix=".parquet") as local_file:
         _download_with_iceberg_io(
             spark, bucket, manifest["parquet_key"], local_file.name
         )
         frame = spark.read.parquet(local_file.name)
-        return _validate_bronze_rows(frame, manifest)
+        _validate_bronze_frame(frame, manifest)
+        yield frame
 
 
-def _validate_bronze_rows(frame, manifest: dict[str, Any]):
+def _validate_bronze_frame(frame, manifest: dict[str, Any]) -> None:
     expected = {
         "source_id",
         "record_type",
@@ -165,21 +173,25 @@ def _validate_bronze_rows(frame, manifest: dict[str, Any]):
         raise ValueError("Bronze object does not have the exact v2 columns")
     if frame.schema["source_row_index"].dataType != LongType():
         raise ValueError("Bronze source_row_index is not BIGINT")
-    rows = frame.collect()
-    if len(rows) != manifest["row_count"]:
+    if frame.count() != manifest["row_count"]:
         raise ValueError("Bronze row count does not match manifest")
-    if any(row.batch_id != manifest["batch_id"] for row in rows):
+    if frame.filter(frame.batch_id != manifest["batch_id"]).limit(1).count():
         raise ValueError("Bronze row batch identity does not match manifest")
-    if any(row.source_row_index is None for row in rows):
+    if frame.filter(frame.source_row_index.isNull()).limit(1).count():
         raise ValueError("Bronze source_row_index contains null")
-    indices = [row.source_row_index for row in rows]
-    if len(set(indices)) != len(indices):
+    index_counts = frame.agg(
+        F.count("source_row_index").alias("non_null_count"),
+        F.countDistinct("source_row_index").alias("distinct_count"),
+    ).collect()[0]
+    if index_counts.non_null_count != index_counts.distinct_count:
         raise ValueError("Bronze source_row_index is not unique")
-    rows = sorted(rows, key=lambda row: row.source_row_index)
-    hashes = [row.payload_hash for row in rows]
-    if hashes != manifest["payload_hashes"]:
-        raise ValueError("Bronze payload hashes do not match manifest")
-    return rows
+    expected_hashes = manifest["payload_hashes"]
+    ordered_hashes = frame.select("source_row_index", "payload_hash").orderBy(
+        "source_row_index"
+    )
+    for position, row in enumerate(ordered_hashes.toLocalIterator()):
+        if row.payload_hash != expected_hashes[position]:
+            raise ValueError("Bronze payload hashes do not match manifest")
 
 
 def _schemas() -> dict[str, StructType]:
@@ -414,6 +426,60 @@ def _merge(
     return f"{table}-verified"
 
 
+def _normalized_table_frame(
+    frame,
+    normalizer,
+    table: str,
+    parquet_key: str,
+    schema: StructType,
+):
+    """Normalize one target table on Spark workers without driver collection."""
+    decimal_fields = tuple(
+        field.name
+        for field in schema.fields
+        if isinstance(field.dataType, DecimalType)
+    )
+
+    def normalize_partition(rows):
+        for row in rows:
+            row_values = row.asDict()
+            row_values["ingested_at"] = bronze_parquet_timestamp(
+                row_values["ingested_at"]
+            )
+            converted = SimpleNamespace(**row_values)
+            normalized = normalizer(converted, parquet_key)
+            for record in normalized.get(table, ()):
+                result = dict(record)
+                for field in decimal_fields:
+                    if result.get(field) is not None:
+                        result[field] = Decimal(str(result[field]))
+                yield result
+
+    return frame.sparkSession.createDataFrame(
+        frame.rdd.mapPartitions(normalize_partition), schema=schema
+    )
+
+
+def _merge_frame(
+    spark: SparkSession,
+    table: str,
+    frame,
+    key: str,
+) -> str:
+    view = f"t03c_{table}"
+    frame.createOrReplaceTempView(view)
+    target = f"travel.{SILVER_NAMESPACE}.{table}"
+    columns = frame.columns
+    insert_columns = ", ".join(columns)
+    insert_values = ", ".join(f"s.{column}" for column in columns)
+    spark.sql(
+        f"MERGE INTO {target} t USING {view} s ON t.{key}=s.{key} "
+        f"WHEN MATCHED THEN UPDATE SET * "
+        f"WHEN NOT MATCHED THEN INSERT ({insert_columns}) VALUES ({insert_values})"
+    )
+    return f"{table}-verified"
+
+
 def _snapshot_ref(spark: SparkSession, table: str) -> str | None:
     rows = spark.sql(
         f"SELECT snapshot_id FROM travel.{SILVER_NAMESPACE}.{table}.snapshots "
@@ -447,7 +513,15 @@ def main() -> None:
     parser.add_argument("--manifest-key", required=True)
     parser.add_argument("--bucket", default="travel-lakehouse")
     parser.add_argument("--fail-after-table")
+    parser.add_argument(
+        "--chunk-size",
+        type=int,
+        default=256,
+        help="maximum Bronze rows held by the Python driver per normalization chunk",
+    )
     args = parser.parse_args()
+    if args.chunk_size < 1:
+        parser.error("--chunk-size must be positive")
     if (
         not args.manifest_key.strip()
         or "<" in args.manifest_key
@@ -526,25 +600,12 @@ def main() -> None:
             )
             return
 
-        rows = _bronze_rows(spark, args.bucket, manifest)
         normalizer = {
             "tripadvisor": normalize_tripadvisor_row,
             "foody": normalize_foody_row,
             "tiktok": normalize_tiktok_row,
             "vexere": normalize_vexere_row,
         }[manifest["source_id"]]
-        records: dict[str, list[dict[str, Any]]] = {}
-        for row in rows:
-            row_values = row.asDict()
-            row_values["ingested_at"] = bronze_parquet_timestamp(
-                row_values["ingested_at"]
-            )
-            converted = SimpleNamespace(**row_values)
-            normalized = normalizer(converted, manifest["parquet_key"])
-            for table, values in normalized.items():
-                records.setdefault(table, []).extend(values)
-        computed_nested_count = nested_input_count(manifest["source_id"], records)
-        reconcile_manifest_nested_count(manifest, computed_nested_count)
         now = datetime.now(timezone.utc).replace(tzinfo=None)
         run_id = hashlib.sha256(
             f"{manifest['source_id']}|{manifest['batch_id']}|{NORMALIZATION_VERSION}|1".encode()
@@ -556,14 +617,11 @@ def main() -> None:
             "normalization_version": NORMALIZATION_VERSION,
             "attempt": 1,
             "status": "partial",
-            "input_row_count": len(rows),
-            "accepted_row_count": len(rows),
+            "input_row_count": manifest["row_count"],
+            "accepted_row_count": 0,
             "rejected_row_count": 0,
-            "nested_input_count": computed_nested_count,
-            "target_counts": {
-                table: len(records.get(table, []))
-                for table in records
-            },
+            "nested_input_count": 0,
+            "target_counts": {},
             "input_schema_fingerprint": input_fingerprint,
             "target_schema_fingerprint": target_fingerprint,
             "started_at": now,
@@ -578,29 +636,62 @@ def main() -> None:
             schemas["normalization_run"],
             "run_id",
         )
-        def write_table(table: str) -> str:
-            key = {
-                "source_record": "source_record_sk",
-                "place": "place_id",
-                "place_rating": "place_rating_id",
-                "review": "review_id",
-                "source_entity_mapping": "mapping_id",
-                "social_content": "content_id",
-                "social_engagement": "engagement_id",
-                "social_comment": "comment_id",
-                "transport_route": "transport_id",
-            }[table]
-            return _merge(spark, table, records.get(table, []), schemas[table], key)
 
-        execute_table_writes(
-            tables,
-            write_table,
-            fail_after_table=args.fail_after_table,
+        table_keys = {
+            "source_record": "source_record_sk",
+            "place": "place_id",
+            "place_rating": "place_rating_id",
+            "review": "review_id",
+            "source_entity_mapping": "mapping_id",
+            "social_content": "content_id",
+            "social_engagement": "engagement_id",
+            "social_comment": "comment_id",
+            "transport_route": "transport_id",
+        }
+        target_counts: dict[str, int] = {}
+        failure_injected = False
+
+        with _bronze_frame(spark, args.bucket, manifest) as frame:
+            for table in tables:
+                normalized_frame = _normalized_table_frame(
+                    frame,
+                    normalizer,
+                    table,
+                    manifest["parquet_key"],
+                    schemas[table],
+                )
+                count = normalized_frame.count()
+                target_counts[table] = count
+                if count:
+                    _merge_frame(spark, table, normalized_frame, table_keys[table])
+                if args.fail_after_table == table and not failure_injected:
+                    failure_injected = True
+                    raise RuntimeError(f"injected failure after {table}")
+
+        processed_rows = manifest["row_count"]
+        computed_nested_count = {
+            "tripadvisor": target_counts.get("review", 0),
+            "tiktok": target_counts.get("social_comment", 0),
+            "foody": 0,
+            "vexere": 0,
+        }[manifest["source_id"]]
+        reconcile_manifest_nested_count(manifest, computed_nested_count)
+        run.update(
+            accepted_row_count=processed_rows,
+            nested_input_count=computed_nested_count,
+            target_counts=target_counts,
+        )
+        _merge(
+            spark,
+            "normalization_run",
+            [run],
+            schemas["normalization_run"],
+            "run_id",
         )
         release_refs = {
             table: snapshot
             for table in tables
-            if records.get(table)
+            if target_counts.get(table, 0)
             and (snapshot := _snapshot_ref(spark, table)) is not None
         }
         run_snapshot = _snapshot_ref(spark, "normalization_run")
