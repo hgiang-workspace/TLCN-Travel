@@ -14,6 +14,7 @@ from travel_intelligence.common.configuration import (
     default_config_paths,
     load_validated,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.sentiment.enrichment import (
     AspectSegmenter,
     EnrichmentError,
@@ -39,8 +40,9 @@ def build_spark():
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t04c-tripadvisor-sentiment")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t04c-tripadvisor-sentiment")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
@@ -187,7 +189,10 @@ def main() -> int:
             if chunk_index > chunks_to_run:
                 break
             chunk = occurrences[start : start + args.chunk_size]
-            expected_aspects = sum(len(segmenter.segment(item.review_text)) for item in chunk)
+            chunk_segments = tuple(
+                segmenter.segment(item.review_text) for item in chunk
+            )
+            expected_aspects = sum(len(segments) for segments in chunk_segments)
             run_id = args.processing_run_id if args.processing_run_id and chunk_count == 1 else hashlib.sha256(
                 f"{chunk[0].source_release_id}|{classifier.model_fingerprint}|{pipeline_fp}|{aspect_fp}|chunk:{chunk_index}:{chunk_count}".encode()
             ).hexdigest()
@@ -224,6 +229,7 @@ def main() -> int:
                     segmenter,
                     config_fingerprint=config_fingerprint,
                     processing_run_id=run_id,
+                    precomputed_segments=chunk_segments,
                 )
                 exclusions = len(batch.exclusions)
                 store.upsert_reviews(batch.review_rows)

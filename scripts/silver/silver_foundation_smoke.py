@@ -7,6 +7,7 @@ import re
 
 from pyspark.sql import SparkSession
 
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.silver.foundation import SILVER_NAMESPACE, SILVER_TABLES
 
 
@@ -19,8 +20,9 @@ def required(name: str) -> str:
 
 def build_spark() -> SparkSession:
     return (
-        SparkSession.builder.appName("t03b-silver-foundation")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t03b-silver-foundation")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

@@ -139,6 +139,35 @@ def test_enrichment_rows_are_lineage_preserving_and_replay_stable():
     assert changed_batch.review_rows[0]["review_sentiment_id"] != first.review_rows[0]["review_sentiment_id"]
 
 
+def test_enrichment_reuses_precomputed_segments():
+    pipeline = _pipeline_without_optional_sentence_backend()
+    keywords, _ = load_validated("aspect_keywords", default_config_paths()["aspect_keywords"])
+    delegate = AspectSegmenter(pipeline, keywords)
+
+    class CountingSegmenter:
+        def __init__(self):
+            self.calls = 0
+            self.segmentation = delegate.segmentation
+
+        def segment(self, text):
+            self.calls += 1
+            return delegate.segment(text)
+
+    segmenter = CountingSegmenter()
+    occurrence = select_tripadvisor_reviews([review()], {"batch-1": committed_run()})[0]
+    segments = segmenter.segment(occurrence.review_text)
+    enrich_reviews(
+        [occurrence],
+        FakeClassifier(),
+        segmenter,
+        config_fingerprint="sha256:config",
+        processing_run_id="run-1",
+        precomputed_segments=(segments,),
+    )
+
+    assert segmenter.calls == 1
+
+
 class FakeStore:
     def __init__(self, fail_writes=False):
         self.fail_writes = fail_writes

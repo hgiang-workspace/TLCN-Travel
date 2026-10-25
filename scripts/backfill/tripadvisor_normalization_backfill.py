@@ -16,6 +16,7 @@ from travel_intelligence.backfill.normalization import (
     plan_backfill,
     subprocess_runner,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 
 
 def required(name: str) -> str:
@@ -56,8 +57,9 @@ def build_spark() -> Any:
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t05c-tripadvisor-normalization-plan")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t05c-tripadvisor-normalization-plan")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

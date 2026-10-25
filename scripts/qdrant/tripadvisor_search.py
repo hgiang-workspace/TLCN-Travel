@@ -14,6 +14,7 @@ from travel_intelligence.common.configuration import (
     default_config_paths,
     load_validated,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.qdrant.indexing import MiniLMEmbedder
 from travel_intelligence.qdrant.provisioning import build_http_client
 from travel_intelligence.qdrant.retrieval import SemanticRetriever
@@ -30,8 +31,9 @@ def build_spark():
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t04e-tripadvisor-search")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t04e-tripadvisor-search")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

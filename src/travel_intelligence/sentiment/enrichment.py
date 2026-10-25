@@ -396,19 +396,27 @@ def enrich_reviews(
     config_fingerprint: str,
     processing_run_id: str,
     processed_at: datetime | None = None,
+    precomputed_segments: Sequence[tuple[AspectSegment, ...]] | None = None,
 ) -> EnrichmentBatch:
+    occurrence_list = tuple(occurrences)
+    if precomputed_segments is not None and len(precomputed_segments) != len(occurrence_list):
+        raise ValueError("precomputed_segments must align with occurrences")
     timestamp = processed_at or datetime.now(timezone.utc).replace(tzinfo=None)
     review_rows: list[dict[str, Any]] = []
     aspect_rows: list[dict[str, Any]] = []
     exclusions: list[dict[str, Any]] = []
     prepared: list[tuple[TripAdvisorReviewOccurrence, str, tuple[TextChunk, ...], tuple[AspectSegment, ...]]] = []
-    for occurrence in occurrences:
+    for index, occurrence in enumerate(occurrence_list):
         try:
             text = validate_text(occurrence.review_text, field="review_text")
             chunks = token_aware_chunks(
                 text, classifier.tokenizer, max_length=classifier.max_length
             ) if hasattr(classifier, "tokenizer") else (_single_chunk(text),)
-            segments = segmenter.segment(text)
+            segments = (
+                precomputed_segments[index]
+                if precomputed_segments is not None
+                else segmenter.segment(text)
+            )
             prepared.append((occurrence, text, chunks, segments))
         except EnrichmentError as error:
             exclusions.append({"review_id": occurrence.review_id, "reason": str(error)})

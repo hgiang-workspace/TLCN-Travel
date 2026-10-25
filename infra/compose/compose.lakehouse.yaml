@@ -150,6 +150,77 @@ services:
       - "127.0.0.1:18080:18080"
     restart: unless-stopped
 
+  spark-master:
+    image: travel-lakehouse-g01-spark:latest
+    build:
+      context: ../..
+      dockerfile: infra/spark/Dockerfile
+    user: "185:185"
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command:
+      - org.apache.spark.deploy.master.Master
+      - --host
+      - spark-master
+      - --port
+      - "7077"
+      - --webui-port
+      - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    ports:
+      - "127.0.0.1:8088:8080"
+    restart: unless-stopped
+
+  spark-worker:
+    image: travel-lakehouse-g01-spark:latest
+    build:
+      context: ../..
+      dockerfile: infra/spark/Dockerfile
+    user: "185:185"
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command:
+      - org.apache.spark.deploy.worker.Worker
+      - spark://spark-master:7077
+      - --cores
+      - "${SPARK_WORKER_CORES:-4}"
+      - --memory
+      - "${SPARK_WORKER_MEMORY:-4g}"
+      - --webui-port
+      - "8081"
+      - --work-dir
+      - /tmp/spark-worker
+    environment:
+      ICEBERG_DB_USER: ${ICEBERG_DB_USER:?ICEBERG_DB_USER is required}
+      ICEBERG_DB_PASSWORD: ${ICEBERG_DB_PASSWORD:?ICEBERG_DB_PASSWORD is required}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?MINIO_ROOT_USER is required}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?MINIO_ROOT_PASSWORD is required}
+      AWS_REGION: us-east-1
+      PYTHONPATH: /workspace/src
+    volumes:
+      - spark_events:/opt/spark-events
+      - ../spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
+      - ../..:/workspace:ro
+    depends_on:
+      spark-master:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      minio-bootstrap:
+        condition: service_completed_successfully
+      spark-events-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    ports:
+      - "127.0.0.1:8089:8081"
+    restart: unless-stopped
+
   spark:
     image: travel-lakehouse-g01-spark:latest
     build:
@@ -162,17 +233,40 @@ services:
         condition: service_completed_successfully
       spark-events-init:
         condition: service_completed_successfully
+      spark-master:
+        condition: service_healthy
+      spark-worker:
+        condition: service_healthy
     environment:
       ICEBERG_DB_USER: ${ICEBERG_DB_USER:?ICEBERG_DB_USER is required}
       ICEBERG_DB_PASSWORD: ${ICEBERG_DB_PASSWORD:?ICEBERG_DB_PASSWORD is required}
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:?MINIO_ROOT_USER is required}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?MINIO_ROOT_PASSWORD is required}
       AWS_REGION: us-east-1
+      PYTHONPATH: /workspace/src
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_DRIVER_HOST: spark
+      SPARK_DRIVER_BIND_ADDRESS: 0.0.0.0
+      SPARK_DRIVER_PORT: "37001"
+      SPARK_BLOCK_MANAGER_PORT: "37002"
+      SPARK_APPLICATION_CORES: ${SPARK_APPLICATION_CORES:-2}
+      SPARK_EXECUTOR_CORES: ${SPARK_EXECUTOR_CORES:-2}
+      SPARK_EXECUTOR_MEMORY: ${SPARK_EXECUTOR_MEMORY:-2g}
     volumes:
       - spark_events:/opt/spark-events
       - ../spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
-    entrypoint: ["/opt/entrypoint.sh", "driver", "/opt/g01/spark_iceberg_smoke.py"]
-    profiles: ["jobs"]
+      - ../..:/workspace:ro
+    expose:
+      - "37001"
+      - "37002"
+    entrypoint: ["/bin/bash", "-lc"]
+    command: ["trap 'exit 0' TERM INT; while :; do sleep 3600; done"]
+    healthcheck:
+      test: ["CMD-SHELL", "kill -0 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
 
 volumes:
   minio_data:

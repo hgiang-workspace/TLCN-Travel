@@ -3,6 +3,8 @@ import sys
 
 from pyspark.sql import SparkSession
 
+from travel_intelligence.common.spark import configure_spark_builder
+
 
 def required_env(name: str) -> str:
     value = os.environ.get(name)
@@ -13,8 +15,7 @@ def required_env(name: str) -> str:
 
 def build_spark() -> SparkSession:
     return (
-        SparkSession.builder.appName("g01-iceberg-smoke")
-        .master("local[2]")
+        configure_spark_builder(SparkSession.builder.appName("g01-iceberg-smoke"))
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

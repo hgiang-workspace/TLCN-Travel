@@ -30,6 +30,7 @@ from pyspark.sql.types import (
     TimestampType,
 )
 
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.silver.foundation import (
     NORMALIZATION_VERSION,
     SILVER_NAMESPACE,
@@ -57,8 +58,9 @@ def required(name: str) -> str:
 
 def build_spark() -> SparkSession:
     return (
-        SparkSession.builder.appName("t03c-tripadvisor-foody-silver")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t03c-tripadvisor-foody-silver")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

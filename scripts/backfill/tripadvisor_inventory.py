@@ -14,6 +14,7 @@ from travel_intelligence.backfill.inventory import (
     build_inventory_report,
     human_summary,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.qdrant.provisioning import (
     build_http_client,
     load_provisioning_configs,
@@ -31,8 +32,9 @@ def build_spark() -> Any:
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t05a-tripadvisor-inventory")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t05a-tripadvisor-inventory")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",

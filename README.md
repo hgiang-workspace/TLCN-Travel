@@ -36,6 +36,28 @@ after application containers exit. Start it with:
 docker compose --env-file .env -f infra/compose/compose.lakehouse.yaml up -d spark-history-server
 ```
 
+Spark runs in single-host Standalone mode with one master and one worker. The
+master UI is available at `http://localhost:8088`, and the worker UI at
+`http://localhost:8089`. Start the cluster and its stable client-mode driver
+with:
+
+```bash
+docker compose --env-file .env -f infra/compose/compose.lakehouse.yaml \
+  up -d spark-master spark-worker spark
+```
+
+Submit Python jobs from the stable `spark` driver service so executors can
+connect back to its fixed RPC and block-manager ports:
+
+```bash
+docker compose --env-file .env -f infra/compose/compose.lakehouse.yaml \
+  exec -T spark /opt/entrypoint.sh driver \
+  /workspace/scripts/smoke/spark_iceberg_smoke.py verify
+```
+
+Application code chooses `SPARK_MASTER_URL` from the environment and falls back
+to `local[2]` only outside the Compose Standalone runtime.
+
 Product logic, source ingestion, orchestration, and serving applications remain
 out of scope.
 

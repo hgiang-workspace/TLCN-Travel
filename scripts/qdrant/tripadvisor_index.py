@@ -15,6 +15,7 @@ from travel_intelligence.common.configuration import (
     default_config_paths,
     load_validated,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.qdrant.indexing import (
     MiniLMEmbedder,
     SparkIndexRunLedger,
@@ -41,8 +42,7 @@ def build_spark():
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t04d-tripadvisor-index")
-        .master("local[2]")
+        configure_spark_builder(SparkSession.builder.appName("t04d-tripadvisor-index"))
         .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions")
         .config("spark.sql.catalog.travel", "org.apache.iceberg.spark.SparkCatalog")
         .config("spark.sql.catalog.travel.type", "jdbc")

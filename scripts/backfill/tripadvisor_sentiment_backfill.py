@@ -22,6 +22,7 @@ from travel_intelligence.common.configuration import (
     default_config_paths,
     load_validated,
 )
+from travel_intelligence.common.spark import configure_spark_builder
 from travel_intelligence.silver.tripadvisor_source import (
     TRIPADVISOR_REVIEW_SQL,
     select_tripadvisor_reviews,
@@ -39,8 +40,9 @@ def build_spark() -> Any:
     from pyspark.sql import SparkSession
 
     return (
-        SparkSession.builder.appName("t05d-tripadvisor-sentiment-plan")
-        .master("local[2]")
+        configure_spark_builder(
+            SparkSession.builder.appName("t05d-tripadvisor-sentiment-plan")
+        )
         .config(
             "spark.sql.extensions",
             "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
