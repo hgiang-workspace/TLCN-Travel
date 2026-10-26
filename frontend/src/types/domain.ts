@@ -1,0 +1,9 @@
+export type LoadState='ready'|'loading'|'empty'|'error'|'insufficient'
+export type DomainId='all'|'destination'|'stay'|'food'|'transport'
+export interface Kpi{label:string;value:string;note?:string}
+export interface Aspect{label:string;score:number}
+export interface TrendPoint{month:string;positive:number}
+export interface Place{id:string;name:string;domain:Exclude<DomainId,'all'>;rating?:number;reviewCount?:number;match:string;location:string;aspects:Aspect[]}
+export interface OverviewData{kpis:Kpi[];tiers:{name:string;description:string;color:string}[]}
+export interface MarketData{kpis:Kpi[];trend:TrendPoint[];aspects:Aspect[]}
+export interface GeoContext{province:string;period:string}
