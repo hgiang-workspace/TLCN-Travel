@@ -174,7 +174,7 @@ class QdrantHttpClient:
         collection = quote(name, safe="")
         self._request(
             "PUT",
-            f"/collections/{collection}/points",
+            f"/collections/{collection}/points?wait=true",
             {"points": [{"id": point_id, "vector": vector, "payload": payload}]},
         )
 
@@ -182,7 +182,7 @@ class QdrantHttpClient:
         collection = quote(name, safe="")
         self._request(
             "PUT",
-            f"/collections/{collection}/points",
+            f"/collections/{collection}/points?wait=true",
             {"points": points},
         )
 

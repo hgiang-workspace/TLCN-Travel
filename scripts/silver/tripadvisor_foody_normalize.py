@@ -225,6 +225,13 @@ def _schemas() -> dict[str, StructType]:
             StructField("place_name", StringType(), False),
             StructField("place_type", StringType(), True),
             StructField("province", StringType(), True),
+            StructField("province_raw", StringType(), True),
+            StructField("province_normalized", StringType(), True),
+            StructField("province_geo_id", StringType(), True),
+            StructField("province_canonical", StringType(), True),
+            StructField("province_resolution_status", StringType(), True),
+            StructField("province_match_method", StringType(), True),
+            StructField("province_rule_version", StringType(), True),
             StructField("district", StringType(), True),
             StructField("address", StringType(), True),
             StructField("latitude", DoubleType(), True),
@@ -389,6 +396,28 @@ def _schemas() -> dict[str, StructType]:
     }
 
 
+def _ensure_place_province_columns(spark: SparkSession) -> None:
+    """Add canonical province columns to an existing Iceberg place table."""
+    target = f"travel.{SILVER_NAMESPACE}.place"
+    existing = set(spark.table(target).columns)
+    additions = (
+        ("province_raw", "STRING"),
+        ("province_normalized", "STRING"),
+        ("province_geo_id", "STRING"),
+        ("province_canonical", "STRING"),
+        ("province_resolution_status", "STRING"),
+        ("province_match_method", "STRING"),
+        ("province_rule_version", "STRING"),
+    )
+    missing = [
+        f"{name} {data_type}"
+        for name, data_type in additions
+        if name not in existing
+    ]
+    if missing:
+        spark.sql(f"ALTER TABLE {target} ADD COLUMNS ({', '.join(missing)})")
+
+
 def _decimalize(
     record: dict[str, Any], schema: StructType
 ) -> dict[str, Any]:
@@ -544,6 +573,7 @@ def main() -> None:
         for table in SILVER_TABLES:
             spark.sql(table.create_sql())
         schemas = _schemas()
+        _ensure_place_province_columns(spark)
         target_tables = {
             "tripadvisor": (
                 "source_record",

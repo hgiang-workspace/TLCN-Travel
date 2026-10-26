@@ -21,6 +21,7 @@ from travel_intelligence.silver.normalization import (
     reconcile_manifest_nested_count,
     validate_and_normalize_manifest,
 )
+from travel_intelligence.silver.province import normalize_province
 
 
 def test_nested_input_count_uses_explicit_source_mapping():
@@ -113,6 +114,29 @@ def test_tripadvisor_review_occurrences_and_lineage():
         row["source_record_sk"] == normalized["source_record"][0]["source_record_sk"]
         for row in normalized["review"]
     )
+
+
+@pytest.mark.parametrize(
+    ("raw", "canonical"),
+    [
+        ("TP. HCM", "Hồ Chí Minh"),
+        ("Da Nang", "Đà Nẵng"),
+        ("Khánh Hoà", "Khánh Hòa"),
+    ],
+)
+def test_province_rules_normalize_approved_aliases(raw, canonical):
+    result = normalize_province(raw)
+    assert result["province_raw"] == raw
+    assert result["province_canonical"] == canonical
+    assert result["province_resolution_status"] == "resolved"
+    assert result["province_match_method"] == "approved_alias"
+
+
+def test_province_rules_do_not_infer_unknown_values():
+    result = normalize_province("Một địa danh không có trong rule")
+    assert result["province_canonical"] is None
+    assert result["province_geo_id"] is None
+    assert result["province_resolution_status"] == "unknown"
 
 
 def test_foody_has_rating_and_no_fabricated_reviews():

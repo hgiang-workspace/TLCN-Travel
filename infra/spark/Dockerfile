@@ -27,6 +27,14 @@ RUN python3 -m pip install --no-cache-dir \
 
 RUN python3 -m pip install --no-cache-dir "underthesea==9.5.0"
 
+ENV HF_HOME=/opt/spark/cache/huggingface \
+    SENTENCE_TRANSFORMERS_HOME=/opt/spark/cache/sentence-transformers
+
+RUN mkdir -p \
+        /opt/spark/cache/huggingface \
+        /opt/spark/cache/sentence-transformers \
+    && chown -R 185:185 /opt/spark/cache
+
 COPY scripts/smoke/spark_iceberg_smoke.py /opt/g01/spark_iceberg_smoke.py
 
 USER 185

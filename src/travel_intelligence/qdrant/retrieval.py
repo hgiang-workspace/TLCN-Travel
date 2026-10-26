@@ -47,6 +47,7 @@ class ActiveGeneration:
 ALLOWED_FILTERS = frozenset(
     {
         "place_id",
+        "province_geo_id",
         "aspect",
         "sentiment",
         "source_id",

@@ -65,7 +65,11 @@ SILVER_TABLES: tuple[SilverTable, ...] = (
     SilverTable(
         "place",
         """place_id STRING NOT NULL, place_name STRING NOT NULL,
-        place_type STRING, province STRING, district STRING, address STRING,
+        place_type STRING, province STRING, province_raw STRING,
+        province_normalized STRING, province_geo_id STRING,
+        province_canonical STRING, province_resolution_status STRING,
+        province_match_method STRING, province_rule_version STRING,
+        district STRING, address STRING,
         latitude DOUBLE, longitude DOUBLE, identity_status STRING NOT NULL,
         identity_method STRING NOT NULL, created_at TIMESTAMP NOT NULL,
         updated_at TIMESTAMP NOT NULL""",

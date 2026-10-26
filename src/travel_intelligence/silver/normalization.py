@@ -9,6 +9,7 @@ from decimal import Decimal
 from typing import Any
 
 from .foundation import NORMALIZATION_VERSION, validate_bronze_manifest
+from .province import normalize_province
 
 
 def _id(*parts: object) -> str:
@@ -138,11 +139,13 @@ def _place_row(
     if not isinstance(name, str) or not name:
         return None, None
     now = _timestamp(row.ingested_at)
+    province = normalize_province(payload.get("province"))
     return place_id, {
         "place_id": place_id,
         "place_name": name,
         "place_type": payload.get("entity_type"),
         "province": payload.get("province"),
+        **province,
         "district": payload.get("district"),
         "address": payload.get("address"),
         "latitude": payload.get("lat"),

@@ -7,6 +7,7 @@ from travel_intelligence.common.configuration import (
     load_validated,
 )
 from travel_intelligence.qdrant.provisioning import (
+    QdrantHttpClient,
     QdrantProvisioningError,
     expand_env,
     provision,
@@ -119,3 +120,35 @@ def test_environment_url_expansion_and_missing_required_variable():
     assert expand_env(default_url, {"QDRANT_URL": "x"}) == "x"
     with pytest.raises(QdrantProvisioningError, match="environment variable"):
         expand_env(required_url, {})
+
+
+def test_http_upserts_wait_until_qdrant_applies_the_write(monkeypatch):
+    requested_urls = []
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return b'{"result":{"status":"completed"}}'
+
+    def fake_urlopen(request, timeout):
+        requested_urls.append(request.full_url)
+        return Response()
+
+    monkeypatch.setattr(
+        "travel_intelligence.qdrant.provisioning.urlopen", fake_urlopen
+    )
+    client = QdrantHttpClient("http://qdrant:6333")
+    client.upsert_point("reviews", "point-1", [0.1], {"kind": "single"})
+    client.upsert_points(
+        "reviews", [{"id": "point-2", "vector": [0.2], "payload": {}}]
+    )
+
+    assert requested_urls == [
+        "http://qdrant:6333/collections/reviews/points?wait=true",
+        "http://qdrant:6333/collections/reviews/points?wait=true",
+    ]

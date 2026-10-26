@@ -6,6 +6,7 @@ import pytest
 
 from travel_intelligence.qdrant.indexing import (
     IndexingError,
+    MiniLMEmbedder,
     TextChunk,
     build_aspect_points,
     build_review_points,
@@ -14,6 +15,48 @@ from travel_intelligence.qdrant.indexing import (
     upsert_with_retry,
     validate_vector,
 )
+
+
+class ExpandingDecodeTokenizer:
+    """Simulate a tokenizer whose decoded slices need one extra token."""
+
+    def encode(
+        self, text, *, add_special_tokens, truncation, verbose
+    ):
+        values = list(range(6)) if text == "original" else text.split()
+        if add_special_tokens:
+            return ["cls", *values, "sep"]
+        return values
+
+    def decode(
+        self, token_ids, *, skip_special_tokens, clean_up_tokenization_spaces
+    ):
+        return " ".join([*(str(value) for value in token_ids), "expanded"])
+
+    def num_special_tokens_to_add(self, *, pair):
+        return 2
+
+
+def test_chunks_recheck_decoded_text_against_model_token_budget():
+    embedder = object.__new__(MiniLMEmbedder)
+    embedder.tokenizer = ExpandingDecodeTokenizer()
+    embedder.max_seq_length = 6
+
+    chunks = embedder.chunks("original")
+
+    assert len(chunks) == 2
+    assert all(
+        len(
+            embedder.tokenizer.encode(
+                chunk.text,
+                add_special_tokens=True,
+                truncation=False,
+                verbose=False,
+            )
+        )
+        <= embedder.max_seq_length
+        for chunk in chunks
+    )
 
 
 class FakeEmbedder:
@@ -36,6 +79,13 @@ def _review():
         "review_text": "Đồ ăn ngon",
         "review_text_hash": "text-hash",
         "place_id": "place-1",
+        "province_raw": "Da Nang",
+        "province_normalized": "da nang",
+        "province_geo_id": "vn-province:test",
+        "province_canonical": "Đà Nẵng",
+        "province_resolution_status": "resolved",
+        "province_match_method": "approved_alias",
+        "province_rule_version": "province-rules-v1",
         "source_id": "tripadvisor",
         "source_record_sk": "source-1",
         "source_release_id": "release-1",
@@ -105,8 +155,10 @@ def test_points_preserve_lineage_and_aspect_occurrence():
     )
     assert len(reviews) == 1
     assert reviews[0][2]["source_release_id"] == "release-1"
+    assert reviews[0][2]["province_geo_id"] == "vn-province:test"
     assert len(aspects) == 2
     assert {item[2]["aspect"] for item in aspects} == {"food", "service"}
+    assert all(item[2]["province_canonical"] == "Đà Nẵng" for item in aspects)
     assert {item[0] for item in aspects}.__len__() == 2
 
 

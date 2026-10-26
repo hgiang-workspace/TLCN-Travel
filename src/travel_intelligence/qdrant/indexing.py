@@ -116,21 +116,40 @@ class MiniLMEmbedder:
     def chunks(self, text: str) -> tuple[TextChunk, ...]:
         if not isinstance(text, str) or not text.strip():
             raise IndexingError("cannot embed empty or invalid text")
-        token_ids = self.tokenizer.encode(text, add_special_tokens=False)
+        token_ids = self.tokenizer.encode(
+            text, add_special_tokens=False, truncation=False, verbose=False
+        )
         special = self.tokenizer.num_special_tokens_to_add(pair=False)
         budget = self.max_seq_length - special
         if budget <= 0:
             raise IndexingError("MiniLM token budget is invalid")
         chunks: list[str] = []
-        for start in range(0, len(token_ids), budget):
-            decoded = self.tokenizer.decode(
-                token_ids[start : start + budget],
-                skip_special_tokens=True,
-                clean_up_tokenization_spaces=False,
-            ).strip()
-            if not decoded:
-                raise IndexingError("token-aware chunk decoded to empty text")
+        start = 0
+        while start < len(token_ids):
+            end = min(start + budget, len(token_ids))
+            while end > start:
+                decoded = self.tokenizer.decode(
+                    token_ids[start:end],
+                    skip_special_tokens=True,
+                    clean_up_tokenization_spaces=False,
+                ).strip()
+                if not decoded:
+                    raise IndexingError("token-aware chunk decoded to empty text")
+                encoded_length = len(
+                    self.tokenizer.encode(
+                        decoded,
+                        add_special_tokens=True,
+                        truncation=False,
+                        verbose=False,
+                    )
+                )
+                if encoded_length <= self.max_seq_length:
+                    break
+                end -= max(1, encoded_length - self.max_seq_length)
+            if end <= start:
+                raise IndexingError("cannot produce a chunk within MiniLM token budget")
             chunks.append(decoded)
+            start = end
         count = len(chunks)
         return tuple(
             TextChunk(i, count, value, sha256_text(value))
@@ -139,6 +158,23 @@ class MiniLMEmbedder:
 
     def encode(self, chunks: Sequence[TextChunk]) -> tuple[list[float], ...]:
         texts = [chunk.text for chunk in chunks]
+        oversized = [
+            chunk.index
+            for chunk in chunks
+            if len(
+                self.tokenizer.encode(
+                    chunk.text,
+                    add_special_tokens=True,
+                    truncation=False,
+                    verbose=False,
+                )
+            )
+            > self.max_seq_length
+        ]
+        if oversized:
+            raise IndexingError(
+                f"MiniLM chunks exceed token budget at indexes: {oversized[:10]}"
+            )
         vectors = self.model.encode(
             texts,
             batch_size=self.batch_size,
@@ -158,46 +194,83 @@ def _finite_confidence(value: Any) -> float:
     return result
 
 
+def _province_payload(row: Mapping[str, Any]) -> dict[str, Any]:
+    """Return rule-based province lineage without inferring missing geography."""
+    return {
+        "province_raw": row.get("province_raw", row.get("province")),
+        "province_normalized": row.get("province_normalized"),
+        "province_geo_id": row.get("province_geo_id"),
+        "province_canonical": row.get("province_canonical"),
+        "province_resolution_status": row.get(
+            "province_resolution_status", "unknown"
+        ),
+        "province_match_method": row.get("province_match_method"),
+        "province_rule_version": row.get("province_rule_version"),
+    }
+
+
 def build_review_points(
     rows: Iterable[Mapping[str, Any]],
     embedder: MiniLMEmbedder,
     *,
     generation: str,
+    input_manifest_id: str | None = None,
+    embedding_batch_size: int = 256,
 ) -> tuple[tuple[str, list[float], dict[str, Any]], ...]:
     points = []
-    for row in rows:
-        text = row.get("review_text")
-        chunks = embedder.chunks(text)
-        vectors = embedder.encode(chunks)
-        identity = str(row["review_sentiment_id"])
-        for chunk, vector in zip(chunks, vectors, strict=True):
-            payload = {
-                "review_sentiment_id": identity,
-                "review_id": str(row["review_id"]),
+    pending: list[tuple[str, TextChunk, dict[str, Any]]] = []
+
+    def flush() -> None:
+        if not pending:
+            return
+        vectors = embedder.encode([item[1] for item in pending])
+        for (identity, chunk, payload), vector in zip(pending, vectors, strict=True):
+            complete_payload = {
+                **payload,
                 "chunk_index": chunk.index,
                 "chunk_count": chunk.count,
                 "chunk_text": chunk.text,
                 "chunk_text_hash": chunk.text_hash,
-                "text_hash": str(row["review_text_hash"]),
-                "place_id": row.get("place_id"),
-                "source_id": str(row["source_id"]),
-                "source_record_sk": str(row["source_record_sk"]),
-                "source_release_id": str(row["source_release_id"]),
-                "enrichment_run_id": str(row["processing_run_id"]),
-                "sentiment": str(row["sentiment_label"]),
-                "confidence": _finite_confidence(row["confidence"]),
-                "sentiment_model_id": str(row["model_id"]),
-                "sentiment_model_fingerprint": str(row["model_fingerprint"]),
-                "sentiment_config_fingerprint": str(row["config_fingerprint"]),
-                "embedding_model_id": embedder.model_id,
-                "embedding_model_revision": embedder.revision,
-                "embedding_model_fingerprint": embedder.model_fingerprint,
-                "embedding_config_fingerprint": embedder.config_fingerprint,
-                "index_generation": generation,
             }
             points.append(
-                (point_id(generation, "review", identity, chunk.index), vector, payload)
+                (
+                    point_id(generation, "review", identity, chunk.index),
+                    vector,
+                    complete_payload,
+                )
             )
+        pending.clear()
+
+    for row in rows:
+        text = row.get("review_text")
+        chunks = embedder.chunks(text)
+        identity = str(row["review_sentiment_id"])
+        payload = {
+            "review_sentiment_id": identity,
+            "review_id": str(row["review_id"]),
+            "text_hash": str(row["review_text_hash"]),
+            "place_id": row.get("place_id"),
+            "source_id": str(row["source_id"]),
+            "source_record_sk": str(row["source_record_sk"]),
+            "source_release_id": str(row["source_release_id"]),
+            "enrichment_run_id": str(row["processing_run_id"]),
+            "input_manifest_id": input_manifest_id,
+            "sentiment": str(row["sentiment_label"]),
+            "confidence": _finite_confidence(row["confidence"]),
+            "sentiment_model_id": str(row["model_id"]),
+            "sentiment_model_fingerprint": str(row["model_fingerprint"]),
+            "sentiment_config_fingerprint": str(row["config_fingerprint"]),
+            "embedding_model_id": embedder.model_id,
+            "embedding_model_revision": embedder.revision,
+            "embedding_model_fingerprint": embedder.model_fingerprint,
+            "embedding_config_fingerprint": embedder.config_fingerprint,
+            "index_generation": generation,
+        }
+        payload.update(_province_payload(row))
+        pending.extend((identity, chunk, payload) for chunk in chunks)
+        if len(pending) >= embedding_batch_size:
+            flush()
+    flush()
     return tuple(points)
 
 
@@ -207,51 +280,73 @@ def build_aspect_points(
     *,
     generation: str,
     reviews_by_id: Mapping[str, Mapping[str, Any]],
+    input_manifest_id: str | None = None,
+    embedding_batch_size: int = 256,
 ) -> tuple[tuple[str, list[float], dict[str, Any]], ...]:
     points = []
+    pending: list[tuple[str, TextChunk, dict[str, Any]]] = []
+
+    def flush() -> None:
+        if not pending:
+            return
+        vectors = embedder.encode([item[1] for item in pending])
+        for (identity, chunk, payload), vector in zip(pending, vectors, strict=True):
+            complete_payload = {
+                **payload,
+                "segment_chunk_index": chunk.index,
+                "segment_chunk_count": chunk.count,
+                "segment_text": chunk.text,
+                "segment_chunk_text_hash": chunk.text_hash,
+            }
+            points.append(
+                (
+                    point_id(generation, "aspect", identity, chunk.index),
+                    vector,
+                    complete_payload,
+                )
+            )
+        pending.clear()
+
     for row in rows:
         parent = reviews_by_id[str(row["review_sentiment_id"])]
         chunks = embedder.chunks(str(row["segment_text"]))
-        vectors = embedder.encode(chunks)
         identity = str(row["aspect_sentiment_id"])
-        for chunk, vector in zip(chunks, vectors, strict=True):
-            payload = {
-                "aspect_sentiment_id": identity,
-                "review_sentiment_id": str(row["review_sentiment_id"]),
-                "review_id": str(row["review_id"]),
-                "segment_index": int(row["segment_ordinal"]),
-                "segment_chunk_index": chunk.index,
-                "segment_chunk_count": chunk.count,
-                "segment_text_hash": str(row["segment_text_hash"]),
-                "segment_chunk_text_hash": chunk.text_hash,
-                "segment_text": chunk.text,
-                "segment_start_char": row.get("segment_start_char"),
-                "segment_end_char": row.get("segment_end_char"),
-                "sentence_index": row.get("sentence_ordinal"),
-                "clause_index": row.get("clause_ordinal"),
-                "aspect": str(row["aspect"]),
-                "aspect_keyword": row.get("matched_keyword"),
-                "aspect_negated": bool(row["negation_detected"]),
-                "negation_metadata": row.get("negation_metadata"),
-                "place_id": parent.get("place_id"),
-                "source_id": str(row["source_id"]),
-                "source_record_sk": str(row["source_record_sk"]),
-                "source_release_id": str(row["source_release_id"]),
-                "enrichment_run_id": str(row["processing_run_id"]),
-                "sentiment": str(row["sentiment_label"]),
-                "confidence": _finite_confidence(row["confidence"]),
-                "sentiment_model_id": str(row["model_id"]),
-                "sentiment_model_fingerprint": str(row["model_fingerprint"]),
-                "sentiment_config_fingerprint": str(row["config_fingerprint"]),
-                "embedding_model_id": embedder.model_id,
-                "embedding_model_revision": embedder.revision,
-                "embedding_model_fingerprint": embedder.model_fingerprint,
-                "embedding_config_fingerprint": embedder.config_fingerprint,
-                "index_generation": generation,
-            }
-            points.append(
-                (point_id(generation, "aspect", identity, chunk.index), vector, payload)
-            )
+        payload = {
+            "aspect_sentiment_id": identity,
+            "review_sentiment_id": str(row["review_sentiment_id"]),
+            "review_id": str(row["review_id"]),
+            "segment_index": int(row["segment_ordinal"]),
+            "segment_text_hash": str(row["segment_text_hash"]),
+            "segment_start_char": row.get("segment_start_char"),
+            "segment_end_char": row.get("segment_end_char"),
+            "sentence_index": row.get("sentence_ordinal"),
+            "clause_index": row.get("clause_ordinal"),
+            "aspect": str(row["aspect"]),
+            "aspect_keyword": row.get("matched_keyword"),
+            "aspect_negated": bool(row["negation_detected"]),
+            "negation_metadata": row.get("negation_metadata"),
+            "place_id": parent.get("place_id"),
+            "source_id": str(row["source_id"]),
+            "source_record_sk": str(row["source_record_sk"]),
+            "source_release_id": str(row["source_release_id"]),
+            "enrichment_run_id": str(row["processing_run_id"]),
+            "input_manifest_id": input_manifest_id,
+            "sentiment": str(row["sentiment_label"]),
+            "confidence": _finite_confidence(row["confidence"]),
+            "sentiment_model_id": str(row["model_id"]),
+            "sentiment_model_fingerprint": str(row["model_fingerprint"]),
+            "sentiment_config_fingerprint": str(row["config_fingerprint"]),
+            "embedding_model_id": embedder.model_id,
+            "embedding_model_revision": embedder.revision,
+            "embedding_model_fingerprint": embedder.model_fingerprint,
+            "embedding_config_fingerprint": embedder.config_fingerprint,
+            "index_generation": generation,
+        }
+        payload.update(_province_payload(parent))
+        pending.extend((identity, chunk, payload) for chunk in chunks)
+        if len(pending) >= embedding_batch_size:
+            flush()
+    flush()
     return tuple(points)
 
 
@@ -325,7 +420,7 @@ CREATE TABLE IF NOT EXISTS travel.silver.review_index_run (
   index_generation STRING NOT NULL,
   source_id STRING NOT NULL,
   source_release_id STRING NOT NULL,
-  enrichment_run_id STRING NOT NULL,
+  enrichment_run_id STRING,
   embedding_model_id STRING NOT NULL,
   embedding_model_revision STRING NOT NULL,
   embedding_model_fingerprint STRING NOT NULL,
@@ -337,6 +432,12 @@ CREATE TABLE IF NOT EXISTS travel.silver.review_index_run (
   actual_aspect_point_count BIGINT NOT NULL,
   review_collection STRING NOT NULL,
   aspect_collection STRING NOT NULL,
+  input_manifest_uri STRING,
+  input_manifest_sha256 STRING,
+  input_manifest_id STRING,
+  input_run_count BIGINT,
+  expected_input_review_count BIGINT,
+  expected_input_aspect_count BIGINT,
   started_at TIMESTAMP NOT NULL,
   finished_at TIMESTAMP,
   error_summary STRING
@@ -354,6 +455,28 @@ class SparkIndexRunLedger:
 
     def create_table(self) -> None:
         self.spark.sql(INDEX_RUN_TABLE)
+        for statement in (
+            "ALTER TABLE travel.silver.review_index_run "
+            "ALTER COLUMN enrichment_run_id DROP NOT NULL",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (input_manifest_uri STRING)",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (input_manifest_sha256 STRING)",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (input_manifest_id STRING)",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (input_run_count BIGINT)",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (expected_input_review_count BIGINT)",
+            "ALTER TABLE travel.silver.review_index_run "
+            "ADD COLUMNS (expected_input_aspect_count BIGINT)",
+        ):
+            try:
+                self.spark.sql(statement)
+            except Exception as error:
+                message = str(error).lower()
+                if "already exists" not in message and "cannot change" not in message:
+                    raise
 
     def get(self, generation: str) -> dict[str, Any] | None:
         rows = self.spark.sql(
@@ -376,7 +499,7 @@ class SparkIndexRunLedger:
                 StructField("index_generation", StringType(), False),
                 StructField("source_id", StringType(), False),
                 StructField("source_release_id", StringType(), False),
-                StructField("enrichment_run_id", StringType(), False),
+                StructField("enrichment_run_id", StringType(), True),
                 StructField("embedding_model_id", StringType(), False),
                 StructField("embedding_model_revision", StringType(), False),
                 StructField("embedding_model_fingerprint", StringType(), False),
@@ -388,6 +511,12 @@ class SparkIndexRunLedger:
                 StructField("actual_aspect_point_count", LongType(), False),
                 StructField("review_collection", StringType(), False),
                 StructField("aspect_collection", StringType(), False),
+                StructField("input_manifest_uri", StringType(), True),
+                StructField("input_manifest_sha256", StringType(), True),
+                StructField("input_manifest_id", StringType(), True),
+                StructField("input_run_count", LongType(), True),
+                StructField("expected_input_review_count", LongType(), True),
+                StructField("expected_input_aspect_count", LongType(), True),
                 StructField("started_at", TimestampType(), False),
                 StructField("finished_at", TimestampType(), True),
                 StructField("error_summary", StringType(), True),
