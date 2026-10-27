@@ -1,0 +1,9 @@
+version: "gold-sufficiency-v1"
+status: "thresholds_pending_product_approval"
+policy:
+  default_state_until_threshold_approval: "insufficient_data"
+  sample_threshold: null
+  freshness_threshold_days: null
+  supported_states: ["sufficient", "insufficient_data", "no_data", "stale_data", "unsupported"]
+  allow_sufficient_without_threshold: false
+  allow_stale_classification_without_threshold: false

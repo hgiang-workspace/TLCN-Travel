@@ -1,0 +1,20 @@
+version: "gold-source-domain-policy-v1"
+status: "approved_first_slice"
+eligible_sources:
+  tripadvisor:
+    source_release_id: "891ef41b88338d85650159e037aa84286068b9823dabbe96a5fe5a63ea0e2a24"
+    include_entity_snapshot: true
+    include_sentiment: true
+    include_aspects: true
+    include_rating_aggregate: false
+    include_review_time_trend: false
+domain_mapping:
+  status: "deferred"
+  rule: "raw place_type must not be inferred into product domains"
+excluded_sources:
+  - source_id: "foody"
+    reason: "outside approved first Gold slice"
+  - source_id: "tiktok"
+    reason: "no approved Gold metric mapping"
+  - source_id: "vexere"
+    reason: "no approved Gold metric mapping"

@@ -1,0 +1,33 @@
+version: "gold-metrics-v1"
+status: "approved"
+metrics:
+  entity_sentiment:
+    grain: ["release_id", "entity_id", "reporting_period", "sentiment_label"]
+    input: "committed review_sentiment rows joined to the approved input manifest"
+    identity: "review_sentiment_id"
+    numerator: "count distinct eligible review_sentiment_id for the label"
+    denominator: "count distinct eligible review_sentiment_id for the entity and period"
+    time_basis: "source release processing period"
+    confidence_policy: "include every committed prediction"
+  entity_aspect:
+    grain: ["release_id", "entity_id", "reporting_period", "aspect", "sentiment_label"]
+    input: "committed review_aspect_sentiment rows joined to the approved input manifest"
+    mention_count: "count distinct eligible aspect_sentiment_id"
+    review_count: "count distinct eligible review_id"
+    denominator: "eligible review count for the entity and period"
+    time_basis: "source release processing period"
+  market_sentiment:
+    status: "deferred_pending_domain_mapping"
+  market_aspect:
+    status: "deferred_pending_domain_mapping"
+  review_time_trend:
+    status: "unavailable_no_review_event_date"
+  rating_aggregate:
+    status: "deferred_missing_rating_scale_and_observed_at"
+rules:
+  percentages:
+    retain_counts: true
+    rounding_scale: 4
+  missing_values:
+    null_is_zero: false
+    required_states: ["sufficient", "insufficient_data", "no_data", "stale_data", "unsupported"]

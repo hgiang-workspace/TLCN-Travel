@@ -1,0 +1,46 @@
+version: "gold-contract-v1"
+manifest_version: "gold-input-manifest-v2"
+status: "approved_for_candidate_build"
+catalog: "travel"
+product_namespace: "gold"
+validation_namespace: "gold_contract_validation_t07b"
+format:
+  table_format: "iceberg"
+  format_version: 2
+  file_format: "parquet"
+  compression: "zstd"
+scope:
+  source_id: "tripadvisor"
+  source_release_id: "891ef41b88338d85650159e037aa84286068b9823dabbe96a5fe5a63ea0e2a24"
+  domain_mapping_status: "deferred"
+  rating_aggregation_status: "deferred"
+  review_time_trend_status: "unavailable"
+  candidate_lineage:
+    include_all_committed_enrichment_runs: true
+    preserve_frozen_t07a_qdrant_generation: true
+    qdrant_reconciliation_basis: "effective_deduplicated_counts"
+    deduplication_policy_version: "gold-dedup-v1"
+objects:
+  dimensions:
+    - "dim_entity"
+    - "dim_geography"
+    - "dim_domain"
+    - "dim_source"
+    - "dim_date"
+  bridges:
+    - "bridge_entity_source"
+    - "bridge_entity_geography"
+  facts:
+    - "fact_entity_rating_snapshot"
+    - "fact_entity_sentiment_summary"
+    - "fact_entity_aspect_summary"
+    - "fact_market_summary"
+    - "fact_market_sentiment_trend"
+    - "fact_market_aspect_summary"
+    - "fact_data_coverage"
+  ledgers:
+    - "gold_build_run"
+references:
+  metric_definitions: "configs/gold/metric_definitions.yaml"
+  sufficiency_thresholds: "configs/gold/sufficiency_thresholds.yaml"
+  source_domain_policy: "configs/gold/source_domain_policy.yaml"
