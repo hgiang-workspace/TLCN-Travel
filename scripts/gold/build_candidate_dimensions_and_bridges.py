@@ -27,6 +27,7 @@ from travel_intelligence.gold.dimensions import (
 )
 from travel_intelligence.gold.manifest import build_gold_manifest, candidate_ids
 from travel_intelligence.gold.spark_store import SparkGoldStore
+from travel_intelligence.silver.province import load_province_rules
 
 SOURCE_ID = "tripadvisor"
 SOURCE_NAME = "TripAdvisor"
@@ -97,6 +98,15 @@ def _read_snapshot(
         .table(table)
         .where(f"processing_run_id = '{run_id}'")
     )
+
+
+def _current_snapshot_id(spark: Any, table: str) -> str:
+    rows = spark.sql(
+        f"SELECT snapshot_id FROM {table}.snapshots ORDER BY committed_at DESC LIMIT 1"
+    ).collect()
+    if not rows:
+        raise RuntimeError(f"missing current snapshot for {table}")
+    return str(rows[0][0])
 
 
 def _minio() -> Minio:
@@ -213,6 +223,8 @@ def main() -> int:
         )
         if len(qdrant) != 1:
             raise RuntimeError("frozen Qdrant generation is not unique")
+        geography_rules = load_province_rules()
+        geography_snapshot_id = _current_snapshot_id(spark, "travel.silver.place")
         manifest = build_gold_manifest(
             normalization_row,
             enrichment_runs,
@@ -222,6 +234,12 @@ def main() -> int:
             config_fingerprint=config_fp,
             qdrant_generation=qdrant[0],
             deduplication=manifest_evidence,
+            geography_snapshot={
+                "table": "travel.silver.place",
+                "snapshot_id": geography_snapshot_id,
+                "taxonomy_version": geography_rules.version,
+                "taxonomy_fingerprint": geography_rules.fingerprint,
+            },
         )
         manifest_uri = _write_manifest(client, manifest)
         gold_run_id, release_id = candidate_ids(manifest)
@@ -246,7 +264,7 @@ def main() -> int:
                 "source_record_id"
             )
         place_ids = {row["place_id"] for row in mappings if row.get("place_id")}
-        places = [
+        entity_places = [
             row
             for row in _rows(
                 spark.read.option("snapshot-id", snapshots["place"]).table(
@@ -255,6 +273,40 @@ def main() -> int:
             )
             if row["place_id"] in place_ids
         ]
+        geography_places = {
+            row["place_id"]: row
+            for row in _rows(
+                spark.read.option("snapshot-id", geography_snapshot_id).table(
+                    "travel.silver.place"
+                )
+            )
+            if row["place_id"] in place_ids
+        }
+        places = []
+        geography_fields = (
+            "province_raw",
+            "province_normalized",
+            "province_geo_id",
+            "province_canonical",
+            "province_resolution_status",
+            "province_match_method",
+            "province_rule_version",
+        )
+        for entity_place in entity_places:
+            geo_place = geography_places.get(entity_place["place_id"])
+            if geo_place is None:
+                raise RuntimeError("corrected geography snapshot is missing an entity")
+            for field in ("place_name", "province"):
+                if entity_place.get(field) != geo_place.get(field):
+                    raise RuntimeError(
+                        "geography snapshot changes frozen entity/source attributes"
+                    )
+            places.append(
+                {
+                    **entity_place,
+                    **{field: geo_place.get(field) for field in geography_fields},
+                }
+            )
         built_at = normalization_row["finished_at"]
         projection = project_dimensions_and_bridges(
             places,
@@ -280,6 +332,27 @@ def main() -> int:
         )
         store = SparkGoldStore(spark)
         store.create_contract_tables()
+        stale_builds = _rows(
+            spark.table("travel.gold.gold_build_run").where(
+                f"source_release_id = '{SOURCE_RELEASE_ID}' AND status = 'building' "
+                f"AND gold_run_id <> '{gold_run_id}'"
+            )
+        )
+        for stale in stale_builds:
+            store.upsert(
+                "gold_build_run",
+                [
+                    {
+                        **stale,
+                        "status": "failed",
+                        "finished_at": built_at,
+                        "error_summary": (
+                            "superseded: frozen place snapshot lacked geography schema; "
+                            "no active release was published"
+                        ),
+                    }
+                ],
+            )
         table_names = (
             "dim_entity",
             "dim_geography",

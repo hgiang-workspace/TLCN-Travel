@@ -11,6 +11,8 @@ eligible_sources:
 domain_mapping:
   status: "deferred"
   rule: "raw place_type must not be inferred into product domains"
+  review_contract: "configs/gold/tripadvisor_domain_mapping_v1.yaml"
+  application_status: "not_started"
 excluded_sources:
   - source_id: "foody"
     reason: "outside approved first Gold slice"

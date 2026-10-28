@@ -1,4 +1,4 @@
-version: "province-rules-v1.1"
+version: "province-rules-v1.2"
 
 # Canonical display names are deliberately explicit.  The normalizer never
 # infers a province from coordinates, address text, or fuzzy similarity.
@@ -33,7 +33,6 @@ canonical_names:
   - "Hòa Bình"
   - "Hồ Chí Minh"
   - "Hưng Yên"
-  - "Huế"
   - "Khánh Hòa"
   - "Kiên Giang"
   - "Kon Tum"
@@ -108,4 +107,7 @@ aliases:
   "quang ninh": "Quảng Ninh"
   "thanh hoa": "Thanh Hóa"
   "thua thien hue": "Thừa Thiên Huế"
+  "hue": "Thừa Thiên Huế"
+  "thua thien-hue": "Thừa Thiên Huế"
+  "tinh thua thien hue": "Thừa Thiên Huế"
 

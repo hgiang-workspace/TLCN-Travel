@@ -1,0 +1,249 @@
+version: "tripadvisor-domain-mapping-v1"
+mapping_version: "tripadvisor-domain-mapping-v1.1"
+revision: "tripadvisor-domain-mapping-v1.1-b1-reviewed-excluded-correction"
+artifact_fingerprint: "sha256:c9433a33b2b188d18bd7db0a4242c9b47b5d59ac7ebf0c023370a7efd55331aa"
+status: "reviewed_b1_no_assignment"
+source:
+  source_id: "tripadvisor"
+  source_release_id: "891ef41b88338d85650159e037aa84286068b9823dabbe96a5fe5a63ea0e2a24"
+  candidate_release_id: "gold-release-9bfd00eeae2748684dbc34e34aab27620f6babed6c8ad8ecfbf8f8fb558c6854"
+  entity_count: 4000
+  distinct_raw_category_count: 582
+  distinct_normalized_category_count: 581
+normalization:
+  version: "tripadvisor-category-normalization-v1"
+  unicode: "NFC"
+  whitespace: "trim outer whitespace and collapse internal whitespace runs"
+  composite_category_policy: "preserve the full category as one exact value; do not split tokens"
+  prohibited_inputs: ["entity_name", "address", "review_text", "sentiment"]
+taxonomy_clarification:
+  version: "tripadvisor-domain-taxonomy-v1.1-b1"
+  scope: "exact approved TripAdvisor category mappings only"
+  destination_includes: "tourism attractions and experiences, including wellness, shopping-oriented visitor destinations, markets and cooking experiences when explicitly approved"
+  non_heuristic_guardrail: "This clarification never maps a Spa, shopping, market, cooking, or composite category without an exact approved rule."
+rule_contract:
+  permitted_domain_ids: ["destination", "accommodation", "food_dining", "transportation"]
+  permitted_mapping_states: ["mapped", "ambiguous", "excluded", "unmapped"]
+  permitted_approval_statuses: ["proposed", "approved", "rejected"]
+  effective_assignment_rule: "only an approved mapped rule may assign a domain in a separately authorized application task"
+  unknown_category_rule: "unmapped"
+  uniqueness_rule: "at most one approved mapped rule per source_id and normalized_category"
+inventory_query:
+  table: "travel.gold.dim_entity"
+  filters:
+    release_id: "gold-release-9bfd00eeae2748684dbc34e34aab27620f6babed6c8ad8ecfbf8f8fb558c6854"
+    source_id: "tripadvisor via travel.gold.bridge_entity_source"
+  raw_category_column: "entity_type_raw"
+  provenance_columns: ["release_id", "source_release_id", "source_id", "entity_id"]
+  ordering: "entity_count DESC, normalized_category ASC"
+approved_b1_reconciliation:
+  reviewed_category_count: 20
+  reviewed_entity_count: 2020
+  mapped_category_count: 19
+  mapped_entity_count: 1973
+  excluded_category_count: 1
+  excluded_entity_count: 47
+  unmapped_category_count: 0
+  unmapped_entity_count: 0
+  destination_entity_count: 1722
+  food_dining_entity_count: 108
+  transportation_entity_count: 143
+  accommodation_entity_count: 0
+  remaining_category_count: 562
+  remaining_entity_count: 1980
+  total_entity_count: 4000
+rules:
+  - &taxi
+    rule_id: "tripadvisor-domain-v1-001"
+    source_id: "tripadvisor"
+    raw_category: "Taxi & xe đưa đón"
+    normalized_category: "Taxi & xe đưa đón"
+    mapping_state: "mapped"
+    domain_id: "transportation"
+    rationale: "Explicit product-owner B1 decision: map this exact category to transportation."
+    original_proposal_disposition: "proposed_mapped"
+    reviewer: "hgiang"
+    review_status: "reviewed"
+    reviewer_decision: "approved_mapped"
+    approval_status: "approved"
+    mapping_version: "tripadvisor-domain-mapping-v1.1"
+    provenance: &b1_taxi_provenance
+      source_release_id: "891ef41b88338d85650159e037aa84286068b9823dabbe96a5fe5a63ea0e2a24"
+      candidate_release_id: "gold-release-9bfd00eeae2748684dbc34e34aab27620f6babed6c8ad8ecfbf8f8fb558c6854"
+      inventory_entity_count: 77
+    review_provenance: &b1_review
+      decision_source: "explicit_product_owner_b1_decision"
+      review_batch: "B1-high-impact"
+      reviewed_at: null
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-002"
+    raw_category: "Điểm thu hút khách tham quan & thắng cảnh"
+    normalized_category: "Điểm thu hút khách tham quan & thắng cảnh"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact category to destination."
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 81
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-003"
+    raw_category: "Địa điểm tôn giáo"
+    normalized_category: "Địa điểm tôn giáo"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact category to destination."
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 79
+  - rule_id: "tripadvisor-domain-v1-004"
+    source_id: "tripadvisor"
+    raw_category: "Bãi biển"
+    normalized_category: "Bãi biển"
+    mapping_state: "mapped"
+    domain_id: "destination"
+    rationale: "Original unreviewed machine proposal; outside B1 and not approved."
+    original_proposal_disposition: "proposed_mapped"
+    reviewer: "unassigned"
+    review_status: "unreviewed"
+    reviewer_decision: null
+    approval_status: "proposed"
+    mapping_version: "tripadvisor-domain-mapping-v1"
+    provenance:
+      source_release_id: "891ef41b88338d85650159e037aa84286068b9823dabbe96a5fe5a63ea0e2a24"
+      candidate_release_id: "gold-release-9bfd00eeae2748684dbc34e34aab27620f6babed6c8ad8ecfbf8f8fb558c6854"
+      inventory_entity_count: 28
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-005"
+    raw_category: "Spa"
+    normalized_category: "Spa"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map only exact Spa to destination; no Spa-derived category is implied."
+    original_proposal_disposition: "proposed_ambiguous"
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 691
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-006"
+    raw_category: "Chuyến tham quan nhiều ngày • Taxi & xe đưa đón"
+    normalized_category: "Chuyến tham quan nhiều ngày • Taxi & xe đưa đón"
+    domain_id: "transportation"
+    rationale: "Explicit product-owner B1 decision: this atomic mixed category has primary domain transportation for v1."
+    original_proposal_disposition: "proposed_ambiguous"
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 66
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-007"
+    raw_category: "Cửa hàng đặc sản & cửa hàng quà tặng"
+    normalized_category: "Cửa hàng đặc sản & cửa hàng quà tặng"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact shopping-oriented visitor category to destination."
+    original_proposal_disposition: "proposed_excluded"
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 193
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-008"
+    raw_category: "Quán bar & câu lạc bộ"
+    normalized_category: "Quán bar & câu lạc bộ"
+    domain_id: "food_dining"
+    rationale: "Explicit product-owner B1 decision: map this exact category to food_dining."
+    provenance:
+      <<: *b1_taxi_provenance
+      inventory_entity_count: 108
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-009"
+    raw_category: "Tour thăm quan thành phố • Chuyến tham quan nhiều ngày"
+    normalized_category: "Tour thăm quan thành phố • Chuyến tham quan nhiều ngày"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact atomic tour category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 106}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-010"
+    raw_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan tư nhân"
+    normalized_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan tư nhân"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact atomic tour category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 84}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-011"
+    raw_category: "Tour thăm quan thành phố • Chuyến tham quan văn hóa"
+    normalized_category: "Tour thăm quan thành phố • Chuyến tham quan văn hóa"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact atomic tour category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 74}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-012"
+    raw_category: "Spa • Spa nước nóng"
+    normalized_category: "Spa • Spa nước nóng"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map only this exact atomic wellness category to destination."
+    original_proposal_disposition: "proposed_excluded"
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 65}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-013"
+    raw_category: "Trung tâm mua sắm"
+    normalized_category: "Trung tâm mua sắm"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact shopping category to destination."
+    original_proposal_disposition: "proposed_excluded"
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 59}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-014"
+    raw_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan bằng thuyền"
+    normalized_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan bằng thuyền"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact atomic tour category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 51}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-015"
+    raw_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan văn hóa"
+    normalized_category: "Chuyến tham quan nhiều ngày • Chuyến tham quan văn hóa"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact atomic tour category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 48}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-016"
+    raw_category: "Cho thuê tiện ích"
+    normalized_category: "Cho thuê tiện ích"
+    mapping_state: "excluded"
+    domain_id: null
+    rationale: "Explicit product-owner B1 decision: reviewed excluded; no effective domain assignment."
+    original_proposal_disposition: "unreviewed_unmapped"
+    reviewer_decision: "reviewed_excluded"
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 47}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-017"
+    raw_category: "Chuyến tham quan bằng thuyền"
+    normalized_category: "Chuyến tham quan bằng thuyền"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 45}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-018"
+    raw_category: "Chợ trời & chợ đường phố"
+    normalized_category: "Chợ trời & chợ đường phố"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact market category to destination."
+    original_proposal_disposition: "unreviewed_unmapped"
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 38}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-019"
+    raw_category: "Lớp nấu ăn"
+    normalized_category: "Lớp nấu ăn"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact cooking experience category to destination."
+    original_proposal_disposition: "proposed_excluded"
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 37}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-020"
+    raw_category: "Phòng trưng bày nghệ thuật"
+    normalized_category: "Phòng trưng bày nghệ thuật"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 36}
+  - <<: *taxi
+    rule_id: "tripadvisor-domain-v1-021"
+    raw_category: "Chuyến tham quan ngắm cảnh"
+    normalized_category: "Chuyến tham quan ngắm cảnh"
+    domain_id: "destination"
+    rationale: "Explicit product-owner B1 decision: map this exact category to destination."
+    provenance: {<<: *b1_taxi_provenance, inventory_entity_count: 35}

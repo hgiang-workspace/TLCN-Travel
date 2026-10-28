@@ -8,7 +8,7 @@ metrics:
     numerator: "count distinct eligible review_sentiment_id for the label"
     denominator: "count distinct eligible review_sentiment_id for the entity and period"
     time_basis: "source release processing period"
-    confidence_policy: "include every committed prediction"
+    confidence_policy: "include every committed generation in lineage; aggregate one effective deduplicated prediction per review occurrence"
   entity_aspect:
     grain: ["release_id", "entity_id", "reporting_period", "aspect", "sentiment_label"]
     input: "committed review_aspect_sentiment rows joined to the approved input manifest"
@@ -17,9 +17,15 @@ metrics:
     denominator: "eligible review count for the entity and period"
     time_basis: "source release processing period"
   market_sentiment:
-    status: "deferred_pending_domain_mapping"
+    status: "candidate_snapshot_only"
+    grain: ["release_id", "source_id", "geo_id", "domain_id", "reporting_period", "metric_id"]
+    time_basis: "source release processing period"
+    data_status: "insufficient_data_pending_threshold_approval"
   market_aspect:
-    status: "deferred_pending_domain_mapping"
+    status: "candidate_snapshot_only"
+    grain: ["release_id", "source_id", "geo_id", "domain_id", "reporting_period", "metric_id"]
+    time_basis: "source release processing period"
+    data_status: "insufficient_data_pending_threshold_approval"
   review_time_trend:
     status: "unavailable_no_review_event_date"
   rating_aggregate:

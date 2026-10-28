@@ -15,13 +15,12 @@ from travel_intelligence.common.configuration import (
 )
 
 PROVINCE_RULE_PATH = Path("configs/geography/province_aliases.yaml")
+PLACE_CORRECTION_PATH = Path("configs/geography/place_corrections.yaml")
 
 
 def _lookup_key(value: str) -> str:
     decomposed = unicodedata.normalize("NFKD", value)
-    ascii_like = "".join(
-        char for char in decomposed if not unicodedata.combining(char)
-    )
+    ascii_like = "".join(char for char in decomposed if not unicodedata.combining(char))
     ascii_like = ascii_like.replace("đ", "d").replace("Đ", "D")
     return re.sub(r"[^a-z0-9]+", " ", ascii_like.lower()).strip()
 
@@ -39,6 +38,13 @@ class ProvinceRules:
     fingerprint: str
     lookup: dict[str, str]
     geo_ids: dict[str, str]
+
+
+@dataclass(frozen=True)
+class PlaceCorrection:
+    correction_id: str
+    canonical_province: str
+    rationale: str
 
 
 def load_province_rules(path: str | Path = PROVINCE_RULE_PATH) -> ProvinceRules:
@@ -87,6 +93,36 @@ def load_province_rules(path: str | Path = PROVINCE_RULE_PATH) -> ProvinceRules:
 PROVINCE_RULES = load_province_rules()
 
 
+def load_place_corrections(
+    path: str | Path = PLACE_CORRECTION_PATH,
+    *,
+    rules: ProvinceRules = PROVINCE_RULES,
+) -> dict[str, PlaceCorrection]:
+    value = load_yaml(path)
+    corrections = value.get("corrections")
+    if not isinstance(corrections, dict):
+        raise ValueError("place corrections require a corrections mapping")
+    result = {}
+    for place_id, correction in corrections.items():
+        if not isinstance(place_id, str) or not isinstance(correction, dict):
+            raise ValueError("place correction entries must be mappings")
+        correction_id = correction.get("correction_id")
+        canonical = correction.get("canonical_province")
+        rationale = correction.get("rationale")
+        if not all(
+            isinstance(item, str) and item.strip()
+            for item in (correction_id, canonical, rationale)
+        ):
+            raise ValueError("place correction fields must be non-empty strings")
+        if canonical not in rules.geo_ids:
+            raise ValueError("place correction target is not a canonical province")
+        result[place_id] = PlaceCorrection(correction_id, canonical, rationale)
+    return result
+
+
+PLACE_CORRECTIONS = load_place_corrections()
+
+
 def normalize_province(
     value: Any, rules: ProvinceRules = PROVINCE_RULES
 ) -> dict[str, Any]:
@@ -103,7 +139,7 @@ def normalize_province(
             "province_match_method": "unresolved",
             "province_rule_version": rules.version,
         }
-    method = "exact" if normalized == _lookup_key(canonical) else "approved_alias"
+    method = "exact" if raw and raw.strip() == canonical else "approved_alias"
     return {
         "province_raw": raw,
         "province_normalized": normalized,
@@ -115,10 +151,39 @@ def normalize_province(
     }
 
 
+def normalize_place_province(
+    place_id: str,
+    value: Any,
+    *,
+    rules: ProvinceRules = PROVINCE_RULES,
+    corrections: dict[str, PlaceCorrection] = PLACE_CORRECTIONS,
+) -> dict[str, Any]:
+    """Resolve an explicit place correction without overwriting raw provenance."""
+    result = normalize_province(value, rules)
+    correction = corrections.get(place_id)
+    if correction is None:
+        return {**result, "province_correction_id": None}
+    canonical = correction.canonical_province
+    return {
+        **result,
+        "province_normalized": _lookup_key(canonical),
+        "province_geo_id": rules.geo_ids[canonical],
+        "province_canonical": canonical,
+        "province_resolution_status": "resolved",
+        "province_match_method": "curated_place_correction",
+        "province_rule_version": rules.version,
+        "province_correction_id": correction.correction_id,
+    }
+
+
 __all__ = [
     "PROVINCE_RULE_PATH",
+    "PLACE_CORRECTION_PATH",
+    "PLACE_CORRECTIONS",
+    "PlaceCorrection",
     "PROVINCE_RULES",
     "ProvinceRules",
     "load_province_rules",
     "normalize_province",
+    "normalize_place_province",
 ]

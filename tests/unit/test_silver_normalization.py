@@ -21,21 +21,25 @@ from travel_intelligence.silver.normalization import (
     reconcile_manifest_nested_count,
     validate_and_normalize_manifest,
 )
-from travel_intelligence.silver.province import normalize_province
+from travel_intelligence.silver.province import (
+    normalize_place_province,
+    normalize_province,
+)
 
 
 def test_nested_input_count_uses_explicit_source_mapping():
-    assert nested_input_count(
-        "tripadvisor",
-        {"review": [{"review_id": "r1"}, {"review_id": "r2"}]}
-    ) == 2
-    assert nested_input_count(
-        "tiktok", {"social_comment": [{"comment_id": "c1"}]}
-    ) == 1
+    assert (
+        nested_input_count(
+            "tripadvisor", {"review": [{"review_id": "r1"}, {"review_id": "r2"}]}
+        )
+        == 2
+    )
+    assert nested_input_count("tiktok", {"social_comment": [{"comment_id": "c1"}]}) == 1
     assert nested_input_count("foody", {"review": [{"review_id": "ignored"}]}) == 0
-    assert nested_input_count(
-        "vexere", {"social_comment": [{"comment_id": "ignored"}]}
-    ) == 0
+    assert (
+        nested_input_count("vexere", {"social_comment": [{"comment_id": "ignored"}]})
+        == 0
+    )
 
 
 @pytest.mark.parametrize("count", [0, 1, 3])
@@ -74,9 +78,7 @@ def test_bronze_parquet_naive_datetime_is_trusted_as_utc():
 
 
 def test_bronze_parquet_aware_values_are_normalized_once():
-    value = bronze_parquet_timestamp(
-        datetime(2026, 1, 1, 10, 0, tzinfo=timezone.utc)
-    )
+    value = bronze_parquet_timestamp(datetime(2026, 1, 1, 10, 0, tzinfo=timezone.utc))
     offset = bronze_parquet_timestamp("2026-01-01T10:00:00+02:00")
     assert value == datetime(2026, 1, 1, 10, 0, tzinfo=timezone.utc)
     assert offset == datetime(2026, 1, 1, 8, 0, tzinfo=timezone.utc)
@@ -130,6 +132,25 @@ def test_province_rules_normalize_approved_aliases(raw, canonical):
     assert result["province_canonical"] == canonical
     assert result["province_resolution_status"] == "resolved"
     assert result["province_match_method"] == "approved_alias"
+
+
+def test_hue_aliases_share_the_approved_thua_thien_hue_identity():
+    hue = normalize_province("Huế")
+    legacy = normalize_province("Thua Thien Hue")
+    assert hue["province_geo_id"] == legacy["province_geo_id"]
+    assert hue["province_geo_id"] == "vn-province:123f7f40663cfe6c764de21b"
+    assert hue["province_canonical"] == "Thừa Thiên Huế"
+
+
+def test_explicit_place_correction_preserves_null_raw_province():
+    result = normalize_place_province(
+        "sha256:d67d32b6bf891be31b45c17a99433244a3729dbed5790913ff793dd68a3fc03a",
+        None,
+    )
+    assert result["province_raw"] is None
+    assert result["province_geo_id"] == "vn-province:4f858848735ff411ba23b4bf"
+    assert result["province_match_method"] == "curated_place_correction"
+    assert result["province_correction_id"] == "T07C-DA-NANG-001"
 
 
 def test_province_rules_do_not_infer_unknown_values():
@@ -192,12 +213,12 @@ def test_tiktok_duplicate_video_observations_remain_distinct(tmp_path):
     snapshot.write_text(json.dumps([record, record]), encoding="utf-8")
     result = adapt_tiktok(snapshot)
     normalized = [
-        normalize_tiktok_row(row, "bronze/tiktok.parquet")
-        for row in result.rows
+        normalize_tiktok_row(row, "bronze/tiktok.parquet") for row in result.rows
     ]
     assert len(normalized) == 2
-    assert normalized[0]["source_record"][0]["source_record_sk"] != (
-        normalized[1]["source_record"][0]["source_record_sk"]
+    assert (
+        normalized[0]["source_record"][0]["source_record_sk"]
+        != (normalized[1]["source_record"][0]["source_record_sk"])
     )
 
 
@@ -230,8 +251,8 @@ def test_vexere_repeated_url_and_anomalies_remain_observations(tmp_path):
             "origin": "A",
             "destination": "B",
             "operator_name": "O",
-                "departure_time": "unknown",
-                "arrival_time": "unknown",
+            "departure_time": "unknown",
+            "arrival_time": "unknown",
             "duration_min": -1,
             "price_vnd": -2,
             "crawl_date": "ambiguous",
@@ -241,9 +262,9 @@ def test_vexere_repeated_url_and_anomalies_remain_observations(tmp_path):
             "origin": "A",
             "destination": "B",
             "operator_name": "O",
-                "departure_time": "unknown",
-                "arrival_time": "unknown",
-                "crawl_date": "27-09-2026",
+            "departure_time": "unknown",
+            "arrival_time": "unknown",
+            "crawl_date": "27-09-2026",
             "source_url": "https://example.test/route",
         },
     ]
@@ -253,8 +274,9 @@ def test_vexere_repeated_url_and_anomalies_remain_observations(tmp_path):
         normalize_vexere_row(row, "bronze/vexere.parquet") for row in result.rows
     ]
     assert len(normalized) == 2
-    assert normalized[0]["transport_route"][0]["source_url"] == (
-        normalized[1]["transport_route"][0]["source_url"]
+    assert (
+        normalized[0]["transport_route"][0]["source_url"]
+        == (normalized[1]["transport_route"][0]["source_url"])
     )
     quality_codes = normalized[0]["transport_route"][0]["quality_codes"]
     assert "duration_anomaly" in quality_codes
@@ -274,4 +296,3 @@ def test_v1_manifest_is_rejected_before_payload_read():
     }
     with pytest.raises(ValueError, match="not eligible"):
         validate_and_normalize_manifest(manifest)
-

@@ -151,6 +151,7 @@ def build_gold_manifest(
     config_fingerprint: str,
     qdrant_generation: Mapping[str, Any] | None = None,
     deduplication: Mapping[str, Any] | None = None,
+    geography_snapshot: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Build a canonical manifest without writing it or creating Gold objects."""
     if not contract_fingerprint.startswith("sha256:"):
@@ -208,6 +209,30 @@ def build_gold_manifest(
         deduplication_payload = {
             key: deduplication[key] for key in sorted(required_deduplication)
         }
+    geography_payload = None
+    if geography_snapshot is not None:
+        required_geography = {
+            "table",
+            "snapshot_id",
+            "taxonomy_version",
+            "taxonomy_fingerprint",
+        }
+        missing = sorted(required_geography - geography_snapshot.keys())
+        if missing:
+            raise GoldManifestError(
+                "geography snapshot evidence is incomplete: " + ", ".join(missing)
+            )
+        if geography_snapshot["table"] != "travel.silver.place":
+            raise GoldManifestError("geography snapshot must pin travel.silver.place")
+        if not str(geography_snapshot["snapshot_id"]):
+            raise GoldManifestError("geography snapshot ID is required")
+        if not str(geography_snapshot["taxonomy_version"]):
+            raise GoldManifestError("geography taxonomy version is required")
+        if not str(geography_snapshot["taxonomy_fingerprint"]).startswith("sha256:"):
+            raise GoldManifestError("geography taxonomy fingerprint must be SHA-256")
+        geography_payload = {
+            key: geography_snapshot[key] for key in sorted(required_geography)
+        }
     qdrant = None
     if qdrant_generation is not None:
         if qdrant_generation.get("status") != "committed":
@@ -256,6 +281,7 @@ def build_gold_manifest(
             "config_fingerprint": enrichment_config_fp,
         },
         "deduplication": deduplication_payload,
+        "geography_snapshot": geography_payload,
         "qdrant_generation": qdrant,
     }
     digest = hashlib.sha256(_canonical_bytes(content)).hexdigest()

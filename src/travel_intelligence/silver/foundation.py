@@ -69,6 +69,7 @@ SILVER_TABLES: tuple[SilverTable, ...] = (
         province_normalized STRING, province_geo_id STRING,
         province_canonical STRING, province_resolution_status STRING,
         province_match_method STRING, province_rule_version STRING,
+        province_correction_id STRING,
         district STRING, address STRING,
         latitude DOUBLE, longitude DOUBLE, identity_status STRING NOT NULL,
         identity_method STRING NOT NULL, created_at TIMESTAMP NOT NULL,
@@ -304,4 +305,3 @@ class ReleaseLedger:
     def commit(self) -> None:
         validate_release_tables(self.required_tables, self.table_snapshot_refs)
         self.status = "committed"
-

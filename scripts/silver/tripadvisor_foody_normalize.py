@@ -232,6 +232,7 @@ def _schemas() -> dict[str, StructType]:
             StructField("province_resolution_status", StringType(), True),
             StructField("province_match_method", StringType(), True),
             StructField("province_rule_version", StringType(), True),
+            StructField("province_correction_id", StringType(), True),
             StructField("district", StringType(), True),
             StructField("address", StringType(), True),
             StructField("latitude", DoubleType(), True),
@@ -408,19 +409,16 @@ def _ensure_place_province_columns(spark: SparkSession) -> None:
         ("province_resolution_status", "STRING"),
         ("province_match_method", "STRING"),
         ("province_rule_version", "STRING"),
+        ("province_correction_id", "STRING"),
     )
     missing = [
-        f"{name} {data_type}"
-        for name, data_type in additions
-        if name not in existing
+        f"{name} {data_type}" for name, data_type in additions if name not in existing
     ]
     if missing:
         spark.sql(f"ALTER TABLE {target} ADD COLUMNS ({', '.join(missing)})")
 
 
-def _decimalize(
-    record: dict[str, Any], schema: StructType
-) -> dict[str, Any]:
+def _decimalize(record: dict[str, Any], schema: StructType) -> dict[str, Any]:
     result = dict(record)
     for field in schema.fields:
         if (
@@ -466,9 +464,7 @@ def _normalized_table_frame(
 ):
     """Normalize one target table on Spark workers without driver collection."""
     decimal_fields = tuple(
-        field.name
-        for field in schema.fields
-        if isinstance(field.dataType, DecimalType)
+        field.name for field in schema.fields if isinstance(field.dataType, DecimalType)
     )
 
     def normalize_partition(rows):

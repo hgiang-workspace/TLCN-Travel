@@ -16,6 +16,10 @@ DIMENSION_KEYS = {
     "dim_date": "date_sk",
     "bridge_entity_source": "entity_source_sk",
     "bridge_entity_geography": "entity_geography_sk",
+    "fact_entity_sentiment_summary": "entity_sentiment_fact_sk",
+    "fact_entity_aspect_summary": "entity_aspect_fact_sk",
+    "fact_market_summary": "market_summary_fact_sk",
+    "fact_data_coverage": "data_coverage_fact_sk",
     "gold_build_run": "gold_run_id",
 }
 

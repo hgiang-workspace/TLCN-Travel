@@ -15,6 +15,7 @@ GOLD_CONFIG_PATHS = (
     "configs/gold/metric_definitions.yaml",
     "configs/gold/sufficiency_thresholds.yaml",
     "configs/gold/source_domain_policy.yaml",
+    "configs/gold/tripadvisor_domain_mapping_v1.yaml",
 )
 
 
@@ -41,6 +42,14 @@ def load_gold_configuration(
     policy = values[GOLD_CONFIG_PATHS[3]].get("domain_mapping")
     if not isinstance(policy, dict) or policy.get("status") != "deferred":
         raise ValueError("product-domain mapping must remain deferred in Gold v1")
+    if policy.get("application_status") != "not_started":
+        raise ValueError("domain mapping application is outside T07-E2A scope")
+    mapping_contract = values[GOLD_CONFIG_PATHS[4]]
+    if mapping_contract.get("status") not in {
+        "review_required_no_assignment",
+        "reviewed_b1_no_assignment",
+    }:
+        raise ValueError("domain mapping review artifact has an unsafe status")
     return values, configuration_fingerprint(values)
 
 

@@ -10,7 +10,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import StringType, StructField, StructType
 
 from travel_intelligence.common.spark import configure_spark_builder
-from travel_intelligence.silver.province import normalize_province
+from travel_intelligence.silver.province import normalize_place_province
 
 
 def required(name: str) -> str:
@@ -35,7 +35,9 @@ def build_spark() -> SparkSession:
             "spark.sql.catalog.travel.uri",
             "jdbc:postgresql://postgres:5432/iceberg_catalog",
         )
-        .config("spark.sql.catalog.travel.warehouse", "s3://travel-lakehouse/warehouse/")
+        .config(
+            "spark.sql.catalog.travel.warehouse", "s3://travel-lakehouse/warehouse/"
+        )
         .config("spark.sql.catalog.travel.jdbc.user", required("ICEBERG_DB_USER"))
         .config(
             "spark.sql.catalog.travel.jdbc.password",
@@ -72,11 +74,10 @@ def ensure_columns(spark: SparkSession) -> None:
         ("province_resolution_status", "STRING"),
         ("province_match_method", "STRING"),
         ("province_rule_version", "STRING"),
+        ("province_correction_id", "STRING"),
     )
     missing = [
-        f"{name} {data_type}"
-        for name, data_type in additions
-        if name not in existing
+        f"{name} {data_type}" for name, data_type in additions if name not in existing
     ]
     if missing:
         spark.sql(f"ALTER TABLE {target} ADD COLUMNS ({', '.join(missing)})")
@@ -97,11 +98,12 @@ def main() -> int:
                 StructField("province_resolution_status", StringType(), False),
                 StructField("province_match_method", StringType(), False),
                 StructField("province_rule_version", StringType(), False),
+                StructField("province_correction_id", StringType(), True),
             ]
         )
 
         def map_row(row):
-            result = normalize_province(row["province"])
+            result = normalize_place_province(row["place_id"], row["province"])
             return (
                 row["place_id"],
                 result["province_raw"],
@@ -111,6 +113,7 @@ def main() -> int:
                 result["province_resolution_status"],
                 result["province_match_method"],
                 result["province_rule_version"],
+                result["province_correction_id"],
             )
 
         mapped = spark.createDataFrame(source.rdd.map(map_row), schema=schema)
@@ -128,13 +131,12 @@ def main() -> int:
               target.province_resolution_status = source.province_resolution_status,
               target.province_match_method = source.province_match_method,
               target.province_rule_version = source.province_rule_version
+              , target.province_correction_id = source.province_correction_id
             """
         )
         summary = {
             row["province_resolution_status"]: row["count"]
-            for row in mapped.groupBy("province_resolution_status")
-            .count()
-            .collect()
+            for row in mapped.groupBy("province_resolution_status").count().collect()
         }
         print(
             json.dumps(

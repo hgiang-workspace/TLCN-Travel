@@ -287,6 +287,26 @@ def test_manifest_reconciles_qdrant_to_effective_not_raw_counts():
     assert generated["enrichment"]["effective_review_count"] == 1
 
 
+def test_manifest_pins_a_separate_versioned_geography_snapshot():
+    generated = manifest(include_qdrant=False)
+    with_geo = build_gold_manifest(
+        normalization(),
+        [enrichment()],
+        source_id="tripadvisor",
+        source_release_id=SOURCE_RELEASE,
+        contract_fingerprint=contract_fingerprint(),
+        config_fingerprint="sha256:gold-config",
+        geography_snapshot={
+            "table": "travel.silver.place",
+            "snapshot_id": "snapshot-geo",
+            "taxonomy_version": "province-rules-v1.2",
+            "taxonomy_fingerprint": "sha256:taxonomy",
+        },
+    )
+    assert with_geo["geography_snapshot"]["snapshot_id"] == "snapshot-geo"
+    assert with_geo["manifest_id"] != generated["manifest_id"]
+
+
 def test_legal_run_transitions_and_complete_validation():
     run = CandidateRun(manifest())
     run.transition("building")
