@@ -95,3 +95,25 @@ travel_intelligence.common.configuration; paths are resolved from the
 repository root. TASK-004A defines read-only TripAdvisor Silver eligibility and
 proposed sentiment schemas. It does not run inference, create enrichment
 tables, generate embeddings, or mutate live Iceberg data.
+
+## Read-only FastAPI foundation
+
+With Trino running on host port 8080, configure the candidate release and start
+the API:
+
+```bash
+export GOLD_RELEASE_ID=gold-release-9bfd00eeae2748684dbc34e34aab27620f6babed6c8ad8ecfbf8f8fb558c6854
+uv run uvicorn travel_intelligence.api.main:app \
+  --host 0.0.0.0 --port 8000 --reload
+```
+
+Then check liveness, Gold readiness, and OpenAPI documentation:
+
+```bash
+curl http://localhost:8000/health
+curl http://localhost:8000/ready
+```
+
+Open `http://localhost:8000/docs` in a browser. Trino connection, CORS, and
+release settings are documented in `.env.example`. The API is read-only and
+does not publish or activate the configured candidate release.

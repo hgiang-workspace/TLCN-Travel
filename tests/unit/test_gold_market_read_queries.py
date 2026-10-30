@@ -29,11 +29,11 @@ def test_metric_inventory_exactly_matches_persisted_metric_contract():
 )
 def test_static_queries_are_parameter_only_and_release_scoped(query):
     assert query.sql.count("?") == len(query.parameters)
-    assert query.parameters == ("release_id", "source_id", "reporting_period")
+    assert query.parameters[:3] == ("release_id", "source_id", "reporting_period")
     assert "WHERE" in query.sql
     assert ".release_id = r.release_id" in query.sql
     assert "gold_build_run" not in query.sql
-    assert "snapshot" not in query.sql.lower()
+    assert "FOR VERSION AS OF ?" in query.sql
 
 
 def test_overview_keeps_market_and_coverage_aggregations_independent():
@@ -62,8 +62,8 @@ def test_coverage_query_recomputes_ratios_from_counts():
 
 
 def test_province_query_uses_bounded_placeholders_and_one_metric():
-    query = province_comparison_query(3)
-    assert query.sql.count("?") == len(query.parameters) == 8
+    query = province_comparison_query(3, filter_domain=True)
+    assert query.sql.count("?") == len(query.parameters) == 9
     assert query.parameters[-3:] == (
         "province_id[0]",
         "province_id[1]",
@@ -71,7 +71,12 @@ def test_province_query_uses_bounded_placeholders_and_one_metric():
     )
     assert "m.metric_id = ?" in query.sql
     assert "m.geo_id IN (?, ?, ?)" in query.sql
+    assert "AND m.domain_id = ?" in query.sql
+    aggregate = province_comparison_query(3, filter_domain=False)
+    assert aggregate.sql.count("?") == len(aggregate.parameters) == 8
+    assert "AND m.domain_id = ?" not in aggregate.sql
+    assert "SUM(m.numerator)" in aggregate.sql
     with pytest.raises(ValueError, match="between 1 and 20"):
-        province_comparison_query(0)
+        province_comparison_query(0, filter_domain=True)
     with pytest.raises(ValueError, match="between 1 and 20"):
-        province_comparison_query(21)
+        province_comparison_query(21, filter_domain=True)

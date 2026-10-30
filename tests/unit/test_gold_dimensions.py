@@ -84,6 +84,45 @@ def test_projection_is_deterministic_and_preserves_unicode():
     assert first["dim_entity"][0]["product_domain_id"] is None
 
 
+def test_entity_identity_is_idempotent_within_release_and_distinct_across_releases():
+    first = project_dimensions_and_bridges(
+        [place()],
+        [mapping()],
+        context=context(),
+        valid_from=datetime(2026, 1, 2),
+        built_at=datetime(2026, 1, 2),
+        source_id="tripadvisor",
+        source_name="TripAdvisor",
+    )["dim_entity"][0]
+    repeated = project_dimensions_and_bridges(
+        [place()],
+        [mapping()],
+        context=context(),
+        valid_from=datetime(2026, 1, 2),
+        built_at=datetime(2026, 1, 2),
+        source_id="tripadvisor",
+        source_name="TripAdvisor",
+    )["dim_entity"][0]
+    next_release_context = {
+        **context(),
+        "release_id": "release-2",
+        "gold_run_id": "run-2",
+    }
+    next_release = project_dimensions_and_bridges(
+        [place()],
+        [mapping()],
+        context=next_release_context,
+        valid_from=datetime(2026, 1, 2),
+        built_at=datetime(2026, 1, 2),
+        source_id="tripadvisor",
+        source_name="TripAdvisor",
+    )["dim_entity"][0]
+
+    assert first["entity_id"] == repeated["entity_id"] == next_release["entity_id"]
+    assert first["entity_sk"] == repeated["entity_sk"]
+    assert first["entity_sk"] != next_release["entity_sk"]
+
+
 def test_projection_excludes_unresolved_mapping_and_geography_without_fabrication():
     result = project_dimensions_and_bridges(
         [place(), place("place-2", geo=None)],

@@ -123,7 +123,7 @@ coverage AS (
         SUM(c.entity_count_with_sentiment_evidence) AS sentiment_entity_count,
         SUM(c.entity_count_with_aspect_evidence) AS aspect_entity_count,
         MIN(c.data_status) AS data_status
-    FROM travel.gold.fact_data_coverage c
+    FROM travel.gold.fact_data_coverage FOR VERSION AS OF ? AS c
     CROSS JOIN request r
     WHERE c.release_id = r.release_id
       AND c.source_id = r.source_id
@@ -137,7 +137,7 @@ market AS (
             AS aspect_mention_count,
         COUNT(DISTINCT IF(m.metric_id = 'entity_count', m.domain_id, NULL))
             AS available_domain_count
-    FROM travel.gold.fact_market_summary m
+    FROM travel.gold.fact_market_summary FOR VERSION AS OF ? AS m
     CROSS JOIN request r
     WHERE m.release_id = r.release_id
       AND m.source_id = r.source_id
@@ -152,7 +152,13 @@ SELECT coverage.*, market.*,
         AS aspect_entity_coverage_ratio
 FROM coverage CROSS JOIN market
 """.strip(),
-    parameters=("release_id", "source_id", "reporting_period"),
+    parameters=(
+        "release_id",
+        "source_id",
+        "reporting_period",
+        "fact_data_coverage_snapshot_id",
+        "fact_market_summary_snapshot_id",
+    ),
 )
 
 
@@ -176,7 +182,7 @@ SELECT m.domain_id,
     SUM(IF(m.metric_id = 'aspect_mention_count', m.numerator, 0))
         AS aspect_mention_count,
     MIN(m.data_status) AS data_status
-FROM travel.gold.fact_market_summary m
+FROM travel.gold.fact_market_summary FOR VERSION AS OF ? AS m
 CROSS JOIN request r
 WHERE m.release_id = r.release_id
   AND m.source_id = r.source_id
@@ -184,14 +190,19 @@ WHERE m.release_id = r.release_id
 GROUP BY m.domain_id
 ORDER BY m.domain_id
 """.strip(),
-    parameters=("release_id", "source_id", "reporting_period"),
+    parameters=(
+        "release_id",
+        "source_id",
+        "reporting_period",
+        "fact_market_summary_snapshot_id",
+    ),
 )
 
 
 DATA_COVERAGE_QUERY = ReadQuery(
     sql=f"""
 WITH {_REQUEST}
-SELECT c.geo_id, g.geo_name,
+SELECT c.geo_id,
     c.observed_entity_count AS collected_entity_count,
     c.mapped_entity_count,
     c.excluded_entity_count,
@@ -205,47 +216,60 @@ SELECT c.geo_id, g.geo_name,
     CAST(c.entity_count_with_aspect_evidence AS DOUBLE)
         / NULLIF(c.observed_entity_count, 0) AS aspect_entity_coverage_ratio,
     c.data_status, c.status_reason
-FROM travel.gold.fact_data_coverage c
+FROM travel.gold.fact_data_coverage FOR VERSION AS OF ? AS c
 CROSS JOIN request r
-LEFT JOIN travel.gold.dim_geography g
-  ON g.release_id = c.release_id AND g.geography_sk = c.geography_sk
 WHERE c.release_id = r.release_id
   AND c.source_id = r.source_id
   AND c.reporting_period = r.reporting_period
 ORDER BY c.geo_id
 """.strip(),
-    parameters=("release_id", "source_id", "reporting_period"),
+    parameters=(
+        "release_id",
+        "source_id",
+        "reporting_period",
+        "fact_data_coverage_snapshot_id",
+    ),
 )
 
 
-def province_comparison_query(province_count: int) -> ReadQuery:
+def province_comparison_query(
+    province_count: int, *, filter_domain: bool
+) -> ReadQuery:
     """Return a bounded, parameter-only comparison query for selected provinces."""
     if not 1 <= province_count <= 20:
         raise ValueError("province comparison requires between 1 and 20 provinces")
     placeholders = ", ".join("?" for _ in range(province_count))
+    domain_filter = "AND m.domain_id = ?" if filter_domain else ""
+    domain_projection = "m.domain_id" if filter_domain else "CAST(NULL AS VARCHAR)"
+    domain_group = ", m.domain_id" if filter_domain else ""
     sql = f"""
 WITH {_REQUEST}
-SELECT m.geo_id, g.geo_name, m.domain_id, m.metric_id,
-    m.numerator AS value, m.denominator, m.sample_size, m.data_status
-FROM travel.gold.fact_market_summary m
+SELECT m.geo_id, {domain_projection} AS domain_id, m.metric_id,
+    SUM(m.numerator) AS value,
+    CASE WHEN count_if(m.denominator IS NULL) > 0 THEN NULL
+         ELSE SUM(m.denominator) END AS denominator,
+    SUM(m.sample_size) AS sample_size,
+    MIN(m.data_status) AS data_status
+FROM travel.gold.fact_market_summary FOR VERSION AS OF ? AS m
 CROSS JOIN request r
-LEFT JOIN travel.gold.dim_geography g
-  ON g.release_id = m.release_id AND g.geography_sk = m.geography_sk
 WHERE m.release_id = r.release_id
   AND m.source_id = r.source_id
   AND m.reporting_period = r.reporting_period
-  AND m.domain_id = ?
+  {domain_filter}
   AND m.metric_id = ?
   AND m.geo_id IN ({placeholders})
+GROUP BY m.geo_id, m.metric_id{domain_group}
 ORDER BY m.geo_id, m.metric_id
 """.strip()
+    optional_domain = ("domain_id",) if filter_domain else ()
     return ReadQuery(
         sql=sql,
         parameters=(
             "release_id",
             "source_id",
             "reporting_period",
-            "domain_id",
+            "fact_market_summary_snapshot_id",
+            *optional_domain,
             "metric_id",
             *tuple(f"province_id[{index}]" for index in range(province_count)),
         ),
